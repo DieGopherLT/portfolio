@@ -131,6 +131,50 @@ Single-page scroll with navigation
 - Markdown formatted social links
 - Authentic terminal output style
 
+### Where to find content for sections?
+
+The project uses **next-intl** for internationalization with the following structure:
+
+#### Configuration Location
+- **Config file**: `src/i18n/config.ts`
+- **Current setup**: Static locale ('en' by default)
+- **Messages location**: `src/i18n/messages/`
+
+#### Content Files
+- **English**: `src/i18n/messages/en.json`
+- **Spanish**: `src/i18n/messages/es.json`
+
+#### Content Structure
+Each locale file contains:
+
+**Section Content**:
+- `sections.hero` - Hero section content with terminal welcome, name, title, description
+- `sections.about` - About section with terminal command and detailed content structure
+- `sections.experience` - Work experience with jobs array, achievements, and technologies
+- `sections.skills` - Skills organized by categories (conceptual, backend, frontend, tooling)
+- `sections.projects` - Projects section (currently coming_soon status)
+- `sections.contact` - Contact form and social links with terminal window titles
+
+**Navigation & Common**:
+- `navigation` - Menu items for each section
+- `common_phrases` - Reusable phrases like loading, scroll hints, etc.
+- `personal_info` - Basic personal information used across sections
+
+**Terminal Commands**:
+Each section has a specific `terminal_command` that appears in the typing animation:
+- Hero: `echo 'Hello world!'` / `echo 'Hola mundo!'`
+- About: `whoami`
+- Experience: `history | grep work`
+- Skills: `skills --list --verbose`
+- Projects: `ls projects/ -la`
+- Contact: `connect --help`
+
+**Key Implementation Notes**:
+- All terminal window titles are defined in the content files
+- Social links window uses "mis-redes.md" / "my-networks.md"
+- Contact form window uses "contact-form.sh"
+- Content is structured to support the terminal aesthetic with authentic command-line feel
+
 ## Terminal Window Design
 
 ### Frame Style
