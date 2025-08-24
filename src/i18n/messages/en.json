@@ -1,0 +1,189 @@
+{
+  "language": "en",
+  "personal_info": {
+    "full_name": "Diego López Torres",
+    "username": "diegopher",
+    "title": "Software Engineer",
+    "age": 25,
+    "experience_years": 3,
+    "specialization": "Full Stack Web Development",
+    "preference": "Backend > Frontend"
+  },
+  "sections": {
+    "hero": {
+      "terminal_welcome": "diegopher@dev:~$ echo 'Hello world!'",
+      "name": "Diego López Torres",
+      "title": "Software Engineer",
+      "description": "Building robust and scalable web solutions. Specialized in backend architectures, passionate about modern technologies and Unix philosophy.",
+      "specialties": [
+        "Full Stack Development",
+        "Backend Architecture", 
+        "Go & TypeScript",
+        "Linux Passionate"
+      ],
+      "cta": "Explore my work and experience"
+    },
+    "about": {
+      "terminal_command": "diegopher@dev:~$ whoami",
+      "title": "About Me",
+      "content": {
+        "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
+        "expertise": "I have stronger backend skills than frontend, with a solid foundation in scalable architectures and API design.",
+        "passion": "I have a deep passion for computer science, especially technologies like Go, TypeScript, and the Linux ecosystem.",
+        "philosophy": "I believe in simplicity, efficiency, and clean code. I apply Unix principles in development: do one thing and do it well.",
+        "current_focus": "Currently exploring emerging technologies and best practices in backend development, always seeking to create elegant and efficient solutions."
+      }
+    },
+    "experience": {
+      "terminal_command": "diegopher@dev:~$ history | grep work",
+      "title": "Experience",
+      "jobs": [
+        {
+          "company": "Taloon Studio",
+          "position": "Software Engineer",
+          "period": "January 2025 - Present",
+          "type": "Full Time",
+          "achievements": [
+            "Enhanced styling for a trading platform with 20,000+ active users",
+            "Significantly optimized complex interactive application projects",
+            "Developed solutions for decentralized platforms and affiliate management",
+            "Led structural design and deployment of a mining pool proxy",
+            "Worked extensively with blockchain applications and hash power systems"
+          ],
+          "technologies": ["React", "Express", "MongoDB", "TypeScript", "Docker"],
+          "highlights": "Solid experience in blockchain-linked applications and decentralized architectures"
+        },
+        {
+          "company": "Exhio Consulting",
+          "position": "Consultant & Developer",
+          "period": "September 2022 - December 2024", 
+          "type": "Consulting",
+          "achievements": [
+            "Participated in multi-industry projects: real estate, energy, and logistics",
+            "Researched and implemented micro frontend solution to modernize legacy application",
+            "Developed 3-4 complete features using micro frontend architecture over 1+ year",
+            "Built custom information capture dashboard for logistics company",
+            "Developed tracking number lookup page used by 15,000+ daily users"
+          ],
+          "technologies": ["React", "Vue", "Node.js", "Express", "TypeScript", "SQL", "Docker", "GitLab", "GitLab CI", "AWS", "Micro Frontends"],
+          "highlights": "Innovative solutions for legacy system modernization and high-traffic applications"
+        }
+      ]
+    },
+    "skills": {
+      "terminal_command": "diegopher@dev:~$ skills --list --verbose",
+      "title": "Skills", 
+      "categories": {
+        "conceptual": {
+          "name": "Concepts & Architecture",
+          "skills": [
+            "Clean Code Principles",
+            "Design Patterns (GoF)",
+            "SOLID Principles", 
+            "MVC Architecture",
+            "Domain Driven Design",
+            "RESTful API Design",
+            "Object Oriented Programming",
+            "Functional Programming"
+          ]
+        },
+        "backend": {
+          "name": "Backend & Databases",
+          "skills": [
+            "Go (Golang)",
+            "Node.js",
+            "Express.js", 
+            "Nest.js",
+            "SQL Databases",
+            "MongoDB",
+            "GraphQL",
+            "REST APIs"
+          ]
+        },
+        "frontend": {
+          "name": "Frontend & UI",
+          "skills": [
+            "TypeScript",
+            "React",
+            "Vue.js",
+            "Tailwind CSS",
+            "Responsive Design",
+            "Modern CSS"
+          ]
+        },
+        "tooling": {
+          "name": "Tools & DevOps",
+          "skills": [
+            "Git & GitHub",
+            "Docker",
+            "Linux",
+            "Terminal/CLI",
+            "CI/CD",
+            "Package Managers"
+          ]
+        }
+      },
+      "highlighted_languages": ["Go", "TypeScript"],
+      "expertise_level": "3+ years professional experience"
+    },
+    "projects": {
+      "terminal_command": "diegopher@dev:~$ ls projects/ -la",
+      "title": "Projects",
+      "status": "coming_soon",
+      "message": "Currently working on personal projects that will be available soon.",
+      "placeholder_content": "This section will be updated with featured projects in development."
+    },
+    "contact": {
+      "terminal_command": "diegopher@dev:~$ connect --help",
+      "title": "Contact",
+      "form": {
+        "title": "contact-form.sh",
+        "fields": {
+          "name": "Name",
+          "email": "Email", 
+          "subject": "Subject",
+          "message": "Message"
+        },
+        "submit": "Send",
+        "placeholders": {
+          "name": "Your full name",
+          "email": "your.email@example.com",
+          "subject": "Message subject", 
+          "message": "Write your message here..."
+        }
+      },
+      "social": {
+        "title": "my-networks.md",
+        "command": "diegopher@dev:~$ cat my-networks.md",
+        "links": [
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/diegopher",
+            "description": "Code, projects and open source contributions"
+          },
+          {
+            "platform": "LinkedIn", 
+            "url": "https://linkedin.com/in/diegopher",
+            "description": "Professional profile and network"
+          }
+        ],
+        "footer": "Always open to new opportunities and interesting collaborations."
+      }
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About", 
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "common_phrases": {
+    "scroll_hint": "Scroll to explore",
+    "loading": "Loading...",
+    "view_more": "View more",
+    "back_to_top": "Back to top",
+    "download_resume": "Download Resume"
+  }
+}
