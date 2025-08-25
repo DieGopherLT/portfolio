@@ -22,9 +22,13 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      const offset = 40; // Height of navbar + some padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     }
     onClose();
