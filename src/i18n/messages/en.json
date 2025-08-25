@@ -68,7 +68,12 @@
           "technologies": ["React", "Vue", "Node.js", "Express", "TypeScript", "SQL", "Docker", "GitLab", "GitLab CI", "AWS", "Micro Frontends"],
           "highlights": "Innovative solutions for legacy system modernization and high-traffic applications"
         }
-      ]
+      ],
+      "labels": {
+        "highlight": "Featured",
+        "achievements": "Key Achievements", 
+        "tech_stack": "Tech Stack"
+      }
     },
     "skills": {
       "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
