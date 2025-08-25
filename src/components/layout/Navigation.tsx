@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
+import { useMobileMenu } from '@/contexts/MobileMenuContext';
 
 interface NavigationProps {
   className?: string;
@@ -17,6 +18,7 @@ const navItems = [
 
 export default function Navigation({ className = "" }: NavigationProps) {
   const t = useTranslations('navigation');
+  const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -53,17 +55,21 @@ export default function Navigation({ className = "" }: NavigationProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden sticky top-0">
             <motion.button
+              onClick={toggleMobileMenu}
               className="text-text-secondary hover:text-gopher-blue transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="font-mono text-sm">[menu]</span>
+              <span className="font-mono text-sm">
+                {isMobileMenuOpen ? '[close]' : '[menu]'}
+              </span>
             </motion.button>
           </div>
         </div>
       </div>
+
     </motion.nav>
   );
 }

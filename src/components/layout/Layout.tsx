@@ -3,13 +3,17 @@
 import Navigation from './Navigation';
 import Header from './Header';
 import Footer from './Footer';
+import MobileMenuOverlay from './MobileMenuOverlay';
+import { MobileMenuProvider, useMobileMenu } from '@/contexts/MobileMenuContext';
 
 interface LayoutProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export default function Layout({ children, className = "" }: LayoutProps) {
+function LayoutContent({ children, className = "" }: LayoutProps) {
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu();
+
   return (
     <div className={`min-h-screen bg-bg-primary text-text-primary ${className}`}>
       <Navigation />
@@ -21,6 +25,22 @@ export default function Layout({ children, className = "" }: LayoutProps) {
         </div>
         <Footer />
       </main>
+
+      {/* Mobile menu overlay - completely outside the sticky nav */}
+      <MobileMenuOverlay 
+        isOpen={isMobileMenuOpen} 
+        onClose={() => setIsMobileMenuOpen(false)} 
+      />
     </div>
+  );
+}
+
+export default function Layout({ children, className = "" }: LayoutProps) {
+  return (
+    <MobileMenuProvider>
+      <LayoutContent className={className}>
+        {children}
+      </LayoutContent>
+    </MobileMenuProvider>
   );
 }
