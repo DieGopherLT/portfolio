@@ -1,7 +1,9 @@
 'use client';
 
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
+import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 
 interface TerminalWindowProps {
   title?: string;
@@ -16,10 +18,11 @@ export default function TerminalWindow({
   onTypingComplete,
   className = ""
 }: TerminalWindowProps) {
-  const { displayedText, showCursor } = useTypingAnimation({
+  const { displayedText } = useTypingAnimation({
     command,
     onTypingComplete
   });
+  const cursor = useTerminalCursor();
 
   return (
     <motion.div 
@@ -62,8 +65,8 @@ export default function TerminalWindow({
             {displayedText}
             <motion.span 
               className="terminal-cursor"
-              animate={{ opacity: showCursor ? 1 : 0 }}
-              transition={{ duration: 0.1 }}
+              animate={cursor.blinking}
+              transition={cursor.typing.transition}
             >
               █
             </motion.span>

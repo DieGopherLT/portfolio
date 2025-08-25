@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
+import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 
 interface SocialLink {
   platform: string;
@@ -12,6 +13,7 @@ interface SocialLink {
 
 export default function Contact() {
   const t = useTranslations('sections.contact');
+  const cursor = useTerminalCursor();
   const [showContent, setShowContent] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -122,12 +124,17 @@ export default function Contact() {
                       <span className='text-white'>~</span>
                       <span className='text-white'>$</span>
                     </span>
-                    <span className="text-white ml-2">
+                  </div>
+                  <div className="terminal-line terminal-continuation">
+                    <span className="terminal-chevron">
+                      <span className='text-[#58c5a4]'>❯</span>
+                    </span>
+                    <span className="terminal-command">
                       {formCommand}
                       <motion.span 
                         className="terminal-cursor"
                         animate={{ opacity: showFormCursor ? 1 : 0 }}
-                        transition={{ duration: 0.1 }}
+                        transition={cursor.typing.transition}
                       >
                         █
                       </motion.span>
@@ -270,12 +277,17 @@ export default function Contact() {
                       <span className='text-white'>~</span>
                       <span className='text-white'>$</span>
                     </span>
-                    <span className="text-white ml-2">
+                  </div>
+                  <div className="terminal-line terminal-continuation">
+                    <span className="terminal-chevron">
+                      <span className='text-[#58c5a4]'>❯</span>
+                    </span>
+                    <span className="terminal-command">
                       {socialCommand}
                       <motion.span 
                         className="terminal-cursor"
                         animate={{ opacity: showSocialCursor ? 1 : 0 }}
-                        transition={{ duration: 0.1 }}
+                        transition={cursor.typing.transition}
                       >
                         █
                       </motion.span>
@@ -358,14 +370,14 @@ export default function Contact() {
                           <span className='text-white'>~</span>
                           <span className='text-white'>$</span>
                         </span>
+                      </div>
+                      <div className="terminal-line terminal-continuation">
+                        <span className="terminal-chevron">
+                          <span className='text-[#58c5a4]'>❯</span>
+                        </span>
                         <motion.span 
-                          className="terminal-cursor ml-2"
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ 
-                            duration: 1.06,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
+                          className="terminal-cursor"
+                          animate={cursor.blinking}
                         >
                           █
                         </motion.span>

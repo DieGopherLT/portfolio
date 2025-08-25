@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 
 interface TerminalFooterProps {
   path?: string;
@@ -11,6 +12,8 @@ export default function TerminalFooter({
   path = "~",
   className = ""
 }: TerminalFooterProps) {
+  const cursor = useTerminalCursor();
+
   return (
     <motion.div 
       className={`terminal-footer ${className}`}
@@ -35,12 +38,7 @@ export default function TerminalFooter({
         <span className="terminal-cursor-only">
           <motion.span 
             className="terminal-cursor"
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ 
-              duration: 1.06,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            animate={cursor.blinking}
           >
             █
           </motion.span>
