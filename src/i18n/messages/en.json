@@ -89,7 +89,7 @@
             "Domain Driven Design",
             "RESTful API Design",
             "Object Oriented Programming",
-            "Functional Programming"
+            "Dependency Injection"
           ]
         },
         "backend": {
@@ -113,7 +113,7 @@
             "Vue.js",
             "Tailwind CSS",
             "Responsive Design",
-            "Modern CSS"
+            "UI/UX"
           ]
         },
         "tooling": {
@@ -129,7 +129,31 @@
         }
       },
       "highlighted_languages": ["Go", "TypeScript"],
-      "expertise_level": "3+ years professional experience"
+      "highlighted_skills": [
+        "Clean Code Principles",
+        "Design Patterns (GoF)", 
+        "SOLID Principles",
+        "Go (Golang)",
+        "Nest.js",
+        "MongoDB",
+        "TypeScript",
+        "Linux",
+        "Git & GitHub"
+      ],
+      "expertise_level": "3+ years professional experience",
+      "skill_levels": {
+        "Go (Golang)": "Intermediate",
+        "TypeScript": "Advanced"
+      },
+      "labels": {
+        "overview": "SKILLS OVERVIEW",
+        "specialization": "Specialization",
+        "main_languages": "Main languages",
+        "highlighted_section": "HIGHLIGHTED LANGUAGES",
+        "advanced_experience": "Advanced experience",
+        "intermediate_experience": "Intermediate experience",
+        "backend_development": "Backend Development"
+      }
     },
     "projects": {
       "terminal_command": "diegopher@portfolio:~$ ls projects/ -la",

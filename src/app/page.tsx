@@ -1,6 +1,7 @@
 import Layout from '@/components/layout/Layout';
 import About from '@/components/sections/About';
 import Experience from '@/components/sections/Experience';
+import Skills from '@/components/sections/Skills';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <main className="">
         <About />
         <Experience />
+        <Skills />
       </main>
     </Layout>
   );
