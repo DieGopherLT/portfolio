@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
+import LanguageSelector from '@/components/LanguageSelector';
 
 interface MobileMenuOverlayProps {
   isOpen: boolean;
@@ -84,6 +85,17 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
               {/* Terminal Content */}
               <div className="bg-black p-2">
                 <div className="text-center space-y-2">
+                  
+                  {/* Language Selector */}
+                  <motion.div
+                    className="text-left mb-4 pb-4 border-b border-zinc-800"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                  >
+                    <LanguageSelector variant="mobile" />
+                  </motion.div>
                   
                   {navItems.map((item, index) => (
                     <motion.button

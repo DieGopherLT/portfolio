@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MobileMenuOverlay from './MobileMenuOverlay';
 import { MobileMenuProvider, useMobileMenu } from '@/contexts/MobileMenuContext';
+import { useEffect } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;

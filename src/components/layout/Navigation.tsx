@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useMobileMenu } from '@/contexts/MobileMenuContext';
+import LanguageSelector from '@/components/LanguageSelector';
 
 interface NavigationProps {
   className?: string;
@@ -42,24 +43,36 @@ export default function Navigation({ className = "" }: NavigationProps) {
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center items-center h-16">
+        <div className="flex items-center h-16 w-full">
           
-          <div className="hidden md:flex gap-6 lg:gap-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.key}
-                onClick={() => scrollToSection(item.href)}
-                className="nav-link text-sm font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {t(item.key)}
-              </motion.button>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex w-full">
+            {/* Spacer for left side */}
+            <div className="flex-1"></div>
+            
+            {/* Center navigation */}
+            <div className="flex gap-6 lg:gap-8">
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.key}
+                  onClick={() => scrollToSection(item.href)}
+                  className="nav-link text-sm font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {t(item.key)}
+                </motion.button>
+              ))}
+            </div>
+            
+            {/* Right side - Language selector */}
+            <div className="flex-1 flex justify-end">
+              <LanguageSelector variant="desktop" />
+            </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden sticky top-0">
+          <div className="md:hidden w-full flex justify-center">
             <motion.button
               onClick={toggleMobileMenu}
               className="text-secondary hover:text-gopher-blue transition-colors duration-200"
