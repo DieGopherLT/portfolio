@@ -1,24 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #000000;
+  --color-white: #FFFFFF;
+  --color-secondary: #8B949E;
+  --color-muted: #6E7681;
+  
+  --color-gopher-blue: #00ADD8;
+  --color-gopher-blue-hover: #00B4D6;
+  --color-gopher-blue-muted: #007D9C;
+  --color-terminal-green: #39D353;
+  --color-warning-yellow: #F1C40F;
+  --color-error-red: #E74C3C;
+  
+  --color-ts-blue: #007ACC;
+  --color-go-cyan: #00ADD8;
+  --color-string-green: #98C379;
+  --color-keyword-purple: #C678DD;
+  --color-comment-gray: #5C6370;
+  
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
 :root {
-  --bg-primary: #000000;
-  --text-primary: #FFFFFF;
-  --text-secondary: #8B949E;
-  --text-muted: #6E7681;
-  
-  --gopher-blue: #00ADD8;
-  --gopher-blue-hover: #00B4D6;
-  --gopher-blue-muted: #007D9C;
-  --terminal-green: #39D353;
-  --warning-yellow: #F1C40F;
-  --error-red: #E74C3C;
-  
-  --ts-blue: #007ACC;
-  --go-cyan: #00ADD8;
-  --string-green: #98C379;
-  --keyword-purple: #C678DD;
-  --comment-gray: #5C6370;
-  
   --font-geist-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-geist-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
 }
@@ -33,11 +38,11 @@
   html,
   body {
     max-width: 100vw;
-    overflow-x: hidden;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: var(--font-geist-sans);
-    line-height: 1.6;
+    /* overflow-x: hidden; */
+    background-color: var(--color-primary);
+    /* color: var(--text-primary); */
+    /* font-family: var(--font-geist-sans); */
+    /* line-height: 1.6; */
   }
 }
 
@@ -101,7 +106,7 @@
   }
 
   .terminal-content {
-    background: var(--bg-primary);
+    background: var(--color-primary);
     padding: 16px 20px;
     border-radius: 0 0 8px 8px;
     font-family: var(--font-geist-mono);
@@ -117,13 +122,13 @@
   }
 
   .terminal-prompt {
-    color: var(--gopher-blue);
+    color: var(--color-gopher-blue);
     font-weight: 600;
     flex-shrink: 0;
   }
 
   .terminal-command {
-    color: var(--text-primary);
+    color: var(--color-white);
     flex: 1;
   }
 
@@ -134,7 +139,7 @@
   }
 
   .nav-link:hover {
-    color: var(--gopher-blue);
+    color: var(--color-gopher-blue);
   }
 
   .nav-link:hover::after {
@@ -144,7 +149,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--gopher-blue);
+    background-color: var(--color-gopher-blue);
     animation: underlineSlide 0.2s ease;
   }
 
@@ -161,7 +166,7 @@
 
 @layer utilities {
   .terminal-cursor {
-    color: var(--text-primary);
+    color: var(--color-white);
     animation: blink 1.06s infinite;
     margin-left: 2px;
   }

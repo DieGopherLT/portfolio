@@ -19,7 +19,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
   return (
     <motion.header 
-      className={`py-16 ${className}`}
+      className={`py-4 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -41,32 +41,14 @@ export default function Header({ className = "" }: HeaderProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-text-primary mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-4">
             {t('full_name')}
           </h1>
-          <p className="text-xl sm:text-2xl text-text-secondary mb-2 font-light">
+          <p className="text-xl sm:text-2xl text-secondary mb-2 font-light">
             {t('title')}
-          </p>
-          <p className="text-base sm:text-lg text-text-muted">
-            {t('specialization')} • {t('preference')}
           </p>
         </motion.div>
 
-        <motion.div
-          className="mt-8 text-sm font-mono text-gopher-blue"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.4 }}
-        >
-          <span>diegopher@portfolio:~$ </span>
-          <motion.span
-            className="terminal-cursor"
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 1.06, ease: "linear" }}
-          >
-            █
-          </motion.span>
-        </motion.div>
       </div>
     </motion.header>
   );

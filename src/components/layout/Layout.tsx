@@ -15,7 +15,7 @@ function LayoutContent({ children, className = "" }: LayoutProps) {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu();
 
   return (
-    <div className={`min-h-screen bg-bg-primary text-text-primary ${className}`}>
+    <div className={`min-h-screen bg-primary text-white ${className}`}>
       <Navigation />
       
       <main className="flex flex-col w-full min-h-screen">

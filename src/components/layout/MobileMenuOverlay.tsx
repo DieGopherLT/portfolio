@@ -63,7 +63,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                 <div className="flex space-x-2">
                   <button
                     onClick={onClose}
-                    className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+                    className="w-3 h-3 rounded-full bg-error-red hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
                     aria-label="Close mobile menu"
                   >
                     <span className="sr-only">Close</span>
@@ -99,7 +99,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                   ))}
 
                   <motion.div 
-                    className="text-xs text-left font-mono text-text-muted mt-6 pt-4 border-t border-zinc-800"
+                    className="text-xs text-left font-mono text-muted mt-6 pt-4 border-t border-zinc-800"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}

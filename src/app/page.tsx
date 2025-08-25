@@ -7,15 +7,15 @@ export default function Home() {
         {/* Content sections coming soon */}
         <section className="flex justify-center">
           <div className="text-center px-4">
-            <h2 className="text-2xl font-light text-text-primary mb-4">
+            <h2 className="text-2xl font-light text-white mb-4">
               Welcome to my portfolio
             </h2>
-            <p className="text-text-secondary mb-8">
+            <p className="text-secondary mb-8">
               Content sections coming soon...
             </p>
             <div className="text-sm font-mono text-gopher-blue">
               <span>diegopher@portfolio:~$ </span>
-              <span className="text-text-primary">echo &quot;Building amazing things...&quot;</span>
+              <span className="text-white">echo &quot;Building amazing things...&quot;</span>
             </div>
           </div>
         </section>

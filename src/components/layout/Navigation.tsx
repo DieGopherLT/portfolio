@@ -45,7 +45,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
               <motion.button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="nav-link text-sm font-medium text-text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
+                className="nav-link text-sm font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -58,7 +58,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
           <div className="md:hidden sticky top-0">
             <motion.button
               onClick={toggleMobileMenu}
-              className="text-text-secondary hover:text-gopher-blue transition-colors duration-200"
+              className="text-secondary hover:text-gopher-blue transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
