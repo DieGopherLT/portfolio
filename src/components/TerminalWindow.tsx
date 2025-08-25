@@ -11,7 +11,7 @@ interface TerminalWindowProps {
 }
 
 export default function TerminalWindow({
-  title = "diegopher@dev: ~",
+  title = "diegopher@portfolio: ~",
   command,
   onTypingComplete,
   className = ""
@@ -79,7 +79,7 @@ export default function TerminalWindow({
       
       <div className="terminal-content">
         <div className="terminal-line">
-          <span className="terminal-prompt">diegopher@dev:~$</span>
+          <span className="terminal-prompt">diegopher@portfolio:~$</span>
           <span className="terminal-command">
             {displayedText}
             <motion.span 

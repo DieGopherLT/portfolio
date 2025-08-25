@@ -87,33 +87,33 @@ Single-page scroll with navigation
 ### Hero Section
 - Terminal welcome sequence
 - Optional ASCII art or logo
-- `diegopher@dev:~$ intro_message`
+- `diegopher@portfolio:~$ intro_message`
 - Brief developer statement
 - Typing effect for specialization
 
 ### About Section
-- **Terminal Command**: `diegopher@dev:~$ whoami`
+- **Terminal Command**: `diegopher@portfolio:~$ whoami`
 - Personal technical narrative style
 - Focus on backend/frontend passion + Unix philosophy
 
 ### Experience Section
-- **Terminal Command**: `diegopher@dev:~$ history | grep work`
+- **Terminal Command**: `diegopher@portfolio:~$ history | grep work`
 - Chronological professional timeline
 - Clean job entries with tech tags
 
 ### Skills Section
-- **Terminal Command**: `diegopher@dev:~$ skills --list --verbose`
+- **Terminal Command**: `diegopher@portfolio:~$ skills --list --verbose`
 - Categorized technical skills
 - Highlight languages: TypeScript, Go
 - Categories: languages, frameworks, tools, concepts
 
 ### Projects Section
-- **Terminal Command**: `diegopher@dev:~$ ls projects/ -la`
+- **Terminal Command**: `diegopher@portfolio:~$ ls projects/ -la`
 - Project cards terminal-inspired
 - GitHub repo style with descriptions
 
 ### Contact Section
-- **Terminal Command**: `diegopher@dev:~$ connect --help`
+- **Terminal Command**: `diegopher@portfolio:~$ connect --help`
 - **CRITICAL**: Split terminal design with macOS frames
 
 #### Left Side - Contact Form
@@ -127,7 +127,7 @@ Single-page scroll with navigation
 - Social links terminal window
 - macOS style with traffic lights
 - Window title: "mis-redes.md"
-- Command simulation: `diegopher@dev:~$ cat mis-redes.md`
+- Command simulation: `diegopher@portfolio:~$ cat mis-redes.md`
 - Markdown formatted social links
 - Authentic terminal output style
 
@@ -190,7 +190,7 @@ macOS terminal window with:
   - Hover: subtle darken effect
 
 ### Window Title
-- Text: "diegopher@dev: ~" (or appropriate)
+- Text: "diegopher@portfolio: ~" (or appropriate)
 - Font: SF Pro Display, system-ui
 - Size: 13px
 - Color: #FFFFFF

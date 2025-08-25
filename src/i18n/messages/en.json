@@ -11,7 +11,7 @@
   },
   "sections": {
     "hero": {
-      "terminal_welcome": "diegopher@dev:~$ echo 'Hello world!'",
+      "terminal_welcome": "diegopher@portfolio:~$ echo 'Hello world!'",
       "name": "Diego López Torres",
       "title": "Software Engineer",
       "description": "Building robust and scalable web solutions. Specialized in backend architectures, passionate about modern technologies and Unix philosophy.",
@@ -24,7 +24,7 @@
       "cta": "Explore my work and experience"
     },
     "about": {
-      "terminal_command": "diegopher@dev:~$ whoami",
+      "terminal_command": "diegopher@portfolio:~$ whoami",
       "title": "About Me",
       "content": {
         "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
@@ -35,7 +35,7 @@
       }
     },
     "experience": {
-      "terminal_command": "diegopher@dev:~$ history | grep work",
+      "terminal_command": "diegopher@portfolio:~$ history | grep work",
       "title": "Experience",
       "jobs": [
         {
@@ -71,7 +71,7 @@
       ]
     },
     "skills": {
-      "terminal_command": "diegopher@dev:~$ skills --list --verbose",
+      "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
       "title": "Skills", 
       "categories": {
         "conceptual": {
@@ -127,14 +127,14 @@
       "expertise_level": "3+ years professional experience"
     },
     "projects": {
-      "terminal_command": "diegopher@dev:~$ ls projects/ -la",
+      "terminal_command": "diegopher@portfolio:~$ ls projects/ -la",
       "title": "Projects",
       "status": "coming_soon",
       "message": "Currently working on personal projects that will be available soon.",
       "placeholder_content": "This section will be updated with featured projects in development."
     },
     "contact": {
-      "terminal_command": "diegopher@dev:~$ connect --help",
+      "terminal_command": "diegopher@portfolio:~$ connect --help",
       "title": "Contact",
       "form": {
         "title": "contact-form.sh",
@@ -154,7 +154,7 @@
       },
       "social": {
         "title": "my-networks.md",
-        "command": "diegopher@dev:~$ cat my-networks.md",
+        "command": "diegopher@portfolio:~$ cat my-networks.md",
         "links": [
           {
             "platform": "GitHub",

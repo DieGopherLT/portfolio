@@ -11,7 +11,7 @@
   },
   "sections": {
     "hero": {
-      "terminal_welcome": "diegopher@dev:~$ echo 'Hola mundo!'",
+      "terminal_welcome": "diegopher@portfolio:~$ echo 'Hola mundo!'",
       "name": "Diego López Torres",
       "title": "Ingeniero de Software",
       "description": "Desarrollo soluciones web robustas y escalables. Especializado en arquitecturas backend, apasionado por las tecnologías modernas y la filosofía Unix.",
@@ -24,7 +24,7 @@
       "cta": "Explora mi trabajo y experiencia"
     },
     "about": {
-      "terminal_command": "diegopher@dev:~$ whoami",
+      "terminal_command": "diegopher@portfolio:~$ whoami",
       "title": "Quién Soy",
       "content": {
         "intro": "Ingeniero de software de 25 años, graduado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
@@ -35,7 +35,7 @@
       }
     },
     "experience": {
-      "terminal_command": "diegopher@dev:~$ history | grep work",
+      "terminal_command": "diegopher@portfolio:~$ history | grep work",
       "title": "Experiencia",
       "jobs": [
         {
@@ -71,7 +71,7 @@
       ]
     },
     "skills": {
-      "terminal_command": "diegopher@dev:~$ skills --list --verbose",
+      "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
       "title": "Habilidades", 
       "categories": {
         "conceptual": {
@@ -127,14 +127,14 @@
       "expertise_level": "3+ años de experiencia profesional"
     },
     "projects": {
-      "terminal_command": "diegopher@dev:~$ ls projects/ -la",
+      "terminal_command": "diegopher@portfolio:~$ ls projects/ -la",
       "title": "Proyectos",
       "status": "coming_soon",
       "message": "Actualmente trabajando en proyectos personales que estarán disponibles próximamente.",
       "placeholder_content": "Esta sección se actualizará con proyectos destacados en desarrollo."
     },
     "contact": {
-      "terminal_command": "diegopher@dev:~$ connect --help",
+      "terminal_command": "diegopher@portfolio:~$ connect --help",
       "title": "Contacto",
       "form": {
         "title": "contact-form.sh",
@@ -154,7 +154,7 @@
       },
       "social": {
         "title": "mis-redes.md",
-        "command": "diegopher@dev:~$ cat mis-redes.md",
+        "command": "diegopher@portfolio:~$ cat mis-redes.md",
         "links": [
           {
             "platform": "GitHub",
