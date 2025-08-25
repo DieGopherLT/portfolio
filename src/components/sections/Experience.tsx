@@ -2,9 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import TerminalWindow from '@/components/TerminalWindow';
 import TerminalFooter from '@/components/TerminalFooter';
+import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 
 interface Job {
   company: string;
@@ -19,6 +19,7 @@ interface Job {
 export default function Experience() {
   const t = useTranslations('sections.experience');
   const [showContent, setShowContent] = useState(false);
+  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
   const handleTypingComplete = useCallback(() => {
     setTimeout(() => setShowContent(true), 400);
@@ -27,40 +28,51 @@ export default function Experience() {
   const jobs: Job[] = t.raw('jobs') as Job[];
 
   return (
-    <section id="experience" className="min-h-screen py-10 px-4">
+    <section ref={ref} id="experience" className="min-h-screen py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
+        <h2 
           className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-once="true"
         >
           {t('title')}
-        </motion.h2>
+        </h2>
 
-        <TerminalWindow
-          title="work_history.log"
-          command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
-          onTypingComplete={handleTypingComplete}
-          className="max-w-4xl mx-auto"
-        />
+        {/* Terminal Window con renderizado condicional */}
+        {shouldRender && (
+          <div
+            data-aos="fade-up"
+            data-aos-delay="800"
+            data-aos-duration="300"
+            data-aos-once="true"
+          >
+            <TerminalWindow
+              title="work_history.log"
+              command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
+              onTypingComplete={handleTypingComplete}
+              className="max-w-4xl mx-auto"
+            />
+          </div>
+        )}
 
         {showContent && (
-          <motion.div 
+          <div 
             className="mt-8 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            data-aos="fade-up"
+            data-aos-duration="400"
+            data-aos-once="true"
           >
             <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
               <div className="space-y-8">
                 {jobs.map((job, index) => (
-                  <motion.div 
+                  <div 
                     key={index}
                     className="border-l-2 border-gopher-blue pl-4 md:pl-6 pb-6 last:pb-0"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    data-aos="fade-right"
+                    data-aos-duration="500"
+                    data-aos-delay={index * 200}
+                    data-aos-once="true"
                   >
                     {/* Job Header */}
                     <div className="mb-4">
@@ -121,13 +133,13 @@ export default function Experience() {
                         ))}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
 
                 <TerminalFooter path="~/experience" />
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

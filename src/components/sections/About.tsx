@@ -2,43 +2,54 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import TerminalWindow from '@/components/TerminalWindow';
 import TerminalFooter from '@/components/TerminalFooter';
+import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 
 export default function About() {
   const t = useTranslations('sections.about');
   const [showContent, setShowContent] = useState(false);
+  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
   const handleTypingComplete = useCallback(() => {
     setTimeout(() => setShowContent(true), 400);
   }, []);
 
   return (
-    <section id="about" className="min-h-screen py-10 px-4">
+    <section ref={ref} id="about" className="min-h-screen py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
+        <h2 
           className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-once="true"
         >
           {t('title')}
-        </motion.h2>
+        </h2>
 
-        <TerminalWindow
-          title="about_me.md"
-          command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
-          onTypingComplete={handleTypingComplete}
-          className="max-w-4xl mx-auto"
-        />
+        {/* Terminal Window con renderizado condicional */}
+        {shouldRender && (
+          <div
+            data-aos="fade-up"
+            data-aos-delay="800"
+            data-aos-duration="300"
+            data-aos-once="true"
+          >
+            <TerminalWindow
+              title="about_me.md"
+              command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
+              onTypingComplete={handleTypingComplete}
+              className="max-w-4xl mx-auto"
+            />
+          </div>
+        )}
 
         {showContent && (
-          <motion.div 
+          <div 
             className="mt-8 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            data-aos="fade-up"
+            data-aos-duration="400"
+            data-aos-once="true"
           >
             <div className="bg-black border border-gray-800 rounded-lg p-8 font-mono text-white">
               <div className="space-y-6">
@@ -77,7 +88,7 @@ export default function About() {
                 <TerminalFooter path="~/about" />
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

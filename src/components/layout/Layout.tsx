@@ -6,6 +6,8 @@ import Footer from './Footer';
 import MobileMenuOverlay from './MobileMenuOverlay';
 import { MobileMenuProvider, useMobileMenu } from '@/contexts/MobileMenuContext';
 import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +16,15 @@ interface LayoutProps {
 
 function LayoutContent({ children, className = "" }: LayoutProps) {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      offset: 100,
+      easing: 'ease-out'
+    });
+  }, []);
 
   return (
     <div className={`min-h-screen bg-primary text-white ${className}`}>

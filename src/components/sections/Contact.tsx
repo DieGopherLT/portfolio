@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useTerminalCursor } from '@/hooks/useTerminalCursor';
+import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 
 interface SocialLink {
   platform: string;
@@ -15,6 +16,7 @@ export default function Contact() {
   const t = useTranslations('sections.contact');
   const cursor = useTerminalCursor();
   const [showContent, setShowContent] = useState(false);
+  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,24 +81,26 @@ export default function Contact() {
   const socialLinks: SocialLink[] = t.raw('social.links') as SocialLink[];
 
   return (
-    <section id="contact" className="min-h-screen py-10 px-4">
+    <section ref={ref} id="contact" className="min-h-screen py-10 px-4">
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <h2 
           className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-once="true"
         >
           {t('title')}
-        </motion.h2>
+        </h2>
 
         {/* Single Terminal Window with Split Content */}
-        <motion.div
-          className="terminal-window"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        {shouldRender && (
+          <div
+            className="terminal-window"
+            data-aos="fade-up"
+            data-aos-delay="800"
+            data-aos-duration="300"
+            data-aos-once="true"
+          >
           {/* macOS Terminal Header */}
           <div className="terminal-header">
             <div className="traffic-lights">
@@ -389,7 +393,8 @@ export default function Contact() {
 
             </div>
           </div>
-        </motion.div>
+        </div>
+        )}
       </div>
     </section>
   );
