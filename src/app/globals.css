@@ -148,11 +148,13 @@
 
   .terminal-footer {
     border-top: 1px solid #21262D;
-    padding-top: 12px;
-    margin-top: 16px;
   }
 
-  .terminal-footer .terminal-line {
+  /* Contact Grid Layout */
+  .contact-grid {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+  }  .terminal-footer .terminal-line {
     margin-bottom: 4px;
   }
 

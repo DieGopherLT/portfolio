@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 interface TerminalWindowProps {
   title?: string;
@@ -16,38 +16,10 @@ export default function TerminalWindow({
   onTypingComplete,
   className = ""
 }: TerminalWindowProps) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
-
-  useEffect(() => {
-    if (!command) return;
-
-    setDisplayedText("");
-    
-    let currentIndex = 0;
-    const typingSpeed = 50 + Math.random() * 30;
-    
-    const typeText = () => {
-      if (currentIndex < command.length) {
-        setDisplayedText(command.slice(0, currentIndex + 1));
-        currentIndex++;
-        setTimeout(typeText, typingSpeed);
-      } else {
-        onTypingComplete?.();
-      }
-    };
-
-    const startDelay = setTimeout(typeText, 300);
-    return () => clearTimeout(startDelay);
-  }, [command, onTypingComplete]);
-
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
+  const { displayedText, showCursor } = useTypingAnimation({
+    command,
+    onTypingComplete
+  });
 
   return (
     <motion.div 
