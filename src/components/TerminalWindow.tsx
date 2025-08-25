@@ -17,13 +17,11 @@ export default function TerminalWindow({
   className = ""
 }: TerminalWindowProps) {
   const [displayedText, setDisplayedText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
     if (!command) return;
 
-    setIsTyping(true);
     setDisplayedText("");
     
     let currentIndex = 0;
@@ -35,7 +33,6 @@ export default function TerminalWindow({
         currentIndex++;
         setTimeout(typeText, typingSpeed);
       } else {
-        setIsTyping(false);
         onTypingComplete?.();
       }
     };
@@ -83,6 +80,11 @@ export default function TerminalWindow({
             <span className='text-[#58c5a4]'>diegopher</span>
             <span className='text-white'>@</span>
             portfolio:~$
+          </span>
+        </div>
+        <div className="terminal-line terminal-continuation">
+          <span className="terminal-chevron">
+            <span className='text-[#58c5a4]'>❯</span>
           </span>
           <span className="terminal-command">
             {displayedText}

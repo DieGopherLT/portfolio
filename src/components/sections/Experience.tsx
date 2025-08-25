@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import TerminalWindow from '@/components/TerminalWindow';
+import TerminalFooter from '@/components/TerminalFooter';
 
 interface Job {
   company: string;
@@ -123,16 +124,7 @@ export default function Experience() {
                   </motion.div>
                 ))}
 
-                {/* Terminal Footer */}
-                <div className="border-t border-gray-800 pt-4 mt-6">
-                  <div className="text-xs text-muted">
-                    <span className="text-gopher-blue">diegopher@portfolio</span>
-                    <span className="text-secondary">:</span>
-                    <span className="text-terminal-green">~/experience</span>
-                    <span className="text-secondary">$ </span>
-                    <span className="terminal-cursor">█</span>
-                  </div>
-                </div>
+                <TerminalFooter path="~/experience" />
               </div>
             </div>
           </motion.div>

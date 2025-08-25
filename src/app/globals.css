@@ -121,13 +121,46 @@
     margin-bottom: 8px;
   }
 
+  .terminal-continuation {
+    margin-bottom: 0;
+    /* padding-left: 8px; */
+  }
+
   .terminal-prompt {
     color: var(--color-gopher-blue);
     font-weight: 600;
     flex-shrink: 0;
   }
 
+  .terminal-chevron {
+    color: var(--color-gopher-blue);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-right: 4px;
+  }
+
   .terminal-command {
+    color: var(--color-white);
+    flex: 1;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
+  .terminal-footer {
+    border-top: 1px solid #21262D;
+    padding-top: 12px;
+    margin-top: 16px;
+  }
+
+  .terminal-footer .terminal-line {
+    margin-bottom: 4px;
+  }
+
+  .terminal-footer .terminal-continuation {
+    margin-bottom: 0;
+  }
+
+  .terminal-cursor-only {
     color: var(--color-white);
     flex: 1;
   }

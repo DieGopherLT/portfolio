@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import TerminalWindow from '@/components/TerminalWindow';
+import TerminalFooter from '@/components/TerminalFooter';
 
 export default function About() {
   const t = useTranslations('sections.about');
@@ -73,15 +74,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <div className="border-t border-gray-800 pt-4">
-                  <div className="text-xs text-muted">
-                    <span className="text-gopher-blue">diegopher@portfolio</span>
-                    <span className="text-secondary">:</span>
-                    <span className="text-terminal-green">~/about</span>
-                    <span className="text-secondary">$ </span>
-                    <span className="terminal-cursor">█</span>
-                  </div>
-                </div>
+                <TerminalFooter path="~/about" />
               </div>
             </div>
           </motion.div>
