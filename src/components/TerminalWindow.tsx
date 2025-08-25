@@ -79,7 +79,11 @@ export default function TerminalWindow({
       
       <div className="terminal-content">
         <div className="terminal-line">
-          <span className="terminal-prompt">diegopher@portfolio:~$</span>
+          <span className="terminal-prompt">
+            <span className='text-[#58c5a4]'>diegopher</span>
+            <span className='text-white'>@</span>
+            portfolio:~$
+          </span>
           <span className="terminal-command">
             {displayedText}
             <motion.span 
