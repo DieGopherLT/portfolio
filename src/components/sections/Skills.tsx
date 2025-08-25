@@ -90,12 +90,12 @@ export default function Skills() {
           title="skills_inventory.json"
           command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
           onTypingComplete={handleTypingComplete}
-          className="max-w-3xl mx-auto"
+          className="max-w-4xl mx-auto"
         />
 
         {showContent && (
           <motion.div 
-            className="mt-8 max-w-3xl mx-auto"
+            className="mt-8 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
