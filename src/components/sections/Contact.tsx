@@ -81,7 +81,7 @@ export default function Contact() {
   const socialLinks: SocialLink[] = t.raw('social.links') as SocialLink[];
 
   return (
-    <section ref={ref} id="contact" className="min-h-screen py-10 px-4">
+    <section ref={ref} id="contact" className="py-10 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 
           className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
