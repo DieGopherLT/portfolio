@@ -9,6 +9,13 @@ interface FooterProps {
 export default function Footer({ className = "" }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
+  const asciiArt = `██████╗ ██╗███████╗ ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██████╗ ██╗  ████████╗
+██╔══██╗██║██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║  ██║██╔════╝██╔══██╗██║  ╚══██╔══╝
+██║  ██║██║█████╗  ██║  ███╗██║   ██║██████╔╝███████║█████╗  ██████╔╝██║     ██║   
+██║  ██║██║██╔══╝  ██║   ██║██║   ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗██║     ██║   
+██████╔╝██║███████╗╚██████╔╝╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████╗██║   
+╚═════╝ ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝`;
+
   return (
     <motion.footer 
       className={`mt-4 py-8 border-t border-zinc-800 ${className}`}
@@ -18,10 +25,32 @@ export default function Footer({ className = "" }: FooterProps) {
     >
       <div className="flex justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl">
+          {/* Built by ASCII Art */}
+          <motion.div 
+            className="mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <div className="text-muted text-xs mb-2 font-mono">
+              Built by:
+            </div>
+            <div className="ascii-container flex justify-center">
+              <pre className="ascii-art text-gopher-blue font-mono leading-tight whitespace-pre transform-gpu origin-center scale-[0.6] md:scale-[0.75] lg:scale-[0.9] xl:scale-100 transition-transform duration-300 ease-out">
+                {asciiArt}
+              </pre>
+            </div>
+          </motion.div>
+
           {/* Copyright */}
-          <div className="text-muted text-sm">
+          <motion.div 
+            className="text-muted text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
             © {currentYear} Diego López Torres
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.footer>
