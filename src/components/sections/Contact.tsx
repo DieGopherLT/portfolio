@@ -1,56 +1,87 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
 
+// Enum para estados de animación
+enum AnimationState {
+  IDLE = 0,
+  FORM_COMMAND = 1,
+  SOCIAL_COMMAND = 2,
+  SHOW_CONTENT = 3,
+  COMPLETE = 4
+}
+
 export default function Contact() {
   const t = useTranslations('sections.contact');
-  const [showContent, setShowContent] = useState(false);
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  // States for controlling typing animations manually
+  // Estado principal de la animación
+  const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
+  
+  // Estados para el contenido de los comandos
   const [formCommand, setFormCommand] = useState('');
   const [socialCommand, setSocialCommand] = useState('');
-  const [showFormCursor, setShowFormCursor] = useState(true);
-  const [showSocialCursor, setShowSocialCursor] = useState(false);
 
-  // Use effect to handle sequential typing animations
+  const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
+    return new Promise((resolve) => {
+      setter(''); // Reset
+      let currentIndex = 0;
+      const typingSpeed = 50 + Math.random() * 30;
+      
+      const typeChar = () => {
+        if (currentIndex < text.length) {
+          setter(text.slice(0, currentIndex + 1));
+          currentIndex++;
+          setTimeout(typeChar, typingSpeed);
+        } else {
+          resolve();
+        }
+      };
+      
+      typeChar();
+    });
+  }, []);
+
+  // Función principal de animación
+  const runAnimation = useCallback(async () => {
+    if (!shouldRender) return;
+
+    try {
+      // Delay inicial
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // 1. Form command
+      setAnimationState(AnimationState.FORM_COMMAND);
+      await typeText('./contact-form.sh', setFormCommand);
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // 2. Social command
+      setAnimationState(AnimationState.SOCIAL_COMMAND);
+      await typeText(t('social.command').replace('diegopher@portfolio:~$ ', ''), setSocialCommand);
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // 3. Show content
+      setAnimationState(AnimationState.SHOW_CONTENT);
+      await new Promise(resolve => setTimeout(resolve, 400));
+      
+      // 4. Complete
+      setAnimationState(AnimationState.COMPLETE);
+      
+    } catch (error) {
+      console.error('Animation error:', error);
+    }
+  }, [shouldRender, typeText, t]);
+
+  // Efecto principal
   useEffect(() => {
-    // Start form typing first
-    setTimeout(() => {
-      typeText('./contact-form.sh', setFormCommand, () => {
-        setShowFormCursor(false);
-        // Start social typing after form is complete
-        setTimeout(() => {
-          setShowSocialCursor(true);
-          typeText(t('social.command').replace('diegopher@portfolio:~$ ', ''), setSocialCommand, () => {
-            setShowSocialCursor(false);
-            setTimeout(() => setShowContent(true), 400);
-          });
-        }, 300);
-      });
-    }, 500);
-  }, [t]);
-
-  const typeText = (text: string, setter: (value: string) => void, onComplete: () => void) => {
-    let currentIndex = 0;
-    const typingSpeed = 50 + Math.random() * 30;
-    
-    const typeChar = () => {
-      if (currentIndex < text.length) {
-        setter(text.slice(0, currentIndex + 1));
-        currentIndex++;
-        setTimeout(typeChar, typingSpeed);
-      } else {
-        onComplete();
-      }
-    };
-    
-    typeChar();
-  };
+    if (shouldRender && animationState === AnimationState.IDLE) {
+      runAnimation();
+    }
+  }, [shouldRender, runAnimation, animationState]);
 
 
   return (
@@ -90,9 +121,9 @@ export default function Contact() {
               
               {/* Left Side - Contact Form */}
               <ContactForm 
-                showContent={showContent} 
+                showContent={animationState >= AnimationState.SHOW_CONTENT} 
                 formCommand={formCommand} 
-                showFormCursor={showFormCursor} 
+                showFormCursor={animationState === AnimationState.FORM_COMMAND} 
               />
 
               {/* Vertical Divider */}
@@ -102,9 +133,9 @@ export default function Contact() {
 
               {/* Right Side - Social Links */}
               <SocialMedia 
-                showContent={showContent} 
+                showContent={animationState >= AnimationState.SHOW_CONTENT} 
                 socialCommand={socialCommand} 
-                showSocialCursor={showSocialCursor} 
+                showSocialCursor={animationState === AnimationState.SOCIAL_COMMAND} 
               />
 
             </div>

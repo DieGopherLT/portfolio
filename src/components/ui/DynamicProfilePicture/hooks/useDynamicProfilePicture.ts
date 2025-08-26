@@ -25,7 +25,7 @@ const TIMINGS = {
   transition: 150          // Quick flicker transition
 };
 
-const STATE_SEQUENCE = ['normal', 'ascii', 'split-vertical'] as const;
+const STATE_SEQUENCE = ['normal', 'ascii', 'split-diagonal'] as const;
 
 export function useDynamicProfilePicture({
   isPaused = false,
