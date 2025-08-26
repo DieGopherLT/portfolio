@@ -30,8 +30,8 @@
         "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
         "expertise": "I have stronger backend skills than frontend, with a solid foundation in scalable architectures and API design.",
         "passion": "I have a deep passion for computer science, especially technologies like Go, TypeScript, and the Linux ecosystem.",
-        "philosophy": "I believe in simplicity, efficiency, and clean code. I apply Unix principles in development: do one thing and do it well.",
-        "current_focus": "Currently exploring emerging technologies and best practices in backend development, always seeking to create elegant and efficient solutions."
+        "philosophy": "I'm pragmatic in my development approach. I extensively research design patterns, principles, and clean code, adapting these documented solutions to the specific context of each project.",
+        "current_focus": "Currently expanding into DevOps while continuing to explore best practices in backend development, always seeking to create elegant and efficient solutions."
       }
     },
     "experience": {
@@ -45,13 +45,13 @@
           "type": "Full Time",
           "achievements": [
             "Enhanced styling for a trading platform with 20,000+ active users",
-            "Significantly optimized complex interactive application projects",
-            "Developed solutions for decentralized platforms and affiliate management",
-            "Led structural design and deployment of a mining pool proxy",
-            "Worked extensively with blockchain applications and hash power systems"
+            "Reduced more than half of technical debt in an esoteric leisure project",
+            "Providing consulting for affiliate management solution development",
+            "Contributed to design and handled deployment of a mining pool proxy",
+            "Continue working on blockchain-integrated applications and hash power systems"
           ],
-          "technologies": ["React", "Express", "MongoDB", "TypeScript", "Docker"],
-          "highlights": "Solid experience in blockchain-linked applications and decentralized architectures"
+          "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Docker", "GitHub", "DigitalOcean"],
+          "highlights": "Experience in blockchain-linked applications and decentralized architectures"
         },
         {
           "company": "Exhio Consulting",

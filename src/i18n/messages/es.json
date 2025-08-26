@@ -25,13 +25,13 @@
     },
     "about": {
       "terminal_command": "diegopher@portfolio:~$ whoami",
-      "title": "Quién Soy",
+      "title": "Sobre mí",
       "content": {
         "intro": "Ingeniero de software de 25 años, graduado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
         "expertise": "Domino más el backend que el frontend, con una sólida base en arquitecturas escalables y diseño de APIs.",
         "passion": "Tengo una profunda pasión por la informática, especialmente por tecnologías como Go, TypeScript y el ecosistema Linux.",
-        "philosophy": "Creo en la simplicidad, la eficiencia y el código limpio. Aplico principios Unix en el desarrollo: hacer una cosa y hacerla bien.",
-        "current_focus": "Actualmente exploro tecnologías emergentes y mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
+        "philosophy": "Soy pragmático en mi enfoque al desarrollo. Me documento extensivamente sobre patrones de diseño, principios y código limpio, adaptando estas soluciones al contexto específico de cada proyecto.",
+        "current_focus": "Actualmente me estoy expandiendo hacia DevOps mientras continúo explorando mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
       }
     },
     "experience": {
@@ -45,13 +45,13 @@
           "type": "Tiempo Completo",
           "achievements": [
             "Mejoré los estilos de una plataforma de trading con más de 20,000 usuarios activos",
-            "Optimicé significativamente un proyecto de aplicaciones interactivas complejas",
-            "Desarrollé soluciones para plataformas descentralizadas y manejo de afiliaciones",
-            "Lideré el diseño estructural y deployment de una mining pool proxy",
-            "Trabajé extensivamente con aplicaciones blockchain y sistemas de hash power"
+            "Reduje más de la mitad de deuda técnica de un proyecto de ocio esotérico",
+            "Proporciono consultoría en desarrollo de soluciones para manejo de afiliaciones",
+            "Contribuí al diseño y manejé el deployment de una mining pool proxy",
+            "Continúo trabajando en aplicaciones integradas en blockchain y sistemas de hash power"
           ],
-          "technologies": ["React", "Express", "MongoDB", "TypeScript", "Docker"],
-          "highlights": "Experiencia sólida en aplicaciones vinculadas a blockchain y arquitecturas descentralizadas"
+          "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Docker", "GitHub", "DigitalOcean"],
+          "highlights": "Experiencia en aplicaciones vinculadas a blockchain y arquitecturas descentralizadas"
         },
         {
           "company": "Exhio Consulting",
@@ -202,7 +202,7 @@
   },
   "navigation": {
     "home": "Inicio",
-    "about": "Quién Soy", 
+    "about": "Sobre mí", 
     "experience": "Experiencia",
     "skills": "Habilidades",
     "projects": "Proyectos",
