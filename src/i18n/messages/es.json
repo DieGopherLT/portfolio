@@ -4,10 +4,10 @@
     "full_name": "Diego López Torres",
     "username": "diegopher",
     "title": "Ingeniero de Software",
-    "age": 25,
-    "experience_years": 3,
+    "age": "25",
+    "experience_years": "3",
     "specialization": "Desarrollo Web Full Stack",
-    "preference": "Backend > Frontend"
+    "preference": "Backend, Linux, Arquitectura, Patrones de diseño"
   },
   "sections": {
     "hero": {
@@ -24,14 +24,15 @@
       "cta": "Explora mi trabajo y experiencia"
     },
     "about": {
-      "terminal_command": "diegopher@portfolio:~$ whoami",
-      "title": "Sobre mí",
+      "system_command": "diegopher@portfolio:~$ uname -a",
+      "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
+      "title": "Acerca de mí",
       "content": {
-        "intro": "Ingeniero de software de 25 años, graduado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
-        "expertise": "Aunque competente en full stack, mi experiencia brilla más en el desarrollo backend, con profundo conocimiento en arquitecturas escalables y diseño de APIs.",
-        "passion": "Tengo una profunda pasión por la informática, especialmente por tecnologías como Go, TypeScript y el ecosistema Linux.",
-        "philosophy": "Soy pragmático en mi enfoque al desarrollo. Me documento extensivamente sobre patrones de diseño, principios y código limpio, adaptando estas soluciones al contexto específico de cada proyecto.",
-        "current_focus": "Actualmente me estoy expandiendo hacia DevOps mientras continúo explorando mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
+        "intro": "Ingeniero de software de 25 años, egresado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
+        "expertise": "Aunque tengo habilidades en todo el stack, mi expertise brilla más en el desarrollo backend, con conocimientos profundos en arquitecturas escalables y diseño de APIs.",
+        "passion": "Tengo una pasión profunda por las ciencias de la computación, especialmente tecnologías como Go, TypeScript y el ecosistema Linux.",
+        "philosophy": "Soy pragmático en mi enfoque de desarrollo. Investigo extensamente patrones de diseño, principios y código limpio, adaptando estas soluciones documentadas al contexto específico de cada proyecto.",
+        "current_focus": "Actualmente expandiéndome hacia DevOps mientras continúo explorando las mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
       }
     },
     "experience": {
@@ -43,6 +44,7 @@
           "position": "Ingeniero de Software",
           "period": "Enero 2025 - Actualidad",
           "type": "Tiempo Completo",
+          "website_url": "https://taloon.org/",
           "achievements": [
             "Mejoré los estilos de una plataforma de trading con más de 20,000 usuarios activos",
             "Reduje más de la mitad de deuda técnica de un proyecto de ocio esotérico",
@@ -58,6 +60,7 @@
           "position": "Consultor & Desarrollador",
           "period": "Septiembre 2022 - Diciembre 2024", 
           "type": "Consultoría",
+          "website_url": "https://www.exhio.tech/",
           "achievements": [
             "Participé en proyectos multi-industria: inmobiliaria, energética y logística",
             "Investigué e implementé solución de micro frontends para modernizar aplicación legacy",

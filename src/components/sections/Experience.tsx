@@ -11,6 +11,7 @@ interface Job {
   position: string;
   period: string;
   type: string;
+  website_url?: string;
   achievements: string[];
   technologies: string[];
   highlights: string;
@@ -90,6 +91,25 @@ export default function Experience() {
                       <p className="text-xs md:text-sm text-muted mt-1">
                         {job.period}
                       </p>
+                      
+                      {/* Company Website - whois style */}
+                      {job.website_url && (
+                        <div className="mt-3 p-2 bg-gray-900 rounded border border-gray-700">
+                          <div className="font-mono text-xs">
+                            <span className="text-muted">$ whois {job.company.replace(' ', '\\ ')} | grep &apos;Website:&apos;</span>
+                            <br />
+                            <span className="text-terminal-green">Website: </span>
+                            <a 
+                              href={job.website_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gopher-blue hover:text-gopher-blue-hover underline transition-colors"
+                            >
+                              {job.website_url}
+                            </a>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Highlights */}

@@ -4,10 +4,10 @@
     "full_name": "Diego López Torres",
     "username": "diegopher",
     "title": "Software Engineer",
-    "age": 25,
-    "experience_years": 3,
+    "age": "25",
+    "experience_years": "3",
     "specialization": "Full Stack Web Development",
-    "preference": "Backend > Frontend"
+    "preference": "Backend, Linux, Architecture, Design Patterns"
   },
   "sections": {
     "hero": {
@@ -24,7 +24,8 @@
       "cta": "Explore my work and experience"
     },
     "about": {
-      "terminal_command": "diegopher@portfolio:~$ whoami",
+      "system_command": "diegopher@portfolio:~$ uname -a",
+      "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
       "title": "About Me",
       "content": {
         "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
@@ -43,6 +44,7 @@
           "position": "Software Engineer",
           "period": "January 2025 - Present",
           "type": "Full Time",
+          "website_url": "https://taloon.org/",
           "achievements": [
             "Enhanced styling for a trading platform with 20,000+ active users",
             "Reduced more than half of technical debt in an esoteric leisure project",
@@ -58,6 +60,7 @@
           "position": "Consultant & Developer",
           "period": "September 2022 - December 2024", 
           "type": "Consulting",
+          "website_url": "https://www.exhio.tech/",
           "achievements": [
             "Participated in multi-industry projects: real estate, energy, and logistics",
             "Researched and implemented micro frontend solution to modernize legacy application",
