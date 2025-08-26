@@ -84,10 +84,10 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
 
               {/* Terminal Content */}
               <div className="bg-black p-2">
-                <div className="text-center space-y-2">
+                <div className="text-center my-2">
                   
                   {/* Language Selector */}
-                  <motion.div
+                  {/* <motion.div
                     className="text-left mb-4 pb-4 border-b border-zinc-800"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -95,7 +95,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                     transition={{ delay: 0.1, duration: 0.3 }}
                   >
                     <LanguageSelector variant="mobile" />
-                  </motion.div>
+                  </motion.div> */}
                   
                   {navItems.map((item, index) => (
                     <motion.button
@@ -113,6 +113,17 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                       {t(item.key)}
                     </motion.button>
                   ))}
+
+                  {/* Language Selector */}
+                  <motion.div
+                    className="text-left mt-4 pt-4 border-t border-zinc-800"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                  >
+                    <LanguageSelector variant="mobile" />
+                  </motion.div>
 
                   <motion.div 
                     className="text-xs text-left font-mono text-muted mt-6 pt-4 border-t border-zinc-800"
