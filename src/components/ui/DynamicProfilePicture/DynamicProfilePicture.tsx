@@ -1,6 +1,6 @@
 /**
  * DynamicProfilePicture - A dynamic profile picture component that cycles through
- * normal photo, ASCII art, and diagonal split states with monitor-style transitions.
+ * normal photo, ASCII art, diagonal split, and vertical split states with monitor-style transitions.
  */
 'use client';
 
@@ -30,7 +30,7 @@ export interface DynamicProfilePictureProps {
  * DynamicProfilePicture component with cycling animation states
  * 
  * Features:
- * - Cycles through normal, ASCII, and split states
+ * - Cycles through normal, ASCII, diagonal split, and vertical split states
  * - Monitor-style glitch transitions
  * - Respects reduced motion preferences
  * - Keyboard controls (spacebar to pause/resume)

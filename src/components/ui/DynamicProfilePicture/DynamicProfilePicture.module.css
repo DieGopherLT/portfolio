@@ -59,14 +59,24 @@
   opacity: 1;
 }
 
-.dpp-state-split .dpp-image-normal {
+.dpp-state-split-diagonal .dpp-image-normal {
   opacity: 1;
   clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
-.dpp-state-split .dpp-image-ascii {
+.dpp-state-split-diagonal .dpp-image-ascii {
   opacity: 1;
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.dpp-state-split-vertical .dpp-image-normal {
+  opacity: 1;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.dpp-state-split-vertical .dpp-image-ascii {
+  opacity: 1;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
 }
 
 /* Transition effects */

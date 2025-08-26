@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-export type ProfileState = 'normal' | 'ascii' | 'split' | 'transition';
+export type ProfileState = 'normal' | 'ascii' | 'split-diagonal' | 'split-vertical' | 'transition';
 
 interface UseDynamicProfilePictureProps {
   isPaused?: boolean;
@@ -18,13 +18,14 @@ interface UseDynamicProfilePictureReturn {
 }
 
 const TIMINGS = {
-  normal: 1500,        // 1.5 seconds
-  ascii: 1500,         // 1.5 seconds  
-  split: 2500,         // 2.5 seconds
-  transition: 150      // Quick flicker transition
+  normal: 1500,            // 1.5 seconds
+  ascii: 1500,             // 1,5 seconds  
+  'split-diagonal': 2500,  // 2.5 seconds
+  'split-vertical': 2500,  // 2.5 seconds
+  transition: 150          // Quick flicker transition
 };
 
-const STATE_SEQUENCE = ['normal', 'ascii', 'split'] as const;
+const STATE_SEQUENCE = ['normal', 'ascii', 'split-vertical'] as const;
 
 export function useDynamicProfilePicture({
   isPaused = false,
