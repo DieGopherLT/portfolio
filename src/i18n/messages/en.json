@@ -28,7 +28,7 @@
       "title": "About Me",
       "content": {
         "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
-        "expertise": "I have stronger backend skills than frontend, with a solid foundation in scalable architectures and API design.",
+        "expertise": "While skilled across the full stack, my expertise shines brightest in backend development, with deep knowledge in scalable architectures and API design.",
         "passion": "I have a deep passion for computer science, especially technologies like Go, TypeScript, and the Linux ecosystem.",
         "philosophy": "I'm pragmatic in my development approach. I extensively research design patterns, principles, and clean code, adapting these documented solutions to the specific context of each project.",
         "current_focus": "Currently expanding into DevOps while continuing to explore best practices in backend development, always seeking to create elegant and efficient solutions."
@@ -179,6 +179,21 @@
           "email": "your.email@example.com",
           "subject": "Message subject", 
           "message": "Write your message here..."
+        },
+        "errors": {
+          "name": {
+            "required": "Field required"
+          },
+          "email": {
+            "required": "Field required",
+            "invalid": "Invalid email"
+          },
+          "subject": {
+            "required": "Field required"
+          },
+          "message": {
+            "required": "Field required"
+          }
         }
       },
       "social": {
@@ -187,12 +202,12 @@
         "links": [
           {
             "platform": "GitHub",
-            "url": "https://github.com/diegopher",
+            "url": "https://github.com/DieGopherLT",
             "description": "Code, projects and open source contributions"
           },
           {
             "platform": "LinkedIn", 
-            "url": "https://linkedin.com/in/diegopher",
+            "url": "www.linkedin.com/in/diego-lpz-trrs",
             "description": "Professional profile and network"
           }
         ],

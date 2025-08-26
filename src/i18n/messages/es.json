@@ -28,7 +28,7 @@
       "title": "Sobre mí",
       "content": {
         "intro": "Ingeniero de software de 25 años, graduado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
-        "expertise": "Domino más el backend que el frontend, con una sólida base en arquitecturas escalables y diseño de APIs.",
+        "expertise": "Aunque competente en full stack, mi experiencia brilla más en el desarrollo backend, con profundo conocimiento en arquitecturas escalables y diseño de APIs.",
         "passion": "Tengo una profunda pasión por la informática, especialmente por tecnologías como Go, TypeScript y el ecosistema Linux.",
         "philosophy": "Soy pragmático en mi enfoque al desarrollo. Me documento extensivamente sobre patrones de diseño, principios y código limpio, adaptando estas soluciones al contexto específico de cada proyecto.",
         "current_focus": "Actualmente me estoy expandiendo hacia DevOps mientras continúo explorando mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
@@ -179,6 +179,21 @@
           "email": "tu.email@ejemplo.com",
           "subject": "Asunto del mensaje", 
           "message": "Escribe tu mensaje aquí..."
+        },
+        "errors": {
+          "name": {
+            "required": "Campo requerido"
+          },
+          "email": {
+            "required": "Campo requerido",
+            "invalid": "Email inválido"
+          },
+          "subject": {
+            "required": "Campo requerido"
+          },
+          "message": {
+            "required": "Campo requerido"
+          }
         }
       },
       "social": {
@@ -187,12 +202,12 @@
         "links": [
           {
             "platform": "GitHub",
-            "url": "https://github.com/diegopher",
+            "url": "https://github.com/DieGopherLT",
             "description": "Código, proyectos y contribuciones open source"
           },
           {
             "platform": "LinkedIn", 
-            "url": "https://linkedin.com/in/diegopher",
+            "url": "www.linkedin.com/in/diego-lpz-trrs",
             "description": "Perfil profesional y red de contactos"
           }
         ],
