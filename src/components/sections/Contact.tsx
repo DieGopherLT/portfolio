@@ -123,9 +123,10 @@ export default function Contact() {
 
 
   return (
-    <section ref={ref} id="contact" className="py-10 px-4">
+    <section ref={ref} id="contact" className="py-10 px-4" aria-labelledby="contact-heading">
       <div className="max-w-6xl mx-auto">
         <h2 
+          id="contact-heading"
           className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
           data-aos="fade-up"
           data-aos-duration="300"

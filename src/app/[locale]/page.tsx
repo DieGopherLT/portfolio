@@ -7,7 +7,7 @@ import Contact from '@/components/sections/Contact';
 export default function Home() {
   return (
     <Layout>
-      <main className="">
+      <main className="" role="main" aria-label="Portfolio content">
         <About />
         <Experience />
         <Skills />

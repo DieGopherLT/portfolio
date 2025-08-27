@@ -309,3 +309,8 @@ r/unixporn aesthetic values
 - Demonstrates terminal fluency through design
 - Shows attention to detail and authenticity
 - Appeals to technical community values
+
+## Domain related
+
+- Domain was bought on Cloudflare.
+- Domain is 'diegopher.dev'

@@ -43,7 +43,7 @@ export default function Header({ className = "" }: HeaderProps) {
           <DynamicProfilePicture
             normalImageSrc="/images/profile/normal.webp"
             asciiImageSrc="/images/profile/ascii.webp"
-            alt={t('full_name')}
+            alt="Professional profile photo of Diego López Torres, Software Engineer, showing a friendly expression against a dark background"
             size="lg"
             priority
           />
@@ -61,7 +61,7 @@ export default function Header({ className = "" }: HeaderProps) {
           <DynamicProfilePicture
             normalImageSrc="/images/profile/normal.webp"
             asciiImageSrc="/images/profile/ascii.webp"
-            alt={t('full_name')}
+            alt="Professional profile photo of Diego López Torres, Software Engineer, showing a friendly expression against a dark background"
             size="md"
             priority
           />

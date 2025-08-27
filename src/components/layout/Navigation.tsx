@@ -42,6 +42,8 @@ export default function Navigation({ className = "" }: NavigationProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 w-full">
@@ -52,7 +54,7 @@ export default function Navigation({ className = "" }: NavigationProps) {
             <div className="flex-1"></div>
             
             {/* Center navigation */}
-            <div className="flex gap-6 lg:gap-8">
+            <div className="flex gap-6 lg:gap-8" role="menubar" aria-label="Portfolio sections">
               {navItems.map((item) => (
                 <motion.button
                   key={item.key}
@@ -60,6 +62,8 @@ export default function Navigation({ className = "" }: NavigationProps) {
                   className="nav-link text-sm font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  role="menuitem"
+                  aria-label={`Navigate to ${t(item.key)} section`}
                 >
                   {t(item.key)}
                 </motion.button>
@@ -79,6 +83,9 @@ export default function Navigation({ className = "" }: NavigationProps) {
               className="text-secondary hover:text-gopher-blue transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
               <span className="font-mono text-sm">
                 {isMobileMenuOpen ? '[close]' : '[menu]'}
