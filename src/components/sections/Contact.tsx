@@ -6,21 +6,28 @@ import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
 
-// Enum para estados de animación
-enum AnimationState {
+// Enums para estados de animación independientes
+enum FormAnimationState {
   IDLE = 0,
-  FORM_COMMAND = 1,
-  SOCIAL_COMMAND = 2,
-  SHOW_CONTENT = 3,
-  COMPLETE = 4
+  TYPING_COMMAND = 1,
+  SHOWING_CONTENT = 2,
+  COMPLETE = 3
+}
+
+enum SocialAnimationState {
+  IDLE = 0,
+  TYPING_COMMAND = 1,
+  SHOWING_CONTENT = 2,
+  COMPLETE = 3
 }
 
 export default function Contact() {
   const t = useTranslations('sections.contact');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  // Estado principal de la animación
-  const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
+  // Estados independientes para cada animación
+  const [formAnimationState, setFormAnimationState] = useState<FormAnimationState>(FormAnimationState.IDLE);
+  const [socialAnimationState, setSocialAnimationState] = useState<SocialAnimationState>(SocialAnimationState.IDLE);
   
   // Estados para el contenido de los comandos
   const [formCommand, setFormCommand] = useState('');
@@ -46,42 +53,73 @@ export default function Contact() {
     });
   }, []);
 
-  // Función principal de animación
-  const runAnimation = useCallback(async () => {
+  // Función de animación para el formulario de contacto
+  const runFormAnimation = useCallback(async () => {
     if (!shouldRender) return;
 
     try {
       // Delay inicial
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // 1. Form command
-      setAnimationState(AnimationState.FORM_COMMAND);
+      // 1. Form command typing
+      setFormAnimationState(FormAnimationState.TYPING_COMMAND);
       await typeText('./contact-form.sh', setFormCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      // 2. Social command
-      setAnimationState(AnimationState.SOCIAL_COMMAND);
+      // 2. Show form content
+      setFormAnimationState(FormAnimationState.SHOWING_CONTENT);
+      await new Promise(resolve => setTimeout(resolve, 400));
+      
+      // 3. Complete
+      setFormAnimationState(FormAnimationState.COMPLETE);
+      
+    } catch (error) {
+      console.error('Form animation error:', error);
+    }
+  }, [shouldRender, typeText]);
+
+  // Función de animación para los enlaces sociales
+  const runSocialAnimation = useCallback(async () => {
+    if (!shouldRender) return;
+
+    try {
+      // Delay inicial (ligeramente mayor para efecto escalonado)
+      await new Promise(resolve => setTimeout(resolve, 700));
+      
+      // 1. Social command typing
+      setSocialAnimationState(SocialAnimationState.TYPING_COMMAND);
       await typeText(t('social.command').replace('diegopher@portfolio:~$ ', ''), setSocialCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      // 3. Show content
-      setAnimationState(AnimationState.SHOW_CONTENT);
+      // 2. Show social content
+      setSocialAnimationState(SocialAnimationState.SHOWING_CONTENT);
       await new Promise(resolve => setTimeout(resolve, 400));
       
-      // 4. Complete
-      setAnimationState(AnimationState.COMPLETE);
+      // 3. Complete
+      setSocialAnimationState(SocialAnimationState.COMPLETE);
       
     } catch (error) {
-      console.error('Animation error:', error);
+      console.error('Social animation error:', error);
     }
   }, [shouldRender, typeText, t]);
 
-  // Efecto principal
+  // Efecto principal que ejecuta ambas animaciones en paralelo
   useEffect(() => {
-    if (shouldRender && animationState === AnimationState.IDLE) {
-      runAnimation();
-    }
-  }, [shouldRender, runAnimation, animationState]);
+    const runAllAnimations = async () => {
+      if (shouldRender && 
+          formAnimationState === FormAnimationState.IDLE && 
+          socialAnimationState === SocialAnimationState.IDLE) {
+        
+        // Ejecutar ambas animaciones en paralelo
+        await Promise.all([
+          runFormAnimation(),
+          runSocialAnimation()
+        ]);
+      }
+    };
+
+    runAllAnimations();
+  }, [shouldRender, runFormAnimation, runSocialAnimation, formAnimationState, socialAnimationState]);
 
 
   return (
@@ -121,9 +159,9 @@ export default function Contact() {
               
               {/* Left Side - Contact Form */}
               <ContactForm 
-                showContent={animationState >= AnimationState.SHOW_CONTENT} 
+                showContent={formAnimationState >= FormAnimationState.SHOWING_CONTENT} 
                 formCommand={formCommand} 
-                showFormCursor={animationState === AnimationState.FORM_COMMAND} 
+                showFormCursor={formAnimationState === FormAnimationState.TYPING_COMMAND} 
               />
 
               {/* Vertical Divider */}
@@ -133,9 +171,9 @@ export default function Contact() {
 
               {/* Right Side - Social Links */}
               <SocialMedia 
-                showContent={animationState >= AnimationState.SHOW_CONTENT} 
+                showContent={socialAnimationState >= SocialAnimationState.SHOWING_CONTENT} 
                 socialCommand={socialCommand} 
-                showSocialCursor={animationState === AnimationState.SOCIAL_COMMAND} 
+                showSocialCursor={socialAnimationState === SocialAnimationState.TYPING_COMMAND} 
               />
 
             </div>
