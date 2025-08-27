@@ -78,7 +78,7 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
             <div className="terminal-line">
               <span className="text-comment-gray"># Contact Form Script</span>
             </div>
-            <div className="terminal-line">
+            <div className="terminal-line text-sm md:text-[1.1rem]">
               <span className="text-keyword-purple">echo</span>{' '}
               <span className="text-string-green">&quot;Initializing contact form...&quot;</span>
             </div>

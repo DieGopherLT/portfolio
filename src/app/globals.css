@@ -38,12 +38,18 @@
   html,
   body {
     max-width: 100vw;
-    /* overflow-x: hidden; */
     background-color: var(--color-primary);
-    /* color: var(--text-primary); */
-    /* font-family: var(--font-geist-sans); */
-    /* line-height: 1.6; */
   }
+}
+
+/* Fondo con textura fuera de layers para mayor especificidad */
+html,
+body {
+  background-color: var(--color-primary);
+  background-image: 
+    radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-attachment: fixed;
 }
 
 @layer components {
@@ -189,13 +195,16 @@
   }
 
   .ascii-art {
-    overflow-x: auto;
+    overflow-x: hidden;
     white-space: pre;
     text-align: center;
-    font-size: clamp(0.3rem, 1.2vw, 0.6rem);
+    font-size: clamp(0.4rem, 1.8vw, 0.6rem);
     line-height: 1.1;
     letter-spacing: -0.05em;
     font-family: var(--font-geist-mono);
+    max-width: 100%;
+    transform: scale(0.8);
+    transform-origin: center;
   }
 }
 

@@ -27,7 +27,7 @@ function LayoutContent({ children, className = "" }: LayoutProps) {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-primary text-white ${className}`}>
+    <div className={`min-h-screen text-white ${className}`}>
       <Navigation />
       
       <main className="flex flex-col w-full min-h-screen">

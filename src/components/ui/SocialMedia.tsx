@@ -23,7 +23,7 @@ export default function SocialMedia({ showContent, socialCommand, showSocialCurs
   const socialLinks: SocialLink[] = t.raw('social.links') as SocialLink[];
 
   return (
-    <div className="lg:flex-1 space-y-4 border-t lg:border-t-0 border-gray-700 pt-8 lg:pt-0">
+    <div className="lg:flex-1 space-y-4 border-t lg:border-t-0 border-gray-700 mt-8 md:mt-0 pt-8 lg:pt-0">
       {/* Social prompt with typing animation */}
       <div className="border-b border-gray-800 pb-4">
         <div className="terminal-line">
