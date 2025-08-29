@@ -7,17 +7,17 @@
     "age": "25",
     "experience_years": "3",
     "specialization": "Desarrollo Web Full Stack",
-    "preference": "Backend, Linux, Arquitectura, Patrones de diseño"
+    "preference": "Backend, Linux, SOLID, Patrones de diseño"
   },
   "sections": {
     "hero": {
       "terminal_welcome": "diegopher@portfolio:~$ echo 'Hola mundo!'",
       "name": "Diego López Torres",
       "title": "Ingeniero de Software",
-      "description": "Desarrollo soluciones web robustas y escalables. Especializado en arquitecturas backend, apasionado por las tecnologías modernas y la filosofía Unix.",
+      "description": "Desarrollo soluciones web robustas y escalables. Especializado en principios, patrones de diseño y código limpio, mantenible.",
       "specialties": [
         "Desarrollo Full Stack",
-        "Arquitectura Backend", 
+        "Patrones de diseño", 
         "Go & TypeScript",
         "Apasionado por Linux"
       ],
@@ -26,13 +26,13 @@
     "about": {
       "system_command": "diegopher@portfolio:~$ uname -a",
       "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
-      "title": "Acerca de mí",
+      "title": "Sobre mí",
       "content": {
-        "intro": "Ingeniero de software de 25 años, egresado de la Universidad de Guadalajara con 3 años de experiencia en desarrollo web full stack.",
-        "expertise": "Aunque tengo habilidades en todo el stack, mi expertise brilla más en el desarrollo backend, con conocimientos profundos en arquitecturas escalables y diseño de APIs.",
-        "passion": "Tengo una pasión profunda por las ciencias de la computación, especialmente tecnologías como Go, TypeScript y el ecosistema Linux.",
-        "philosophy": "Soy pragmático en mi enfoque de desarrollo. Investigo extensamente patrones de diseño, principios y código limpio, adaptando estas soluciones documentadas al contexto específico de cada proyecto.",
-        "current_focus": "Actualmente expandiéndome hacia DevOps mientras continúo explorando las mejores prácticas en desarrollo backend, siempre buscando crear soluciones elegantes y eficientes."
+        "intro": "Ingeniero de software egresado de la Universidad de Guadalajara, con 3 años de experiencia profesional construyendo aplicaciones web",
+        "expertise": "Me enfoco en desarrollo fullstack, brillo cuando se trata de identificar problemas, qué principio o patrón lo resuelve y aplicarlo.",
+        "passion": "Soy feliz programando, especialmente en entornos Linux. Disfruto optimizando flujos de trabajo y explorando nuevas tecnologías.",
+        "philosophy": "Soy pragmático en mi forma de trabajar. Buena parte de los problemas que afrontamos ya fueron resueltos y las soluciones están ahí fuera, me apasiona investigarlas y agregarlas a mi arsenal.",
+        "current_focus": "Me adentro al mundo del DevOps y programación agéntica, ya no se trata solo de crear apps, sino también llevárselas a los usuarios."
       }
     },
     "experience": {
@@ -46,14 +46,14 @@
           "type": "Tiempo Completo",
           "website_url": "https://taloon.org/",
           "achievements": [
-            "Mejoré los estilos de una plataforma de trading con más de 20,000 usuarios activos",
+            "Optimicé una plataforma de trading con más de 20,000 usuarios activos",
             "Reduje más de la mitad de deuda técnica de un proyecto de ocio esotérico",
-            "Proporciono consultoría en desarrollo de soluciones para manejo de afiliaciones",
+            "Proporciono consultoría en soluciones para manejo de afiliaciones",
             "Contribuí al diseño y manejé el deployment de una mining pool proxy",
-            "Continúo trabajando en aplicaciones integradas en blockchain y sistemas de hash power"
+            "Trabajo en sistemas integrados a la blockchain y de hash power"
           ],
           "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Docker", "GitHub", "DigitalOcean"],
-          "highlights": "Experiencia en aplicaciones vinculadas a blockchain y arquitecturas descentralizadas"
+          "highlights": "Solventura en proyectos blockchain y modelos de negocio descentralizados"
         },
         {
           "company": "Exhio Consulting",
@@ -62,14 +62,14 @@
           "type": "Consultoría",
           "website_url": "https://www.exhio.tech/",
           "achievements": [
-            "Participé en proyectos multi-industria: inmobiliaria, energética y logística",
-            "Investigué e implementé solución de micro frontends para modernizar aplicación legacy",
-            "Desarrollé 3-4 features completas usando arquitectura de micro frontends durante +1 año",
-            "Construí dashboard de captura de información personalizada para empresa logística",
-            "Desarrollé página de consultas de guías utilizada por +15,000 usuarios diarios"
+            "Trabajé en proyectos de múltiples industrias: inmobiliaria, energética y logística",
+            "Investigué y lideré la implementación de soluciones de micro frontends para modernizar una aplicación antigua",
+            "Desarrollé 3-4 funcionalidades grandes usando arquitectura de micro frontends durante más de 1 año",
+            "Construí un dashboard administrativo para una empresa de logística",
+            "Desarrollé un sistema de rastreo de paquetes utilizado por +15,000 usuarios diarios"
           ],
           "technologies": ["React", "Vue", "Node.js", "Express", "TypeScript", "SQL", "Docker", "GitLab", "GitLab CI", "AWS", "Micro Frontends"],
-          "highlights": "Soluciones innovadoras para modernización de legacy systems y aplicaciones de alto tráfico"
+          "highlights": "Renovación de aplicaciones web legacy con tecnologías de vanguardia y micro frontends"
         }
       ],
       "labels": {
@@ -83,11 +83,11 @@
       "title": "Habilidades", 
       "categories": {
         "conceptual": {
-          "name": "Conceptos & Arquitectura",
+          "name": "Conceptos & Principios",
           "skills": [
             "Principios Clean Code",
-            "Design Patterns (GoF)",
-            "SOLID Principles", 
+            "Design Patterns",
+            "SOLID", 
             "MVC Architecture",
             "Domain Driven Design",
             "RESTful API Design",
@@ -134,8 +134,8 @@
       "highlighted_languages": ["Go", "TypeScript"],
       "highlighted_skills": [
         "Clean Code Principles",
-        "Design Patterns (GoF)", 
-        "SOLID Principles",
+        "Design Patterns", 
+        "SOLID",
         "Go (Golang)",
         "Nest.js",
         "MongoDB",
@@ -155,7 +155,7 @@
         "highlighted_section": "LENGUAJES DESTACADOS",
         "advanced_experience": "Experiencia avanzada",
         "intermediate_experience": "Experiencia intermedia",
-        "backend_development": "Backend Development"
+        "backend_development": "Desarrollo backend"
       }
     },
     "projects": {
@@ -211,10 +211,10 @@
           {
             "platform": "LinkedIn", 
             "url": "www.linkedin.com/in/diego-lpz-trrs",
-            "description": "Perfil profesional y red de contactos"
+            "description": "Perfil profesional"
           }
         ],
-        "footer": "Siempre abierto a nuevas oportunidades y colaboraciones interesantes."
+        "footer": "Me interesa explorar oportunidades y colaboraciones, un mensaje puede cambiarlo todo."
       }
     }
   },

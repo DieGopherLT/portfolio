@@ -7,17 +7,17 @@
     "age": "25",
     "experience_years": "3",
     "specialization": "Full Stack Web Development",
-    "preference": "Backend, Linux, Architecture, Design Patterns"
+    "preference": "Backend, Linux, SOLID, Design Patterns"
   },
   "sections": {
     "hero": {
       "terminal_welcome": "diegopher@portfolio:~$ echo 'Hello world!'",
       "name": "Diego López Torres",
       "title": "Software Engineer",
-      "description": "Building robust and scalable web solutions. Specialized in backend architectures, passionate about modern technologies and Unix philosophy.",
+      "description": "Building robust and scalable web solutions. Specialized in principles, design patterns, and clean, maintainable code.",
       "specialties": [
         "Full Stack Development",
-        "Backend Architecture", 
+        "Design Patterns", 
         "Go & TypeScript",
         "Linux Passionate"
       ],
@@ -28,11 +28,11 @@
       "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
       "title": "About Me",
       "content": {
-        "intro": "25-year-old software engineer, graduated from Universidad de Guadalajara with 3 years of experience in full stack web development.",
-        "expertise": "While skilled across the full stack, my expertise shines brightest in backend development, with deep knowledge in scalable architectures and API design.",
-        "passion": "I have a deep passion for computer science, especially technologies like Go, TypeScript, and the Linux ecosystem.",
-        "philosophy": "I'm pragmatic in my development approach. I extensively research design patterns, principles, and clean code, adapting these documented solutions to the specific context of each project.",
-        "current_focus": "Currently expanding into DevOps while continuing to explore best practices in backend development, always seeking to create elegant and efficient solutions."
+        "intro": "Software engineer from Universidad de Guadalajara with 3 years of professional experience building web applications",
+        "expertise": "I focus on fullstack development, and I shine when it comes to identifying problems, finding which principle or pattern solves them, and applying them.",
+        "passion": "I'm happy coding, especially in Linux environments. I enjoy optimizing workflows and exploring new technologies.",
+        "philosophy": "I'm pragmatic in my approach to development. Most of the problems we face have already been solved and the solutions are out there—I'm passionate about researching them and adding them to my arsenal.",
+        "current_focus": "I'm diving into the DevOps world and agentic programming—it's not just about creating apps anymore, but also getting them to users."
       }
     },
     "experience": {
@@ -46,14 +46,14 @@
           "type": "Full Time",
           "website_url": "https://taloon.org/",
           "achievements": [
-            "Enhanced styling for a trading platform with 20,000+ active users",
+            "Optimized a trading platform with 20,000+ active users",
             "Reduced more than half of technical debt in an esoteric leisure project",
-            "Providing consulting for affiliate management solution development",
+            "Providing consulting on affiliate management solutions",
             "Contributed to design and handled deployment of a mining pool proxy",
-            "Continue working on blockchain-integrated applications and hash power systems"
+            "Working on blockchain-integrated systems and hash power"
           ],
           "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Docker", "GitHub", "DigitalOcean"],
-          "highlights": "Experience in blockchain-linked applications and decentralized architectures"
+          "highlights": "Expertise in blockchain projects and decentralized business models"
         },
         {
           "company": "Exhio Consulting",
@@ -62,14 +62,14 @@
           "type": "Consulting",
           "website_url": "https://www.exhio.tech/",
           "achievements": [
-            "Participated in multi-industry projects: real estate, energy, and logistics",
-            "Researched and implemented micro frontend solution to modernize legacy application",
-            "Developed 3-4 complete features using micro frontend architecture over 1+ year",
-            "Built custom information capture dashboard for logistics company",
-            "Developed tracking number lookup page used by 15,000+ daily users"
+            "Worked on multi-industry projects: real estate, energy, and logistics",
+            "Researched and led the implementation of micro frontend solutions to modernize a legacy application",
+            "Developed 3-4 major features using micro frontend architecture over 1+ year",
+            "Built an administrative dashboard for a logistics company",
+            "Developed a package tracking system used by 15,000+ daily users"
           ],
           "technologies": ["React", "Vue", "Node.js", "Express", "TypeScript", "SQL", "Docker", "GitLab", "GitLab CI", "AWS", "Micro Frontends"],
-          "highlights": "Innovative solutions for legacy system modernization and high-traffic applications"
+          "highlights": "Legacy web application modernization with cutting-edge technologies and micro frontends"
         }
       ],
       "labels": {
@@ -83,10 +83,10 @@
       "title": "Skills", 
       "categories": {
         "conceptual": {
-          "name": "Concepts & Architecture",
+          "name": "Concepts & Principles",
           "skills": [
             "Clean Code Principles",
-            "Design Patterns (GoF)",
+            "Design Patterns",
             "SOLID Principles", 
             "MVC Architecture",
             "Domain Driven Design",
@@ -211,10 +211,10 @@
           {
             "platform": "LinkedIn", 
             "url": "www.linkedin.com/in/diego-lpz-trrs",
-            "description": "Professional profile and network"
+            "description": "Professional profile"
           }
         ],
-        "footer": "Always open to new opportunities and interesting collaborations."
+        "footer": "I'm interested in exploring opportunities and collaborations—one message can change everything."
       }
     }
   },
