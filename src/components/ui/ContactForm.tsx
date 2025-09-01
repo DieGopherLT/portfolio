@@ -3,7 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import TerminalSpinner from '@/components/ui/TerminalSpinner';
 
 interface ContactFormProps {
   showContent: boolean;
@@ -20,14 +22,31 @@ interface ContactFormData {
 
 export default function ContactForm({ showContent, formCommand, showFormCursor }: ContactFormProps) {
   const t = useTranslations('sections.contact');
+  const [submitState, setSubmitState] = useState<'idle' | 'typing' | 'sending' | 'success'>('idle');
   
   const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
     mode: 'onBlur',
     reValidateMode: 'onChange'
   });
 
-  const onSubmit = (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitState('typing');
+    
+    // Simular tiempo de animación del comando
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    setSubmitState('sending');
+    
+    // Simular envío
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setSubmitState('success');
     console.log('Form submitted:', data);
+    
+    // Reset después de mostrar éxito
+    setTimeout(() => {
+      setSubmitState('idle');
+    }, 5000);
   };
 
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -173,19 +192,68 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
               />
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Section */}
             <div className="pt-4">
               <div className="terminal-line mb-3">
                 <span className="text-comment-gray"># Execute send command</span>
               </div>
-              <motion.button
-                type="submit"
-                className="bg-gopher-blue hover:bg-gopher-blue-hover text-black font-mono font-semibold px-4 py-2 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gopher-blue focus:ring-offset-2 focus:ring-offset-black"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-black">./send_message.sh</span>
-              </motion.button>
+              
+              {submitState === 'idle' && (
+                <motion.button
+                  type="submit"
+                  className="bg-gopher-blue hover:bg-gopher-blue-hover text-black font-mono font-semibold px-4 py-2 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gopher-blue focus:ring-offset-2 focus:ring-offset-black"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-black">./send_message.sh</span>
+                </motion.button>
+              )}
+
+              {submitState === 'typing' && (
+                <div className="terminal-line">
+                  <TerminalPrompt
+                    command="./send_message.sh"
+                    showCursor={true}
+                    cursorState="typing"
+                  />
+                </div>
+              )}
+
+              {submitState === 'sending' && (
+                <div className="space-y-2">
+                  <div className="terminal-line">
+                    <TerminalPrompt
+                      command="./send_message.sh"
+                      showCursor={false}
+                    />
+                  </div>
+                  <div className="terminal-line flex items-center gap-2">
+                    <TerminalSpinner />
+                    <span className="text-terminal-green font-mono text-sm">Sending message...</span>
+                  </div>
+                </div>
+              )}
+
+              {submitState === 'success' && (
+                <div className="space-y-2">
+                  <div className="terminal-line">
+                    <TerminalPrompt
+                      command="./send_message.sh"
+                      showCursor={false}
+                    />
+                  </div>
+                  <div className="terminal-line">
+                    <span className="text-terminal-green font-mono text-sm">✓ Message sent successfully!</span>
+                  </div>
+                  <div className="terminal-line">
+                    <TerminalPrompt
+                      command=""
+                      showCursor={true}
+                      cursorState="blinking"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </motion.div>
