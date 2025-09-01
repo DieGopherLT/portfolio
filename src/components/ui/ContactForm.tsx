@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 import { useForm } from 'react-hook-form';
+import TerminalPrompt from '@/components/ui/TerminalPrompt';
 
 interface ContactFormProps {
   showContent: boolean;
@@ -20,7 +20,6 @@ interface ContactFormData {
 
 export default function ContactForm({ showContent, formCommand, showFormCursor }: ContactFormProps) {
   const t = useTranslations('sections.contact');
-  const cursor = useTerminalCursor();
   
   const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
     mode: 'onBlur',
@@ -37,31 +36,11 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
     <div className="lg:flex-1 space-y-4">
       {/* Form prompt with typing animation */}
       <div className="border-b border-gray-800 pb-4">
-        <div className="terminal-line">
-          <span className="terminal-prompt">
-            <span className='text-[#58c5a4]'>diegopher</span>
-            <span className='text-white'>@</span>
-            <span className='text-gopher-blue'>portfolio</span>
-            <span className='text-white'>:</span>
-            <span className='text-white'>~</span>
-            <span className='text-white'>$</span>
-          </span>
-        </div>
-        <div className="terminal-line terminal-continuation">
-          <span className="terminal-chevron">
-            <span className='text-[#58c5a4]'>❯</span>
-          </span>
-          <span className="terminal-command">
-            {formCommand}
-            <motion.span 
-              className="terminal-cursor"
-              animate={{ opacity: showFormCursor ? 1 : 0 }}
-              transition={cursor.typing.transition}
-            >
-              █
-            </motion.span>
-          </span>
-        </div>
+        <TerminalPrompt
+          command={formCommand}
+          showCursor={showFormCursor}
+          cursorState="typing"
+        />
       </div>
 
       {showContent && (

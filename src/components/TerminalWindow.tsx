@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
-import { useTerminalCursor } from '@/hooks/useTerminalCursor';
+import TerminalPrompt from '@/components/ui/TerminalPrompt';
 
 interface TerminalWindowProps {
   title?: string;
@@ -22,7 +22,6 @@ export default function TerminalWindow({
     command,
     onTypingComplete
   });
-  const cursor = useTerminalCursor();
 
   return (
     <motion.div 
@@ -50,28 +49,11 @@ export default function TerminalWindow({
       </div>
       
       <div className="terminal-content">
-        <div className="terminal-line">
-          <span className="terminal-prompt">
-            <span className='text-[#58c5a4]'>diegopher</span>
-            <span className='text-white'>@</span>
-            portfolio:~$
-          </span>
-        </div>
-        <div className="terminal-line terminal-continuation">
-          <span className="terminal-chevron">
-            <span className='text-[#58c5a4]'>❯</span>
-          </span>
-          <span className="terminal-command">
-            {displayedText}
-            <motion.span 
-              className="terminal-cursor"
-              animate={cursor.blinking}
-              transition={cursor.typing.transition}
-            >
-              █
-            </motion.span>
-          </span>
-        </div>
+        <TerminalPrompt
+          command={displayedText}
+          showCursor={true}
+          cursorState="blinking"
+        />
       </div>
     </motion.div>
   );

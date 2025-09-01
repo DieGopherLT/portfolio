@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
-import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 import TerminalFooter from '@/components/TerminalFooter';
+import TerminalPrompt from '@/components/ui/TerminalPrompt';
 
 // Enum para estados de animación
 enum AnimationState {
@@ -21,7 +21,6 @@ export default function About() {
   const t = useTranslations('sections.about');
   const personalInfo = useTranslations('personal_info');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
-  const cursor = useTerminalCursor();
 
   // Estado principal de la animación
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
@@ -137,33 +136,12 @@ export default function About() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
-                      <div className="terminal-line">
-                        <span className="terminal-prompt">
-                          <span className="text-[#58c5a4]">diegopher</span>
-                          <span className="text-white">@</span>
-                          <span className="text-gopher-blue">portfolio</span>
-                          <span className="text-white">:</span>
-                          <span className="text-white">~</span>
-                          <span className="text-white">$</span>
-                        </span>
-                      </div>
-                      <div className="terminal-line terminal-continuation">
-                        <span className="terminal-chevron">
-                          <span className="text-[#58c5a4]">❯</span>
-                        </span>
-                        <span className="terminal-command text-sm">
-                          {catCommand}
-                          {animationState === AnimationState.CAT_COMMAND && (
-                            <motion.span 
-                              className="terminal-cursor"
-                              animate={cursor.blinking}
-                              transition={cursor.typing.transition}
-                            >
-                              █
-                            </motion.span>
-                          )}
-                        </span>
-                      </div>
+                      <TerminalPrompt
+                        command={catCommand}
+                        showCursor={animationState === AnimationState.CAT_COMMAND}
+                        cursorState="blinking"
+                        commandClassName="text-sm"
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -212,33 +190,11 @@ export default function About() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
-                      <div className="terminal-line">
-                        <span className="terminal-prompt">
-                          <span className="text-[#58c5a4]">diegopher</span>
-                          <span className="text-white">@</span>
-                          <span className="text-gopher-blue">portfolio</span>
-                          <span className="text-white">:</span>
-                          <span className="text-white">~</span>
-                          <span className="text-white">$</span>
-                        </span>
-                      </div>
-                      <div className="terminal-line terminal-continuation">
-                        <span className="terminal-chevron">
-                          <span className="text-[#58c5a4]">❯</span>
-                        </span>
-                        <span className="terminal-command">
-                          {secondCommand}
-                          {animationState === AnimationState.SECOND_COMMAND && (
-                            <motion.span 
-                              className="terminal-cursor"
-                              animate={cursor.blinking}
-                              transition={cursor.typing.transition}
-                            >
-                              █
-                            </motion.span>
-                          )}
-                        </span>
-                      </div>
+                      <TerminalPrompt
+                        command={secondCommand}
+                        showCursor={animationState === AnimationState.SECOND_COMMAND}
+                        cursorState="blinking"
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>
