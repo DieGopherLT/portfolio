@@ -37,16 +37,35 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
     
     setSubmitState('sending');
     
-    // Simular envío
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitState('success');
-    console.log('Form submitted:', data);
-    
-    // Reset después de mostrar éxito
-    setTimeout(() => {
+    try {
+      // Enviar mensaje a Telegram
+      const response = await fetch('/api/telegram', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+      
+      setSubmitState('success');
+      
+      // Reset después de mostrar éxito
+      setTimeout(() => {
+        setSubmitState('idle');
+      }, 5000);
+    } catch (error) {
+      console.error('Error sending message:', error);
       setSubmitState('idle');
-    }, 5000);
+    }
   };
 
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
