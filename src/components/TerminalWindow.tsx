@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';

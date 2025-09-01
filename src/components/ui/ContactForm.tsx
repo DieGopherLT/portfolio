@@ -24,9 +24,15 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
   const t = useTranslations('sections.contact');
   const [submitState, setSubmitState] = useState<'idle' | 'typing' | 'sending' | 'success'>('idle');
   
-  const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({
     mode: 'onBlur',
-    reValidateMode: 'onChange'
+    reValidateMode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }
   });
 
   const onSubmit = async (data: ContactFormData) => {
@@ -61,6 +67,7 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
       // Reset después de mostrar éxito
       setTimeout(() => {
         setSubmitState('idle');
+        reset();
       }, 5000);
     } catch (error) {
       console.error('Error sending message:', error);

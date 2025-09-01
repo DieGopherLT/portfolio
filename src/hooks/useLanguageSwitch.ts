@@ -11,11 +11,11 @@ export function useLanguageSwitch() {
   const nextPathname = useNextPathname(); // Next.js pathname (includes locale)
   const params = useParams();
   
-  const currentLanguage = (params.locale as Language) || 'en';
+  const currentLanguage = (params?.locale as Language) || 'en';
 
   const switchLanguage = useCallback((newLanguage: Language) => {
     // Remove current locale from pathname if it exists
-    let cleanPathname = nextPathname;
+    let cleanPathname = nextPathname || '/';
     if (cleanPathname.startsWith(`/${currentLanguage}`)) {
       cleanPathname = cleanPathname.slice(`/${currentLanguage}`.length) || '/';
     }
