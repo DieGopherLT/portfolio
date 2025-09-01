@@ -122,22 +122,6 @@ export function useDynamicProfilePicture({
     }
   }, [isImagesLoaded, prefersReducedMotion, scheduleNextState]);
 
-  // Handle keyboard controls
-  useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        if (internalPause) {
-          resumeAnimation();
-        } else {
-          pauseAnimation();
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [internalPause, pauseAnimation, resumeAnimation]);
 
   // If reduced motion is preferred, always show normal state
   const effectiveState = prefersReducedMotion ? 'normal' : currentState;

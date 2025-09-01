@@ -195,14 +195,20 @@
   }
 }
 
-/* Focus states for keyboard navigation */
-.dpp-container:focus {
+/* Paused state styling */
+.dpp-paused {
   outline: 2px solid #00ADD8;
   outline-offset: 2px;
 }
 
-.dpp-container:focus-visible {
-  outline: 2px solid #00ADD8;
+/* Focus states for keyboard navigation (only when not paused) */
+.dpp-container:focus:not(.dpp-paused) {
+  outline: 1px dotted #00ADD8;
+  outline-offset: 2px;
+}
+
+.dpp-container:focus-visible:not(.dpp-paused) {
+  outline: 1px dotted #00ADD8;
   outline-offset: 2px;
 }
 
@@ -225,7 +231,11 @@
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .dpp-container:focus {
+  .dpp-paused {
     outline: 3px solid #00ADD8;
+  }
+  
+  .dpp-container:focus:not(.dpp-paused) {
+    outline: 2px dotted #00ADD8;
   }
 }

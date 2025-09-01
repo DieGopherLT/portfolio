@@ -4,8 +4,9 @@
  */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+import { Pause } from 'lucide-react';
 import { useDynamicProfilePicture } from './hooks/useDynamicProfilePicture';
 import styles from './DynamicProfilePicture.module.css';
 
@@ -33,7 +34,7 @@ export interface DynamicProfilePictureProps {
  * - Cycles through normal, ASCII, diagonal split, and vertical split states
  * - Monitor-style glitch transitions
  * - Respects reduced motion preferences
- * - Keyboard controls (spacebar to pause/resume)
+ * - Click to pause/resume animation
  * - Preloads images for smooth transitions
  * - Accessible focus states
  */
@@ -50,6 +51,7 @@ export function DynamicProfilePicture({
     normal: false,
     ascii: false
   });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const {
     currentState,
@@ -74,6 +76,8 @@ export function DynamicProfilePicture({
   const handleClick = () => {
     if (isPausedInternal) {
       resumeAnimation();
+      // Quitar focus cuando se reanuda para evitar el rastro de puntos
+      containerRef.current?.blur();
     } else {
       pauseAnimation();
     }
@@ -108,64 +112,81 @@ export function DynamicProfilePicture({
     styles[`dpp-size-${size}`],
     styles[`dpp-state-${currentState}`],
     isTransitioning ? styles['dpp-transitioning'] : '',
+    isPausedInternal ? styles['dpp-paused'] : '',
     className
   ].filter(Boolean).join(' ');
 
   return (
-    <div
-      className={containerClasses}
-      onClick={handleClick}
-      onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          handleClick();
-        }
-      }}
-      tabIndex={0}
-      role="button"
-      aria-label={`${alt}. Press space or click to ${isPausedInternal ? 'resume' : 'pause'} animation`}
-      title={`${isPausedInternal ? 'Resume' : 'Pause'} animation (Press space)`}
-    >
-      {/* Normal photo layer */}
-      {!imageErrors.normal && (
-        <Image
-          src={normalImageSrc}
-          alt={alt}
-          fill
-          className={`${styles['dpp-image-layer']} ${styles['dpp-image-normal']}`}
-          style={{ objectFit: 'cover' }}
-          priority={priority}
-          onError={() => handleImageError('normal')}
-          sizes={`
-            (max-width: 768px) ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '202px'},
-            ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '224px'}
-          `}
-        />
-      )}
+    <div className="relative inline-block">
+      <div
+        ref={containerRef}
+        className={containerClasses}
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label={`${alt}. Click to ${isPausedInternal ? 'resume' : 'pause'} animation`}
+        title={`${isPausedInternal ? 'Resume' : 'Pause'} animation`}
+      >
+        {/* Normal photo layer */}
+        {!imageErrors.normal && (
+          <Image
+            src={normalImageSrc}
+            alt={alt}
+            fill
+            className={`${styles['dpp-image-layer']} ${styles['dpp-image-normal']}`}
+            style={{ objectFit: 'cover' }}
+            priority={priority}
+            onError={() => handleImageError('normal')}
+            sizes={`
+              (max-width: 768px) ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '202px'},
+              ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '224px'}
+            `}
+          />
+        )}
 
-      {/* ASCII art layer */}
-      {!imageErrors.ascii && (
-        <Image
-          src={asciiImageSrc}
-          alt={`${alt} (ASCII art version)`}
-          fill
-          className={`${styles['dpp-image-layer']} ${styles['dpp-image-ascii']}`}
-          style={{ objectFit: 'cover' }}
-          priority={priority}
-          onError={() => handleImageError('ascii')}
-          sizes={`
-            (max-width: 768px) ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '202px'},
-            ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '224px'}
-          `}
-        />
-      )}
+        {/* ASCII art layer */}
+        {!imageErrors.ascii && (
+          <Image
+            src={asciiImageSrc}
+            alt={`${alt} (ASCII art version)`}
+            fill
+            className={`${styles['dpp-image-layer']} ${styles['dpp-image-ascii']}`}
+            style={{ objectFit: 'cover' }}
+            priority={priority}
+            onError={() => handleImageError('ascii')}
+            sizes={`
+              (max-width: 768px) ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '202px'},
+              ${size === 'sm' ? '112px' : size === 'md' ? '168px' : '224px'}
+            `}
+          />
+        )}
 
-      {/* Transition overlay effect */}
-      {isTransitioning && (
+        {/* Transition overlay effect */}
+        {isTransitioning && (
+          <div 
+            className={styles['dpp-transition-overlay']}
+            aria-hidden="true"
+          />
+        )}
+      </div>
+
+      {/* Pause indicator */}
+      {isPausedInternal && (
         <div 
-          className={styles['dpp-transition-overlay']}
+          className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center"
           aria-hidden="true"
-        />
+        >
+          <Pause 
+            size={16} 
+            className="text-gopher-blue opacity-70 drop-shadow-sm" 
+          />
+        </div>
       )}
     </div>
   );
