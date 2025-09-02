@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import clsx from 'clsx';
 import TerminalWindow from '@/components/TerminalWindow';
 import TerminalFooter from '@/components/TerminalFooter';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
@@ -20,7 +21,7 @@ interface Job {
 export default function Experience() {
   const t = useTranslations('sections.experience');
   const [showContent, setShowContent] = useState(false);
-  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
+  const { ref, isVisible } = useAOSVisibility({ threshold: 0.2 });
 
   const handleTypingComplete = useCallback(() => {
     setTimeout(() => setShowContent(true), 400);
@@ -42,31 +43,34 @@ export default function Experience() {
         </h2>
 
         {/* Terminal Window con renderizado condicional */}
-        {shouldRender && (
-          <div
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
-            <TerminalWindow
-              title="work_history.log"
-              command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
-              onTypingComplete={handleTypingComplete}
-              className="max-w-4xl mx-auto"
-            />
-          </div>
-        )}
+        <div
+          className={clsx({
+            'invisible': !isVisible
+          })}
+          data-aos="fade-up"
+          data-aos-delay="800"
+          data-aos-duration="300"
+          data-aos-once="true"
+        >
+          <TerminalWindow
+            title="work_history.log"
+            command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
+            isVisible={isVisible}
+            onTypingComplete={handleTypingComplete}
+            className="max-w-4xl mx-auto"
+          />
+        </div>
 
-        {showContent && (
-          <div 
-            className="mt-8 max-w-4xl mx-auto"
-            data-aos="fade-up"
-            data-aos-duration="400"
-            data-aos-once="true"
-          >
-            <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
-              <div className="space-y-8">
+        <div 
+          className={clsx('mt-8 max-w-4xl mx-auto', {
+            'invisible': !showContent
+          })}
+          data-aos="fade-up"
+          data-aos-duration="400"
+          data-aos-once="true"
+        >
+          <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
+            <div className="space-y-8">
                 {jobs.map((job, index) => (
                   <div 
                     key={index}
@@ -157,11 +161,10 @@ export default function Experience() {
                   </div>
                 ))}
 
-                <TerminalFooter path="~/experience" />
-              </div>
+              <TerminalFooter path="~/experience" />
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

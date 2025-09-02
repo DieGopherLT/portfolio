@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
@@ -20,7 +21,7 @@ enum AnimationState {
 export default function About() {
   const t = useTranslations('sections.about');
   const personalInfo = useTranslations('personal_info');
-  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
+  const { ref, isVisible } = useAOSVisibility({ threshold: 0.2 });
 
   // Estado principal de la animación
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
@@ -51,7 +52,7 @@ export default function About() {
 
   // Función principal de animación
   const runAnimation = useCallback(async () => {
-    if (!shouldRender) return;
+    if (!isVisible) return;
 
     try {
       // Delay inicial
@@ -81,14 +82,14 @@ export default function About() {
     } catch (error) {
       console.error('Animation error:', error);
     }
-  }, [shouldRender, typeText]);
+  }, [isVisible, typeText]);
 
   // Efecto principal simplificado
   useEffect(() => {
-    if (shouldRender && animationState === AnimationState.IDLE) {
+    if (isVisible && animationState === AnimationState.IDLE) {
       runAnimation();
     }
-  }, [shouldRender, runAnimation, animationState]);
+  }, [isVisible, runAnimation, animationState]);
 
   return (
     <section ref={ref} id="about" className="min-h-screen py-10 px-4" aria-labelledby="about-heading">
@@ -104,47 +105,48 @@ export default function About() {
         </h2>
 
         {/* Single Terminal Window */}
-        {shouldRender && (
-          <div
-            className="terminal-window"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
-            {/* macOS Terminal Header */}
-            <div className="terminal-header">
-              <div className="traffic-lights">
-                <div className="traffic-light close"></div>
-                <div className="traffic-light minimize"></div>
-                <div className="traffic-light maximize"></div>
-              </div>
-              <div className="window-title">about_me.sh</div>
+        <div
+          className={clsx('terminal-window', {
+            'invisible': !isVisible
+          })}
+          data-aos="fade-up"
+          data-aos-delay="800"
+          data-aos-duration="300"
+          data-aos-once="true"
+        >
+          {/* macOS Terminal Header */}
+          <div className="terminal-header">
+            <div className="traffic-lights">
+              <div className="traffic-light close"></div>
+              <div className="traffic-light minimize"></div>
+              <div className="traffic-light maximize"></div>
             </div>
+            <div className="window-title">about_me.sh</div>
+          </div>
 
-            {/* Terminal Content */}
-            <div className="terminal-content">
-              <div className="font-mono text-white p-6">
-                
-                {/* Cat Command */}
-                <AnimatePresence>
-                  {animationState >= AnimationState.CAT_COMMAND && (
-                    <motion.div 
-                      key="cat-command"
-                      className="mb-4"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
-                      <TerminalPrompt
-                        command={catCommand}
-                        showCursor={animationState === AnimationState.CAT_COMMAND}
-                        cursorState="blinking"
-                        commandClassName="text-sm"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+          {/* Terminal Content */}
+          <div className="terminal-content">
+            <div className="font-mono text-white p-6">
+              
+              {/* Cat Command */}
+              <AnimatePresence>
+                {animationState >= AnimationState.CAT_COMMAND && (
+                  <motion.div 
+                    key="cat-command"
+                    className="mb-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  >
+                    <TerminalPrompt
+                      command={catCommand}
+                      showCursor={animationState === AnimationState.CAT_COMMAND}
+                      cursorState="blinking"
+                      commandClassName="text-sm"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
                 {/* Cat Command Output */}
                 <AnimatePresence>
@@ -240,10 +242,9 @@ export default function About() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

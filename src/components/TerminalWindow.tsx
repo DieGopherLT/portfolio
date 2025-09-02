@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import clsx from 'clsx';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
 
 interface TerminalWindowProps {
   title?: string;
   command: string;
+  isVisible?: boolean;
   onTypingComplete?: () => void;
   className?: string;
 }
@@ -14,17 +16,19 @@ interface TerminalWindowProps {
 export default function TerminalWindow({
   title = "diegopher@portfolio: ~",
   command,
+  isVisible = true,
   onTypingComplete,
   className = ""
 }: TerminalWindowProps) {
   const { displayedText } = useTypingAnimation({
     command,
+    shouldStart: isVisible,
     onTypingComplete
   });
 
   return (
     <motion.div 
-      className={`terminal-window ${className}`}
+      className={clsx('terminal-window', className)}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}

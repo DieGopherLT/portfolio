@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import clsx from 'clsx';
 import { useTerminalCursor } from '@/hooks/useTerminalCursor';
 
 interface TerminalPromptProps {
@@ -39,7 +40,7 @@ export default function TerminalPrompt({
           <span className="terminal-chevron">
             <span className='text-[#58c5a4]'>❯</span>
           </span>
-          <span className={`terminal-command ${commandClassName}`}>
+          <span className={clsx('terminal-command', commandClassName)}>
             {command}
             {showCursor && (
               <motion.span 

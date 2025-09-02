@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface UseTypingAnimationOptions {
   command: string;
+  shouldStart?: boolean;
   onTypingComplete?: () => void;
   typingSpeed?: number;
   startDelay?: number;
@@ -11,6 +12,7 @@ interface UseTypingAnimationOptions {
 
 export function useTypingAnimation({
   command,
+  shouldStart = true,
   onTypingComplete,
   typingSpeed = 50,
   startDelay = 300
@@ -20,7 +22,7 @@ export function useTypingAnimation({
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    if (!command) return;
+    if (!command || !shouldStart) return;
 
     setDisplayedText("");
     setIsTyping(true);
@@ -41,7 +43,7 @@ export function useTypingAnimation({
 
     const startTimer = setTimeout(typeText, startDelay);
     return () => clearTimeout(startTimer);
-  }, [command, onTypingComplete, typingSpeed, startDelay]);
+  }, [command, shouldStart, onTypingComplete, typingSpeed, startDelay]);
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {

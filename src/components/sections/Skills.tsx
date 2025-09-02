@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import clsx from 'clsx';
 import TerminalWindow from '@/components/TerminalWindow';
 import TerminalFooter from '@/components/TerminalFooter';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
@@ -21,7 +22,7 @@ interface SkillsCategories {
 export default function Skills() {
   const t = useTranslations('sections.skills');
   const [showContent, setShowContent] = useState(false);
-  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
+  const { ref, isVisible } = useAOSVisibility({ threshold: 0.2 });
 
   const handleTypingComplete = useCallback(() => {
     setTimeout(() => setShowContent(true), 400);
@@ -89,31 +90,34 @@ export default function Skills() {
         </h2>
 
         {/* Terminal Window con renderizado condicional */}
-        {shouldRender && (
-          <div
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
-            <TerminalWindow
-              title="skills_inventory.json"
-              command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
-              onTypingComplete={handleTypingComplete}
-              className="max-w-4xl mx-auto"
-            />
-          </div>
-        )}
+        <div
+          className={clsx({
+            'invisible': !isVisible
+          })}
+          data-aos="fade-up"
+          data-aos-delay="800"
+          data-aos-duration="300"
+          data-aos-once="true"
+        >
+          <TerminalWindow
+            title="skills_inventory.json"
+            command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
+            isVisible={isVisible}
+            onTypingComplete={handleTypingComplete}
+            className="max-w-4xl mx-auto"
+          />
+        </div>
 
-        {showContent && (
-          <div 
-            className="mt-8 max-w-4xl mx-auto"
-            data-aos="fade-up"
-            data-aos-duration="400"
-            data-aos-once="true"
-          >
-            <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
-              <div className="space-y-8">
+        <div 
+          className={clsx('mt-8 max-w-4xl mx-auto', {
+            'invisible': !showContent
+          })}
+          data-aos="fade-up"
+          data-aos-duration="400"
+          data-aos-once="true"
+        >
+          <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
+            <div className="space-y-8">
                 {/* Header Info */}
                 <div className="border-b border-gray-800 pb-4">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
@@ -151,11 +155,13 @@ export default function Skills() {
                         {sortSkillsByHighlight(category.skills).map((skill: string, idx: number) => (
                           <div 
                             key={idx}
-                            className={`text-xs md:text-sm px-3 py-2 rounded border transition-all duration-200 hover:scale-105 cursor-default ${
-                              isHighlighted(skill)
-                                ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
-                                : 'bg-gray-800 border-gray-700 text-secondary hover:bg-gray-700'
-                            }`}
+                            className={clsx(
+                              'text-xs md:text-sm px-3 py-2 rounded border transition-all duration-200 hover:scale-105 cursor-default',
+                              {
+                                'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold': isHighlighted(skill),
+                                'bg-gray-800 border-gray-700 text-secondary hover:bg-gray-700': !isHighlighted(skill)
+                              }
+                            )}
                           >
                             <span className="flex items-center gap-2">
                               {isHighlighted(skill) && (
@@ -203,11 +209,10 @@ export default function Skills() {
                   </div>
                 </div>
 
-                <TerminalFooter path="~/skills" />
-              </div>
+              <TerminalFooter path="~/skills" />
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

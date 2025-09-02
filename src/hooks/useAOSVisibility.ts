@@ -9,7 +9,6 @@ interface UseAOSVisibilityOptions {
 
 export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
   const [isVisible, setIsVisible] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
   
   const { threshold = 0.3, offset = 100 } = options;
@@ -22,8 +21,6 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Pequeño delay para que AOS inicie su animación primero
-          setTimeout(() => setShouldRender(true), 100);
         }
       },
       {
@@ -41,7 +38,6 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
 
   return {
     ref: elementRef,
-    isVisible,
-    shouldRender
+    isVisible
   };
 }

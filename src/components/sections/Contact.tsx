@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import clsx from 'clsx';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
@@ -23,7 +24,7 @@ enum SocialAnimationState {
 
 export default function Contact() {
   const t = useTranslations('sections.contact');
-  const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
+  const { ref, isVisible } = useAOSVisibility({ threshold: 0.2 });
 
   // Estados independientes para cada animación
   const [formAnimationState, setFormAnimationState] = useState<FormAnimationState>(FormAnimationState.IDLE);
@@ -55,7 +56,7 @@ export default function Contact() {
 
   // Función de animación para el formulario de contacto
   const runFormAnimation = useCallback(async () => {
-    if (!shouldRender) return;
+    if (!isVisible) return;
 
     try {
       // Delay inicial
@@ -76,11 +77,11 @@ export default function Contact() {
     } catch (error) {
       console.error('Form animation error:', error);
     }
-  }, [shouldRender, typeText]);
+  }, [isVisible, typeText]);
 
   // Función de animación para los enlaces sociales
   const runSocialAnimation = useCallback(async () => {
-    if (!shouldRender) return;
+    if (!isVisible) return;
 
     try {
       // Delay inicial (ligeramente mayor para efecto escalonado)
@@ -101,12 +102,12 @@ export default function Contact() {
     } catch (error) {
       console.error('Social animation error:', error);
     }
-  }, [shouldRender, typeText, t]);
+  }, [isVisible, typeText, t]);
 
   // Efecto principal que ejecuta ambas animaciones en paralelo
   useEffect(() => {
     const runAllAnimations = async () => {
-      if (shouldRender && 
+      if (isVisible && 
           formAnimationState === FormAnimationState.IDLE && 
           socialAnimationState === SocialAnimationState.IDLE) {
         
@@ -119,7 +120,7 @@ export default function Contact() {
     };
 
     runAllAnimations();
-  }, [shouldRender, runFormAnimation, runSocialAnimation, formAnimationState, socialAnimationState]);
+  }, [isVisible, runFormAnimation, runSocialAnimation, formAnimationState, socialAnimationState]);
 
 
   return (
@@ -136,14 +137,15 @@ export default function Contact() {
         </h2>
 
         {/* Single Terminal Window with Split Content */}
-        {shouldRender && (
-          <div
-            className="terminal-window"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
+        <div
+          className={clsx('terminal-window', {
+            'invisible': !isVisible
+          })}
+          data-aos="fade-up"
+          data-aos-delay="800"
+          data-aos-duration="300"
+          data-aos-once="true"
+        >
           {/* macOS Terminal Header */}
           <div className="terminal-header">
             <div className="traffic-lights">
@@ -180,7 +182,6 @@ export default function Contact() {
             </div>
           </div>
         </div>
-        )}
       </div>
     </section>
   );
