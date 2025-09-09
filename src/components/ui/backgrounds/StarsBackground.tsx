@@ -24,11 +24,11 @@ interface StarLayerProps {
   starColor: string;
 }
 
-function StarLayer({ 
-  count = 1000, 
-  size = 1, 
-  transition = { repeat: Infinity, duration: 50, ease: 'linear' }, 
-  starColor = '#fff' 
+function StarLayer({
+  count = 1000,
+  size = 1,
+  transition = { repeat: Infinity, duration: 50, ease: 'linear' },
+  starColor = '#fff',
 }: StarLayerProps) {
   const [boxShadow, setBoxShadow] = React.useState<string>('');
 
@@ -40,10 +40,10 @@ function StarLayer({
     <motion.div
       animate={{ y: [0, -2000] }}
       transition={transition}
-      className="absolute top-0 left-0 w-full h-[2000px]"
+      className="absolute top-0 left-0 h-[2000px] w-full"
     >
       <div
-        className="absolute bg-transparent rounded-full"
+        className="absolute rounded-full bg-transparent"
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -51,7 +51,7 @@ function StarLayer({
         }}
       />
       <div
-        className="absolute bg-transparent rounded-full top-[2000px]"
+        className="absolute top-[2000px] rounded-full bg-transparent"
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -65,7 +65,7 @@ function StarLayer({
 // ===== MAIN STARS BACKGROUND COMPONENT =====
 /**
  * StarsBackground - Interactive animated starfield
- * 
+ *
  * Features:
  * - Multiple parallax layers with different speeds
  * - Mouse parallax effect
@@ -78,7 +78,7 @@ export function StarsBackground({
   transition = { stiffness: 50, damping: 20 },
   starColor = '#00ADD8', // Gopher blue by default
   pointerEvents = true,
-  className
+  className,
 }: StarsBackgroundProps) {
   const offsetX = useMotionValue(1);
   const offsetY = useMotionValue(1);
@@ -95,7 +95,7 @@ export function StarsBackground({
       offsetX.set(newOffsetX);
       offsetY.set(newOffsetY);
     },
-    [offsetX, offsetY, factor],
+    [offsetX, offsetY, factor]
   );
 
   return (
@@ -103,7 +103,7 @@ export function StarsBackground({
       className={cn(
         'fixed inset-0 -z-10 overflow-hidden',
         'bg-[radial-gradient(ellipse_at_bottom,_#1a1a1a_0%,_#000_100%)]',
-        className,
+        className
       )}
       onMouseMove={handleMouseMove}
       aria-hidden="true"

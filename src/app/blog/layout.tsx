@@ -4,14 +4,14 @@ import '@/app/globals.css';
 import { html } from 'framer-motion/client';
 
 // Import fonts
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-reading'
+  variable: '--font-reading',
 });
 
-const jetbrainsMono = JetBrains_Mono({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-mono'
+  variable: '--font-mono',
 });
 
 interface BlogLayoutProps {
@@ -21,13 +21,9 @@ interface BlogLayoutProps {
 export default function BlogRootLayout({ children }: BlogLayoutProps) {
   return (
     <html lang="en">
-      <head>
-        
-      </head>
-      <body className="bg-black text-white min-h-screen">
-        <div className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
-          {children}
-        </div>
+      <head></head>
+      <body className="min-h-screen bg-black text-white">
+        <div className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>{children}</div>
       </body>
     </html>
   );
@@ -36,7 +32,7 @@ export default function BlogRootLayout({ children }: BlogLayoutProps) {
 export const metadata = {
   title: {
     template: '%s | DieGopherLT Blog',
-    default: 'DieGopherLT Blog'
+    default: 'DieGopherLT Blog',
   },
   description: 'Technical insights, development experiences, and thoughts about software architecture.',
   keywords: ['software development', 'programming', 'unix', 'go', 'typescript', 'architecture', 'blog'],
@@ -49,10 +45,10 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@diegopherLT'
+    creator: '@diegopherLT',
   },
   robots: {
     index: true,
-    follow: true
-  }
+    follow: true,
+  },
 };

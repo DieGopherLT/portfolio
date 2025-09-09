@@ -40,12 +40,12 @@ export default function Skills() {
     return skills.sort((a, b) => {
       const aHighlighted = isHighlighted(a);
       const bHighlighted = isHighlighted(b);
-      
+
       // Si ambos están resaltados o ninguno está resaltado, mantener orden original
       if (aHighlighted === bHighlighted) {
         return 0;
       }
-      
+
       // Los resaltados van primero
       return aHighlighted ? -1 : 1;
     });
@@ -60,7 +60,7 @@ export default function Skills() {
       conceptual: '🧠',
       backend: '⚙️',
       frontend: '🎨',
-      tooling: '🔧'
+      tooling: '🔧',
     };
     return icons[categoryKey] || '📋';
   };
@@ -70,17 +70,17 @@ export default function Skills() {
       conceptual: 'text-keyword-purple',
       backend: 'text-gopher-blue',
       frontend: 'text-ts-blue',
-      tooling: 'text-terminal-green'
+      tooling: 'text-terminal-green',
     };
     return colors[categoryKey] || 'text-secondary';
   };
 
   return (
-    <section ref={ref} id="skills" className="min-h-screen py-10 px-4" aria-labelledby="skills-heading">
-      <div className="max-w-4xl mx-auto">
-        <h2 
+    <section ref={ref} id="skills" className="min-h-screen px-4 py-10" aria-labelledby="skills-heading">
+      <div className="mx-auto max-w-4xl">
+        <h2
           id="skills-heading"
-          className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
+          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-once="true"
@@ -90,42 +90,41 @@ export default function Skills() {
 
         {/* Terminal Window con renderizado condicional */}
         {shouldRender && (
-          <div
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
+          <div data-aos="fade-up" data-aos-delay="800" data-aos-duration="300" data-aos-once="true">
             <TerminalWindow
               title="skills_inventory.json"
               command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
               onTypingComplete={handleTypingComplete}
-              className="max-w-4xl mx-auto"
+              className="mx-auto max-w-4xl"
             />
           </div>
         )}
 
         {showContent && (
-          <div 
-            className="mt-8 max-w-4xl mx-auto"
+          <div
+            className="mx-auto mt-8 max-w-4xl"
             data-aos="fade-up"
             data-aos-duration="400"
             data-aos-once="true"
           >
-            <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
+            <div className="rounded-lg border border-gray-800 bg-black p-4 font-mono text-white md:p-8">
               <div className="space-y-8">
                 {/* Header Info */}
                 <div className="border-b border-gray-800 pb-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                  <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                     <span className="text-gopher-blue font-semibold">{t('labels.overview')}</span>
-                    <span className="text-xs text-secondary bg-gray-800 px-2 py-1 rounded">
+                    <span className="text-secondary rounded bg-gray-800 px-2 py-1 text-xs">
                       {t('expertise_level')}
                     </span>
                   </div>
-                  <div className="text-sm text-secondary">
+                  <div className="text-secondary text-sm">
                     <div className="flex flex-wrap gap-4">
-                      <div>{t('labels.specialization')}: {t('labels.backend_development')}</div>
-                      <div>{t('labels.main_languages')}: {highlightedLanguages.join(', ')}</div>
+                      <div>
+                        {t('labels.specialization')}: {t('labels.backend_development')}
+                      </div>
+                      <div>
+                        {t('labels.main_languages')}: {highlightedLanguages.join(', ')}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -133,34 +132,32 @@ export default function Skills() {
                 {/* Skills Categories */}
                 <div className="space-y-6">
                   {Object.entries(categories).map(([categoryKey, category], index) => (
-                    <div 
+                    <div
                       key={categoryKey}
-                      className="border-l-2 border-gopher-blue pl-4 md:pl-6"
+                      className="border-gopher-blue border-l-2 pl-4 md:pl-6"
                       data-aos="fade-right"
                       data-aos-duration="500"
                       data-aos-delay={index * 150}
                       data-aos-once="true"
                     >
                       <div className="mb-4">
-                        <h3 className={`text-lg md:text-xl font-bold ${getCategoryColor(categoryKey)} mb-2`}>
+                        <h3 className={`text-lg font-bold md:text-xl ${getCategoryColor(categoryKey)} mb-2`}>
                           {getCategoryIcon(categoryKey)} {category.name}
                         </h3>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                         {sortSkillsByHighlight(category.skills).map((skill: string, idx: number) => (
-                          <div 
+                          <div
                             key={idx}
-                            className={`text-xs md:text-sm px-3 py-2 rounded border transition-all duration-200 hover:scale-105 cursor-default ${
+                            className={`cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm ${
                               isHighlighted(skill)
                                 ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
-                                : 'bg-gray-800 border-gray-700 text-secondary hover:bg-gray-700'
+                                : 'text-secondary border-gray-700 bg-gray-800 hover:bg-gray-700'
                             }`}
                           >
                             <span className="flex items-center gap-2">
-                              {isHighlighted(skill) && (
-                                <span className="text-warning-yellow text-xs">★</span>
-                              )}
+                              {isHighlighted(skill) && <span className="text-warning-yellow text-xs">★</span>}
                               {skill}
                             </span>
                           </div>
@@ -173,28 +170,33 @@ export default function Skills() {
                 {/* Highlighted Languages Section */}
                 <div className="border-t border-gray-800 pt-6">
                   <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-secondary mb-3 uppercase tracking-wide">
+                    <h4 className="text-secondary mb-3 text-sm font-semibold tracking-wide uppercase">
                       {t('labels.highlighted_section')}
                     </h4>
                   </div>
                   <div className="flex flex-wrap gap-4">
                     {highlightedLanguages.map((lang: string, idx: number) => {
-                      const skill = `${lang} (Golang)` === `${lang} (Golang)` && lang === 'Go' ? 'Go (Golang)' : lang;
+                      const skill =
+                        `${lang} (Golang)` === `${lang} (Golang)` && lang === 'Go' ? 'Go (Golang)' : lang;
                       const level = getSkillLevel(skill);
                       const isIntermediate = level === 'Intermediate' || level === 'Intermedio';
-                      
+
                       return (
-                        <div 
+                        <div
                           key={idx}
-                          className="flex items-center gap-3 p-3 bg-gopher-blue/5 border border-gopher-blue rounded-lg"
+                          className="bg-gopher-blue/5 border-gopher-blue flex items-center gap-3 rounded-lg border p-3"
                         >
-                          <span className={`text-lg ${isIntermediate ? 'text-warning-yellow' : 'text-warning-yellow'}`}>
+                          <span
+                            className={`text-lg ${isIntermediate ? 'text-warning-yellow' : 'text-warning-yellow'}`}
+                          >
                             {isIntermediate ? '◐' : '★'}
                           </span>
                           <div>
-                            <div className="text-gopher-blue font-semibold text-sm">{lang}</div>
-                            <div className="text-xs text-secondary">
-                              {isIntermediate ? t('labels.intermediate_experience') : t('labels.advanced_experience')}
+                            <div className="text-gopher-blue text-sm font-semibold">{lang}</div>
+                            <div className="text-secondary text-xs">
+                              {isIntermediate
+                                ? t('labels.intermediate_experience')
+                                : t('labels.advanced_experience')}
                             </div>
                           </div>
                         </div>

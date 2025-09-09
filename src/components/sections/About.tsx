@@ -11,10 +11,10 @@ import TerminalPrompt from '@/components/ui/TerminalPrompt';
 enum AnimationState {
   IDLE = 0,
   CAT_COMMAND = 1,
-  CAT_OUTPUT = 2, 
+  CAT_OUTPUT = 2,
   SECOND_COMMAND = 3,
   SECOND_OUTPUT = 4,
-  COMPLETE = 5
+  COMPLETE = 5,
 }
 
 export default function About() {
@@ -24,17 +24,17 @@ export default function About() {
 
   // Estado principal de la animación
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
-  
+
   // Estados para el contenido de los comandos
   const [catCommand, setCatCommand] = useState('');
   const [secondCommand, setSecondCommand] = useState('');
 
   const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setter(''); // Reset
       let currentIndex = 0;
       const typingSpeed = 50 + Math.random() * 30;
-      
+
       const typeChar = () => {
         if (currentIndex < text.length) {
           setter(text.slice(0, currentIndex + 1));
@@ -44,7 +44,7 @@ export default function About() {
           resolve();
         }
       };
-      
+
       typeChar();
     });
   }, []);
@@ -56,28 +56,27 @@ export default function About() {
     try {
       // Delay inicial
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       // 1. Cat comando
       setAnimationState(AnimationState.CAT_COMMAND);
       await typeText('cat /etc/developer.conf', setCatCommand);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 2. Cat output
       setAnimationState(AnimationState.CAT_OUTPUT);
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       // 3. Segundo comando
       setAnimationState(AnimationState.SECOND_COMMAND);
       await typeText('cat about-me.md', setSecondCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // 4. Segundo output
       setAnimationState(AnimationState.SECOND_OUTPUT);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 5. Completo
       setAnimationState(AnimationState.COMPLETE);
-      
     } catch (error) {
       console.error('Animation error:', error);
     }
@@ -91,11 +90,11 @@ export default function About() {
   }, [shouldRender, runAnimation, animationState]);
 
   return (
-    <section ref={ref} id="about" className="min-h-screen py-10 px-4" aria-labelledby="about-heading">
-      <div className="max-w-4xl mx-auto">
-        <h2 
+    <section ref={ref} id="about" className="min-h-screen px-4 py-10" aria-labelledby="about-heading">
+      <div className="mx-auto max-w-4xl">
+        <h2
           id="about-heading"
-          className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
+          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-once="true"
@@ -124,17 +123,16 @@ export default function About() {
 
             {/* Terminal Content */}
             <div className="terminal-content">
-              <div className="font-mono text-white p-6">
-                
+              <div className="p-6 font-mono text-white">
                 {/* Cat Command */}
                 <AnimatePresence>
                   {animationState >= AnimationState.CAT_COMMAND && (
-                    <motion.div 
+                    <motion.div
                       key="cat-command"
                       className="mb-4"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalPrompt
                         command={catCommand}
@@ -149,31 +147,40 @@ export default function About() {
                 {/* Cat Command Output */}
                 <AnimatePresence>
                   {animationState >= AnimationState.CAT_OUTPUT && (
-                    <motion.div 
+                    <motion.div
                       key="cat-output"
                       className="mb-6 pl-0"
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      <div className="pl-4 space-y-1 text-sm">
+                      <div className="space-y-1 pl-4 text-sm">
                         <div>
                           <span className="text-keyword-purple">[profile]</span>
                         </div>
                         <div>
-                          <span className="text-ts-blue">name</span>=<span className="text-string-green">&quot;{personalInfo('full_name')}&quot;</span>
+                          <span className="text-ts-blue">name</span>=
+                          <span className="text-string-green">&quot;{personalInfo('full_name')}&quot;</span>
                         </div>
                         <div>
-                          <span className="text-ts-blue">role</span>=<span className="text-string-green">&quot;{personalInfo('title')} && {personalInfo('specialization')}&quot;</span>
+                          <span className="text-ts-blue">role</span>=
+                          <span className="text-string-green">
+                            &quot;{personalInfo('title')} && {personalInfo('specialization')}&quot;
+                          </span>
                         </div>
                         <div>
-                          <span className="text-ts-blue">preferences</span>=<span className="text-string-green">&quot;{personalInfo('preference')}&quot;</span>
+                          <span className="text-ts-blue">preferences</span>=
+                          <span className="text-string-green">&quot;{personalInfo('preference')}&quot;</span>
                         </div>
                         <div>
-                          <span className="text-ts-blue">uptime</span>=<span className="text-string-green">&quot;{personalInfo('experience_years')}+ years&quot;</span>
+                          <span className="text-ts-blue">uptime</span>=
+                          <span className="text-string-green">
+                            &quot;{personalInfo('experience_years')}+ years&quot;
+                          </span>
                         </div>
                         <div>
-                          <span className="text-ts-blue">age</span>=<span className="text-string-green">&quot;{personalInfo('age')}&quot;</span>
+                          <span className="text-ts-blue">age</span>=
+                          <span className="text-string-green">&quot;{personalInfo('age')}&quot;</span>
                         </div>
                       </div>
                     </motion.div>
@@ -183,12 +190,12 @@ export default function About() {
                 {/* Second Command */}
                 <AnimatePresence>
                   {animationState >= AnimationState.SECOND_COMMAND && (
-                    <motion.div 
+                    <motion.div
                       key="second-command"
                       className="mb-4"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalPrompt
                         command={secondCommand}
@@ -202,13 +209,13 @@ export default function About() {
                 {/* Second Command Output */}
                 <AnimatePresence>
                   {animationState >= AnimationState.SECOND_OUTPUT && (
-                    <motion.div 
+                    <motion.div
                       className="mb-6 pl-0"
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      <div className="space-y-4 text-secondary leading-relaxed">
+                      <div className="text-secondary space-y-4 leading-relaxed">
                         <p className="text-white">
                           <span className="text-terminal-green">$</span> {t('content.intro')}
                         </p>
@@ -234,7 +241,7 @@ export default function About() {
                     <motion.div
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalFooter path="~/about" />
                     </motion.div>

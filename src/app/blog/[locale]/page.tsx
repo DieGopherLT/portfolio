@@ -10,7 +10,7 @@ interface BlogIndexProps {
 
 export default async function BlogIndex({ params }: BlogIndexProps) {
   const { locale } = await params;
-  
+
   // Validate locale
   if (!isValidLocale(locale)) {
     redirect('/blog/en');
@@ -22,26 +22,21 @@ export default async function BlogIndex({ params }: BlogIndexProps) {
 
   return (
     <BlogLayout locale={locale}>
-      <div className="blog-index max-w-4xl mx-auto px-6 py-12">
+      <div className="blog-index mx-auto max-w-4xl px-6 py-12">
         {/* Blog Header */}
         <header className="blog-header mb-12">
-          <h1 className="blog-title text-4xl md:text-5xl font-light text-white mb-4 font-mono">
+          <h1 className="blog-title mb-4 font-mono text-4xl font-light text-white md:text-5xl">
             <span className="text-gopher-blue">$</span> {locale === 'es' ? 'Blog Personal' : 'Personal Blog'}
           </h1>
-          <p className="blog-description text-lg text-text-secondary leading-relaxed max-w-2xl">
-            {locale === 'es' 
+          <p className="blog-description text-text-secondary max-w-2xl text-lg leading-relaxed">
+            {locale === 'es'
               ? 'Insights técnicos, experiencias de desarrollo y reflexiones sobre arquitectura de software. Una inmersión profunda en la filosofía Unix y las prácticas de desarrollo modernas.'
-              : 'Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices.'
-            }
+              : 'Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices.'}
           </p>
         </header>
 
         {/* Blog Controls - Client Component */}
-        <BlogControls 
-          posts={posts} 
-          allTags={allTags} 
-          locale={locale}
-        />
+        <BlogControls posts={posts} allTags={allTags} locale={locale} />
       </div>
     </BlogLayout>
   );
@@ -49,8 +44,5 @@ export default async function BlogIndex({ params }: BlogIndexProps) {
 
 // Generate static params for locales
 export async function generateStaticParams() {
-  return [
-    { locale: 'en' },
-    { locale: 'es' }
-  ];
+  return [{ locale: 'en' }, { locale: 'es' }];
 }

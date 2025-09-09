@@ -15,7 +15,7 @@ enum AnimationState {
   CAT_OUTPUT = 2,
   LS_COMMAND = 3,
   LS_OUTPUT = 4,
-  COMPLETE = 5
+  COMPLETE = 5,
 }
 
 interface RecentPost {
@@ -36,17 +36,17 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
 
   // Animation state
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
-  
+
   // Command states
   const [catCommand, setCatCommand] = useState('');
   const [lsCommand, setLsCommand] = useState('');
 
   const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setter(''); // Reset
       let currentIndex = 0;
       const typingSpeed = 50 + Math.random() * 30;
-      
+
       const typeChar = () => {
         if (currentIndex < text.length) {
           setter(text.slice(0, currentIndex + 1));
@@ -56,7 +56,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
           resolve();
         }
       };
-      
+
       typeChar();
     });
   }, []);
@@ -68,28 +68,27 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
     try {
       // Initial delay
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       // 1. Cat command
       setAnimationState(AnimationState.CAT_COMMAND);
       await typeText('cat about-blog.md', setCatCommand);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 2. Cat output
       setAnimationState(AnimationState.CAT_OUTPUT);
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // 3. LS command
       setAnimationState(AnimationState.LS_COMMAND);
       await typeText('ls blog/', setLsCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // 4. LS output
       setAnimationState(AnimationState.LS_OUTPUT);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 5. Complete
       setAnimationState(AnimationState.COMPLETE);
-      
     } catch (error) {
       console.error('Blog animation error:', error);
     }
@@ -107,7 +106,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
     const date = new Date(dateString);
     return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
       month: 'short',
-      day: '2-digit'
+      day: '2-digit',
     });
   };
 
@@ -118,11 +117,11 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
   };
 
   return (
-    <section ref={ref} id="blog" className="min-h-screen py-10 px-4" aria-labelledby="blog-heading">
-      <div className="max-w-4xl mx-auto">
-        <h2 
+    <section ref={ref} id="blog" className="min-h-screen px-4 py-10" aria-labelledby="blog-heading">
+      <div className="mx-auto max-w-4xl">
+        <h2
           id="blog-heading"
-          className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
+          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-once="true"
@@ -151,17 +150,16 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
 
             {/* Terminal Content */}
             <div className="terminal-content">
-              <div className="font-mono text-white p-6">
-                
+              <div className="p-6 font-mono text-white">
                 {/* Cat Command */}
                 <AnimatePresence>
                   {animationState >= AnimationState.CAT_COMMAND && (
-                    <motion.div 
+                    <motion.div
                       key="cat-command"
                       className="mb-4"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalPrompt
                         command={catCommand}
@@ -176,20 +174,22 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                 {/* Cat Output */}
                 <AnimatePresence>
                   {animationState >= AnimationState.CAT_OUTPUT && (
-                    <motion.div 
+                    <motion.div
                       key="cat-output"
                       className="mb-6 pl-0"
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
                       <div className="space-y-3 text-sm leading-relaxed">
                         <div className="text-keyword-purple"># {t('description.title')}</div>
-                        <div className="text-secondary">
-                          {t('description.content')}
-                        </div>
+                        <div className="text-secondary">{t('description.content')}</div>
                         <div className="text-ts-blue">
-                          → <Link href={`/blog/${locale}`} className="text-gopher-blue hover:text-gopher-blue-hover underline">
+                          →{' '}
+                          <Link
+                            href={`/blog/${locale}`}
+                            className="text-gopher-blue hover:text-gopher-blue-hover underline"
+                          >
                             {t('description.link_text')}
                           </Link>
                         </div>
@@ -201,12 +201,12 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                 {/* LS Command */}
                 <AnimatePresence>
                   {animationState >= AnimationState.LS_COMMAND && (
-                    <motion.div 
+                    <motion.div
                       key="ls-command"
                       className="mb-4"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalPrompt
                         command={lsCommand}
@@ -220,32 +220,32 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                 {/* LS Output */}
                 <AnimatePresence>
                   {animationState >= AnimationState.LS_OUTPUT && (
-                    <motion.div 
+                    <motion.div
                       className="mb-6 pl-0"
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
                       <div className="space-y-2">
                         {recentPosts.length > 0 ? (
                           recentPosts.map((post, index) => (
                             <motion.div
                               key={post.slug}
-                              className="flex justify-between items-center text-sm"
+                              className="flex items-center justify-between text-sm"
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ 
-                                duration: 0.4, 
+                              transition={{
+                                duration: 0.4,
                                 delay: index * 0.1,
-                                ease: "easeOut" 
+                                ease: 'easeOut',
                               }}
                             >
                               <div className="flex items-center gap-3">
                                 <span className="text-gopher-blue">-rw-r--r--</span>
                                 <span className="text-warning-yellow">{formatDate(post.date)}</span>
-                                <Link 
+                                <Link
                                   href={`/blog/${locale}/${post.slug}`}
-                                  className="text-white hover:text-gopher-blue transition-colors"
+                                  className="hover:text-gopher-blue text-white transition-colors"
                                 >
                                   {post.title}.md
                                 </Link>
@@ -256,9 +256,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                             </motion.div>
                           ))
                         ) : (
-                          <div className="text-text-muted text-sm">
-                            {t('no_posts')}
-                          </div>
+                          <div className="text-text-muted text-sm">{t('no_posts')}</div>
                         )}
                       </div>
                     </motion.div>
@@ -270,7 +268,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                     <motion.div
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                       <TerminalFooter path="~/blog" />
                     </motion.div>

@@ -13,10 +13,7 @@ export async function POST(request: NextRequest) {
     const { name, email, subject, message }: ContactData = await request.json();
 
     if (!name || !email || !subject || !message) {
-      return Response.json(
-        { message: 'All fields are required' },
-        { status: 400 }
-      );
+      return Response.json({ message: 'All fields are required' }, { status: 400 });
     }
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -24,14 +21,11 @@ export async function POST(request: NextRequest) {
 
     if (!botToken || !chatId) {
       console.error('Missing Telegram configuration');
-      return Response.json(
-        { message: 'Server configuration error' },
-        { status: 500 }
-      );
+      return Response.json({ message: 'Server configuration error' }, { status: 500 });
     }
 
     const bot = new TelegramBot(botToken);
-    
+
     const messageText = `
 🔔 *Nuevo mensaje del portfolio*
 
@@ -44,13 +38,10 @@ ${message}
     `.trim();
 
     await bot.sendMessage(chatId, messageText, { parse_mode: 'Markdown' });
-   
+
     return Response.json({ message: 'Message sent successfully' });
   } catch (error) {
     console.error('Error sending Telegram message:', error);
-    return Response.json(
-      { message: 'Failed to send message' },
-      { status: 500 }
-    );
+    return Response.json({ message: 'Failed to send message' }, { status: 500 });
   }
 }

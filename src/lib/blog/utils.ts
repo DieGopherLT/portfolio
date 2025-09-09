@@ -6,27 +6,27 @@ export function generatePostUrl(metadata: PostMetadata, locale: 'en' | 'es'): st
 
 export function formatReadingTime(minutes: number, locale: 'en' | 'es'): string {
   const roundedMinutes = Math.max(1, Math.round(minutes));
-  
+
   if (locale === 'es') {
     return roundedMinutes === 1 ? '1 minuto' : `${roundedMinutes} minutos`;
   }
-  
+
   return roundedMinutes === 1 ? '1 min' : `${roundedMinutes} mins`;
 }
 
 export function formatDate(dateString: string, locale: 'en' | 'es'): string {
   const date = new Date(dateString);
-  
+
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   };
-  
+
   if (locale === 'es') {
     return date.toLocaleDateString('es-ES', options);
   }
-  
+
   return date.toLocaleDateString('en-US', options);
 }
 
@@ -46,10 +46,8 @@ export function getPostPreview(content: string, maxLength: number = 150): string
 
   const truncated = plainText.substring(0, maxLength);
   const lastSpaceIndex = truncated.lastIndexOf(' ');
-  
-  return lastSpaceIndex > 0 
-    ? truncated.substring(0, lastSpaceIndex) + '...'
-    : truncated + '...';
+
+  return lastSpaceIndex > 0 ? truncated.substring(0, lastSpaceIndex) + '...' : truncated + '...';
 }
 
 export function slugify(text: string): string {
@@ -70,16 +68,14 @@ export function filterPostsByTag(posts: PostMetadata[], tag: string): PostMetada
 
 export function searchPosts(posts: PostMetadata[], query: string, locale: 'en' | 'es'): PostMetadata[] {
   if (!query.trim()) return posts;
-  
+
   const searchTerm = query.toLowerCase();
-  
+
   return posts.filter(post => {
     const title = post.title[locale]?.toLowerCase() || '';
     const description = post.description[locale]?.toLowerCase() || '';
     const tags = post.tags.join(' ').toLowerCase();
-    
-    return title.includes(searchTerm) || 
-           description.includes(searchTerm) || 
-           tags.includes(searchTerm);
+
+    return title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm);
   });
 }

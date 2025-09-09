@@ -19,9 +19,5 @@ export default function TerminalSpinner({ className = '' }: TerminalSpinnerProps
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <span className={`font-mono text-terminal-green ${className}`}>
-      {spinnerChars[currentChar]}
-    </span>
-  );
+  return <span className={`text-terminal-green font-mono ${className}`}>{spinnerChars[currentChar]}</span>;
 }

@@ -8,30 +8,26 @@ interface HeaderProps {
   className?: string;
 }
 
-export default function Header({ className = "" }: HeaderProps) {
+export default function Header({ className = '' }: HeaderProps) {
   const t = useTranslations('personal_info');
 
   return (
-    <motion.header 
+    <motion.header
       className={`py-4 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       {/* Desktop Grid Layout */}
-      <div className="hidden md:grid grid-cols-[1fr_auto] items-center gap-8 max-w-6xl mx-auto px-6">
+      <div className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto] items-center gap-8 px-6 md:grid">
         {/* Text Content - Left Side */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <h1 className="text-3xl lg:text-5xl font-light text-white mb-4">
-            {t('full_name')}
-          </h1>
-          <p className="text-xl lg:text-2xl text-secondary mb-2 font-light">
-            {t('title')}
-          </p>
+          <h1 className="mb-4 text-3xl font-light text-white lg:text-5xl">{t('full_name')}</h1>
+          <p className="text-secondary mb-2 text-xl font-light lg:text-2xl">{t('title')}</p>
         </motion.div>
 
         {/* Dynamic Profile Picture - Right Side */}
@@ -51,7 +47,7 @@ export default function Header({ className = "" }: HeaderProps) {
       </div>
 
       {/* Mobile Stacked Layout */}
-      <div className="md:hidden flex flex-col items-center gap-6 px-6">
+      <div className="flex flex-col items-center gap-6 px-6 md:hidden">
         {/* Dynamic Profile Picture - Top on Mobile */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -74,12 +70,8 @@ export default function Header({ className = "" }: HeaderProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-4xl font-light text-white mb-4">
-            {t('full_name')}
-          </h1>
-          <p className="text-xl sm:text-2xl text-secondary mb-2 font-light">
-            {t('title')}
-          </p>
+          <h1 className="mb-4 text-3xl font-light text-white sm:text-4xl">{t('full_name')}</h1>
+          <p className="text-secondary mb-2 text-xl font-light sm:text-2xl">{t('title')}</p>
         </motion.div>
       </div>
     </motion.header>

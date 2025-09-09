@@ -11,7 +11,7 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
-  
+
   const { threshold = 0.3, offset = 100 } = options;
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
       },
       {
         threshold,
-        rootMargin: `0px 0px -${offset}px 0px`
+        rootMargin: `0px 0px -${offset}px 0px`,
       }
     );
 
@@ -42,6 +42,6 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
   return {
     ref: elementRef,
     isVisible,
-    shouldRender
+    shouldRender,
   };
 }

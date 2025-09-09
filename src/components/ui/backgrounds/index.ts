@@ -1,6 +1,6 @@
 /**
  * Background System Exports
- * 
+ *
  * Unified export file for the adaptive background system.
  * Import from this file to access all background components and utilities.
  */
@@ -14,9 +14,9 @@ export { StarsBackground } from './StarsBackground';
 export { useBackgroundType, usePrefersReducedMotion } from './hooks/useBackgroundType';
 
 // Types
-export type { 
-  BackgroundType, 
-  AdaptiveBackgroundProps, 
-  DotsBackgroundProps, 
-  StarsBackgroundProps 
+export type {
+  BackgroundType,
+  AdaptiveBackgroundProps,
+  DotsBackgroundProps,
+  StarsBackgroundProps,
 } from './types';

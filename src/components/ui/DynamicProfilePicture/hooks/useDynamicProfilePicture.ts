@@ -18,11 +18,11 @@ interface UseDynamicProfilePictureReturn {
 }
 
 const TIMINGS = {
-  normal: 1500,            // 1.5 seconds
-  ascii: 1500,             // 1,5 seconds  
-  'split-diagonal': 2500,  // 2.5 seconds
-  'split-vertical': 2500,  // 2.5 seconds
-  transition: 150          // Quick flicker transition
+  normal: 1500, // 1.5 seconds
+  ascii: 1500, // 1,5 seconds
+  'split-diagonal': 2500, // 2.5 seconds
+  'split-vertical': 2500, // 2.5 seconds
+  transition: 150, // Quick flicker transition
 };
 
 const STATE_SEQUENCE = ['normal', 'ascii', 'split-diagonal'] as const;
@@ -30,20 +30,19 @@ const STATE_SEQUENCE = ['normal', 'ascii', 'split-diagonal'] as const;
 export function useDynamicProfilePicture({
   isPaused = false,
   normalImageSrc,
-  asciiImageSrc
+  asciiImageSrc,
 }: UseDynamicProfilePictureProps): UseDynamicProfilePictureReturn {
   const [currentState, setCurrentState] = useState<ProfileState>('normal');
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [internalPause, setInternalPause] = useState(false);
-  
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const currentSequenceIndex = useRef(0);
 
   // Check if user prefers reduced motion
-  const prefersReducedMotion = typeof window !== 'undefined' 
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
-    : false;
+  const prefersReducedMotion =
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
   // Preload images
   useEffect(() => {
@@ -56,12 +55,9 @@ export function useDynamicProfilePicture({
       });
     };
 
-    Promise.all([
-      loadImage(normalImageSrc),
-      loadImage(asciiImageSrc)
-    ])
+    Promise.all([loadImage(normalImageSrc), loadImage(asciiImageSrc)])
       .then(() => setIsImagesLoaded(true))
-      .catch((error) => {
+      .catch(error => {
         console.warn('Failed to preload profile images:', error);
         setIsImagesLoaded(true); // Continue anyway
       });
@@ -75,13 +71,13 @@ export function useDynamicProfilePicture({
 
     timeoutRef.current = setTimeout(() => {
       setIsTransitioning(true);
-      
+
       // After transition effect, move to next state
       setTimeout(() => {
         currentSequenceIndex.current = (currentSequenceIndex.current + 1) % STATE_SEQUENCE.length;
         setCurrentState(STATE_SEQUENCE[currentSequenceIndex.current]);
         setIsTransitioning(false);
-        
+
         // Schedule next transition
         scheduleNextState();
       }, TIMINGS.transition);
@@ -122,7 +118,6 @@ export function useDynamicProfilePicture({
     }
   }, [isImagesLoaded, prefersReducedMotion, scheduleNextState]);
 
-
   // If reduced motion is preferred, always show normal state
   const effectiveState = prefersReducedMotion ? 'normal' : currentState;
 
@@ -132,6 +127,6 @@ export function useDynamicProfilePicture({
     isTransitioning: isTransitioning && !prefersReducedMotion,
     isPausedInternal: internalPause,
     pauseAnimation,
-    resumeAnimation
+    resumeAnimation,
   };
 }

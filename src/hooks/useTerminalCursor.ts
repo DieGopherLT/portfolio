@@ -8,7 +8,7 @@ interface TerminalCursorConfig {
    * Para cursor parpadeante continuo (como en footer o prompt final)
    */
   blinking: TargetAndTransition;
-  
+
   /**
    * Para cursor durante tipeo (se controla con estado showCursor)
    */
@@ -22,19 +22,22 @@ interface TerminalCursorConfig {
  * Basado en el ritmo tranquilo del TerminalFooter (1.06s)
  */
 export function useTerminalCursor(): TerminalCursorConfig {
-  return useMemo(() => ({
-    blinking: {
-      opacity: [1, 0, 1],
-      transition: {
-        duration: 1.06,
-        repeat: Infinity,
-        ease: "linear"
-      }
-    },
-    typing: {
-      transition: {
-        duration: 0.15 // Slightly slower than 0.1 for consistency
-      }
-    }
-  }), []);
+  return useMemo(
+    () => ({
+      blinking: {
+        opacity: [1, 0, 1],
+        transition: {
+          duration: 1.06,
+          repeat: Infinity,
+          ease: 'linear',
+        },
+      },
+      typing: {
+        transition: {
+          duration: 0.15, // Slightly slower than 0.1 for consistency
+        },
+      },
+    }),
+    []
+  );
 }

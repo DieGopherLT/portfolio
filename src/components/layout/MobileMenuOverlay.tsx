@@ -15,7 +15,7 @@ const navItems = [
   { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
   { key: 'blog', href: '#blog' },
-  { key: 'contact', href: '#contact' }
+  { key: 'contact', href: '#contact' },
 ];
 
 export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlayProps) {
@@ -30,7 +30,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
     onClose();
@@ -47,7 +47,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="md:hidden fixed bg-black/80 inset-0 z-[100]"
+          className="fixed inset-0 z-[100] bg-black/80 md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -57,36 +57,35 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
           <div className="flex p-4">
             {/* macOS Terminal Window Frame */}
             <motion.div
-              className="w-[80%] bg-black rounded-lg shadow-2xl"
+              className="w-[80%] rounded-lg bg-black shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
               {/* Terminal Title Bar */}
-              <div className="h-7 bg-zinc-700 flex items-center relative px-2 rounded-t-lg">
+              <div className="relative flex h-7 items-center rounded-t-lg bg-zinc-700 px-2">
                 {/* Traffic Lights */}
                 <div className="flex space-x-2">
                   <button
                     onClick={onClose}
-                    className="w-3 h-3 rounded-full bg-error-red hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+                    className="bg-error-red h-3 w-3 rounded-full transition-colors hover:bg-red-600 focus:ring-2 focus:ring-red-300 focus:outline-none"
                     aria-label="Close mobile menu"
                   >
                     <span className="sr-only">Close</span>
                   </button>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-500 transition-colors hover:bg-yellow-600"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-500 transition-colors hover:bg-green-600"></div>
                 </div>
                 {/* Window Title */}
-                <div className="absolute left-1/2 transform -translate-x-1/2">
-                  <span className="text-white text-xs font-medium">mobile-menu.sh</span>
+                <div className="absolute left-1/2 -translate-x-1/2 transform">
+                  <span className="text-xs font-medium text-white">mobile-menu.sh</span>
                 </div>
               </div>
 
               {/* Terminal Content */}
               <div className="bg-black p-2">
-                <div className="text-center my-2">
-                  
+                <div className="my-2 text-center">
                   {/* Language Selector */}
                   {/* <motion.div
                     className="text-left mb-4 pb-4 border-b border-zinc-800"
@@ -97,12 +96,12 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                   >
                     <LanguageSelector variant="mobile" />
                   </motion.div> */}
-                  
+
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.key}
                       onClick={() => scrollToSection(item.href)}
-                      className="block w-full text-lg font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-4 py-2 text-left focus:outline-none focus:ring-2 focus:ring-gopher-blue focus:ring-opacity-50 rounded"
+                      className="text-secondary hover:text-gopher-blue focus:ring-gopher-blue focus:ring-opacity-50 block w-full rounded px-4 py-2 text-left text-lg font-medium transition-colors duration-200 focus:ring-2 focus:outline-none"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
@@ -110,14 +109,14 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                       whileHover={{ scale: 1.02, x: 6 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="font-mono text-gopher-blue">→ </span>
+                      <span className="text-gopher-blue font-mono">→ </span>
                       {t(item.key)}
                     </motion.button>
                   ))}
 
                   {/* Language Selector */}
                   <motion.div
-                    className="text-left mt-4 pt-4 border-t border-zinc-800"
+                    className="mt-4 border-t border-zinc-800 pt-4 text-left"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -126,8 +125,8 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                     <LanguageSelector variant="mobile" />
                   </motion.div>
 
-                  <motion.div 
-                    className="text-xs text-left font-mono text-muted mt-6 pt-4 border-t border-zinc-800"
+                  <motion.div
+                    className="text-muted mt-6 border-t border-zinc-800 pt-4 text-left font-mono text-xs"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}

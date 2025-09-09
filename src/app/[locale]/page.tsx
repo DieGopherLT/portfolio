@@ -12,14 +12,14 @@ interface HomeProps {
 
 export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
-  
+
   // Get recent posts for blog section
   const recentPostsData = await getRecentPosts(5);
   const recentPosts = recentPostsData.map(post => ({
     slug: post.slug[locale],
     title: post.title[locale],
     date: post.publishedAt,
-    readingTime: post.readingTime[locale]
+    readingTime: post.readingTime[locale],
   }));
 
   return (

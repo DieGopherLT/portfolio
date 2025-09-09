@@ -29,7 +29,7 @@ export interface DynamicProfilePictureProps {
 
 /**
  * DynamicProfilePicture component with cycling animation states
- * 
+ *
  * Features:
  * - Cycles through normal, ASCII, diagonal split, and vertical split states
  * - Monitor-style glitch transitions
@@ -45,31 +45,25 @@ export function DynamicProfilePicture({
   size = 'md',
   className = '',
   isPaused = false,
-  priority = false
+  priority = false,
 }: DynamicProfilePictureProps) {
   const [imageErrors, setImageErrors] = useState({
     normal: false,
-    ascii: false
+    ascii: false,
   });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const {
-    currentState,
-    isImagesLoaded,
-    isTransitioning,
-    isPausedInternal,
-    pauseAnimation,
-    resumeAnimation
-  } = useDynamicProfilePicture({
-    isPaused,
-    normalImageSrc,
-    asciiImageSrc
-  });
+  const { currentState, isImagesLoaded, isTransitioning, isPausedInternal, pauseAnimation, resumeAnimation } =
+    useDynamicProfilePicture({
+      isPaused,
+      normalImageSrc,
+      asciiImageSrc,
+    });
 
   const handleImageError = (imageType: 'normal' | 'ascii') => {
     setImageErrors(prev => ({
       ...prev,
-      [imageType]: true
+      [imageType]: true,
     }));
   };
 
@@ -86,7 +80,7 @@ export function DynamicProfilePicture({
   // If images failed to load, show error state
   if (imageErrors.normal && imageErrors.ascii) {
     return (
-      <div 
+      <div
         className={`${styles['dpp-container']} ${styles[`dpp-size-${size}`]} ${styles['dpp-error']} ${className}`}
         role="img"
         aria-label={alt}
@@ -99,7 +93,7 @@ export function DynamicProfilePicture({
   // Show loading state while images are being preloaded
   if (!isImagesLoaded) {
     return (
-      <div 
+      <div
         className={`${styles['dpp-container']} ${styles[`dpp-size-${size}`]} ${styles['dpp-loading']} ${className}`}
         role="img"
         aria-label="Loading profile picture"
@@ -113,8 +107,10 @@ export function DynamicProfilePicture({
     styles[`dpp-state-${currentState}`],
     isTransitioning ? styles['dpp-transitioning'] : '',
     isPausedInternal ? styles['dpp-paused'] : '',
-    className
-  ].filter(Boolean).join(' ');
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className="relative inline-block">
@@ -122,7 +118,7 @@ export function DynamicProfilePicture({
         ref={containerRef}
         className={containerClasses}
         onClick={handleClick}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             handleClick();
@@ -168,24 +164,16 @@ export function DynamicProfilePicture({
         )}
 
         {/* Transition overlay effect */}
-        {isTransitioning && (
-          <div 
-            className={styles['dpp-transition-overlay']}
-            aria-hidden="true"
-          />
-        )}
+        {isTransitioning && <div className={styles['dpp-transition-overlay']} aria-hidden="true" />}
       </div>
 
       {/* Pause indicator */}
       {isPausedInternal && (
-        <div 
-          className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center"
+        <div
+          className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 transform items-center justify-center"
           aria-hidden="true"
         >
-          <Pause 
-            size={16} 
-            className="text-gopher-blue opacity-70 drop-shadow-sm" 
-          />
+          <Pause size={16} className="text-gopher-blue opacity-70 drop-shadow-sm" />
         </div>
       )}
     </div>

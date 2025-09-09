@@ -9,47 +9,47 @@ import type { AdaptiveBackgroundProps } from './types';
 
 /**
  * AdaptiveBackground Component
- * 
+ *
  * A flexible background wrapper that conditionally renders different background types
  * based on context. Designed for terminal-aesthetic portfolios with consistent theming.
- * 
+ *
  * Features:
  * - Accessibility: Respects prefers-reduced-motion
  * - Performance: Only renders active background
  * - Theming: Consistent gopher blue palette
  * - Flexibility: Full configuration control
- * 
+ *
  * Usage Examples:
- * 
+ *
  * ```tsx
  * // Portfolio sections (minimal dots)
  * <AdaptiveBackground type="dots">
  *   <PortfolioContent />
  * </AdaptiveBackground>
- * 
+ *
  * // Blog landing (immersive stars)
- * <AdaptiveBackground 
- *   type="stars" 
- *   starsConfig={{ 
+ * <AdaptiveBackground
+ *   type="stars"
+ *   starsConfig={{
  *     starColor: '#00ADD8',
  *     speed: 60,
- *     factor: 0.03 
+ *     factor: 0.03
  *   }}
  * >
  *   <BlogLanding />
  * </AdaptiveBackground>
- * 
+ *
  * // Blog posts (back to minimal for readability)
  * <AdaptiveBackground type="dots">
  *   <BlogPost />
  * </AdaptiveBackground>
  * ```
  */
-export function AdaptiveBackground({ 
-  children, 
-  type = 'dots', 
+export function AdaptiveBackground({
+  children,
+  type = 'dots',
   className,
-  starsConfig = {}
+  starsConfig = {},
 }: AdaptiveBackgroundProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
 

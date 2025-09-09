@@ -155,14 +155,18 @@
   width: 20px;
   height: 20px;
   border: 2px solid #333;
-  border-top: 2px solid #00ADD8;
+  border-top: 2px solid #00add8;
   border-radius: 50%;
   animation: dpp-spin 1s linear infinite;
 }
 
 @keyframes dpp-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Error state */
@@ -185,11 +189,11 @@
     animation: none !important;
     transition: none !important;
   }
-  
+
   .dpp-transitioning .dpp-image-layer {
     filter: none !important;
   }
-  
+
   .dpp-transitioning .dpp-transition-overlay {
     opacity: 0 !important;
   }
@@ -197,18 +201,18 @@
 
 /* Paused state styling */
 .dpp-paused {
-  outline: 2px solid #00ADD8;
+  outline: 2px solid #00add8;
   outline-offset: 2px;
 }
 
 /* Focus states for keyboard navigation (only when not paused) */
 .dpp-container:focus:not(.dpp-paused) {
-  outline: 1px dotted #00ADD8;
+  outline: 1px dotted #00add8;
   outline-offset: 2px;
 }
 
 .dpp-container:focus-visible:not(.dpp-paused) {
-  outline: 1px dotted #00ADD8;
+  outline: 1px dotted #00add8;
   outline-offset: 2px;
 }
 
@@ -217,12 +221,12 @@
   .dpp-container {
     border-radius: 6px;
   }
-  
+
   .dpp-size-md {
     width: 168px;
     height: 227px;
   }
-  
+
   .dpp-size-lg {
     width: 202px;
     height: 272px;
@@ -232,10 +236,10 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .dpp-paused {
-    outline: 3px solid #00ADD8;
+    outline: 3px solid #00add8;
   }
-  
+
   .dpp-container:focus:not(.dpp-paused) {
-    outline: 2px dotted #00ADD8;
+    outline: 2px dotted #00add8;
   }
 }

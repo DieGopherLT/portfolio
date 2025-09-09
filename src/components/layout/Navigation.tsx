@@ -15,10 +15,10 @@ const navItems = [
   { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
   { key: 'blog', href: '#blog' },
-  { key: 'contact', href: '#contact' }
+  { key: 'contact', href: '#contact' },
 ];
 
-export default function Navigation({ className = "" }: NavigationProps) {
+export default function Navigation({ className = '' }: NavigationProps) {
   const t = useTranslations('navigation');
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
 
@@ -31,35 +31,34 @@ export default function Navigation({ className = "" }: NavigationProps) {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
 
   return (
-    <motion.nav 
-      className={`sticky top-0 z-50 bg-black/90 backdrop-blur-sm border-b border-zinc-800 ${className}`}
+    <motion.nav
+      className={`sticky top-0 z-50 border-b border-zinc-800 bg-black/90 backdrop-blur-sm ${className}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16 w-full">
-          
+        <div className="flex h-16 w-full items-center">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex w-full">
+          <div className="hidden w-full md:flex">
             {/* Spacer for left side */}
             <div className="flex-1"></div>
-            
+
             {/* Center navigation */}
             <div className="flex gap-6 lg:gap-8" role="menubar" aria-label="Portfolio sections">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <motion.button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  className="nav-link text-sm font-medium text-secondary hover:text-gopher-blue transition-colors duration-200 px-2 py-1"
+                  className="nav-link text-secondary hover:text-gopher-blue px-2 py-1 text-sm font-medium transition-colors duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   role="menuitem"
@@ -69,15 +68,15 @@ export default function Navigation({ className = "" }: NavigationProps) {
                 </motion.button>
               ))}
             </div>
-            
+
             {/* Right side - Language selector */}
-            <div className="flex-1 flex justify-end">
+            <div className="flex flex-1 justify-end">
               <LanguageSelector variant="desktop" />
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden w-full flex justify-center">
+          <div className="flex w-full justify-center md:hidden">
             <motion.button
               onClick={toggleMobileMenu}
               className="text-secondary hover:text-gopher-blue transition-colors duration-200"
@@ -87,14 +86,11 @@ export default function Navigation({ className = "" }: NavigationProps) {
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
-              <span className="font-mono text-sm">
-                {isMobileMenuOpen ? '[close]' : '[menu]'}
-              </span>
+              <span className="font-mono text-sm">{isMobileMenuOpen ? '[close]' : '[menu]'}</span>
             </motion.button>
           </div>
         </div>
       </div>
-
     </motion.nav>
   );
 }

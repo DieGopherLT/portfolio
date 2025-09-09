@@ -11,14 +11,14 @@ enum FormAnimationState {
   IDLE = 0,
   TYPING_COMMAND = 1,
   SHOWING_CONTENT = 2,
-  COMPLETE = 3
+  COMPLETE = 3,
 }
 
 enum SocialAnimationState {
   IDLE = 0,
   TYPING_COMMAND = 1,
   SHOWING_CONTENT = 2,
-  COMPLETE = 3
+  COMPLETE = 3,
 }
 
 export default function Contact() {
@@ -27,18 +27,20 @@ export default function Contact() {
 
   // Estados independientes para cada animación
   const [formAnimationState, setFormAnimationState] = useState<FormAnimationState>(FormAnimationState.IDLE);
-  const [socialAnimationState, setSocialAnimationState] = useState<SocialAnimationState>(SocialAnimationState.IDLE);
-  
+  const [socialAnimationState, setSocialAnimationState] = useState<SocialAnimationState>(
+    SocialAnimationState.IDLE
+  );
+
   // Estados para el contenido de los comandos
   const [formCommand, setFormCommand] = useState('');
   const [socialCommand, setSocialCommand] = useState('');
 
   const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setter(''); // Reset
       let currentIndex = 0;
       const typingSpeed = 50 + Math.random() * 30;
-      
+
       const typeChar = () => {
         if (currentIndex < text.length) {
           setter(text.slice(0, currentIndex + 1));
@@ -48,7 +50,7 @@ export default function Contact() {
           resolve();
         }
       };
-      
+
       typeChar();
     });
   }, []);
@@ -60,19 +62,18 @@ export default function Contact() {
     try {
       // Delay inicial
       await new Promise(resolve => setTimeout(resolve, 500));
-      
+
       // 1. Form command typing
       setFormAnimationState(FormAnimationState.TYPING_COMMAND);
       await typeText('./contact-form.sh', setFormCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // 2. Show form content
       setFormAnimationState(FormAnimationState.SHOWING_CONTENT);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 3. Complete
       setFormAnimationState(FormAnimationState.COMPLETE);
-      
     } catch (error) {
       console.error('Form animation error:', error);
     }
@@ -85,19 +86,18 @@ export default function Contact() {
     try {
       // Delay inicial (ligeramente mayor para efecto escalonado)
       await new Promise(resolve => setTimeout(resolve, 700));
-      
+
       // 1. Social command typing
       setSocialAnimationState(SocialAnimationState.TYPING_COMMAND);
       await typeText(t('social.command').replace('diegopher@portfolio:~$ ', ''), setSocialCommand);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // 2. Show social content
       setSocialAnimationState(SocialAnimationState.SHOWING_CONTENT);
       await new Promise(resolve => setTimeout(resolve, 400));
-      
+
       // 3. Complete
       setSocialAnimationState(SocialAnimationState.COMPLETE);
-      
     } catch (error) {
       console.error('Social animation error:', error);
     }
@@ -106,28 +106,25 @@ export default function Contact() {
   // Efecto principal que ejecuta ambas animaciones en paralelo
   useEffect(() => {
     const runAllAnimations = async () => {
-      if (shouldRender && 
-          formAnimationState === FormAnimationState.IDLE && 
-          socialAnimationState === SocialAnimationState.IDLE) {
-        
+      if (
+        shouldRender &&
+        formAnimationState === FormAnimationState.IDLE &&
+        socialAnimationState === SocialAnimationState.IDLE
+      ) {
         // Ejecutar ambas animaciones en paralelo
-        await Promise.all([
-          runFormAnimation(),
-          runSocialAnimation()
-        ]);
+        await Promise.all([runFormAnimation(), runSocialAnimation()]);
       }
     };
 
     runAllAnimations();
   }, [shouldRender, runFormAnimation, runSocialAnimation, formAnimationState, socialAnimationState]);
 
-
   return (
-    <section ref={ref} id="contact" className="py-10 px-4" aria-labelledby="contact-heading">
-      <div className="max-w-6xl mx-auto">
-        <h2 
+    <section ref={ref} id="contact" className="px-4 py-10" aria-labelledby="contact-heading">
+      <div className="mx-auto max-w-6xl">
+        <h2
           id="contact-heading"
-          className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
+          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-once="true"
@@ -144,42 +141,40 @@ export default function Contact() {
             data-aos-duration="300"
             data-aos-once="true"
           >
-          {/* macOS Terminal Header */}
-          <div className="terminal-header">
-            <div className="traffic-lights">
-              <div className="traffic-light close"></div>
-              <div className="traffic-light minimize"></div>
-              <div className="traffic-light maximize"></div>
-            </div>
-            <div className="window-title">connection_handler.sh</div>
-          </div>
-
-          {/* Terminal Content - Split Layout */}
-          <div className="terminal-content">
-            <div className="lg:flex lg:gap-4 font-mono text-white">
-              
-              {/* Left Side - Contact Form */}
-              <ContactForm 
-                showContent={formAnimationState >= FormAnimationState.SHOWING_CONTENT} 
-                formCommand={formCommand} 
-                showFormCursor={formAnimationState === FormAnimationState.TYPING_COMMAND} 
-              />
-
-              {/* Vertical Divider */}
-              <div className="hidden lg:flex justify-center items-start lg:flex-shrink-0">
-                <div className="w-px bg-gray-700 h-full min-h-96"></div>
+            {/* macOS Terminal Header */}
+            <div className="terminal-header">
+              <div className="traffic-lights">
+                <div className="traffic-light close"></div>
+                <div className="traffic-light minimize"></div>
+                <div className="traffic-light maximize"></div>
               </div>
+              <div className="window-title">connection_handler.sh</div>
+            </div>
 
-              {/* Right Side - Social Links */}
-              <SocialMedia 
-                showContent={socialAnimationState >= SocialAnimationState.SHOWING_CONTENT} 
-                socialCommand={socialCommand} 
-                showSocialCursor={socialAnimationState === SocialAnimationState.TYPING_COMMAND} 
-              />
+            {/* Terminal Content - Split Layout */}
+            <div className="terminal-content">
+              <div className="font-mono text-white lg:flex lg:gap-4">
+                {/* Left Side - Contact Form */}
+                <ContactForm
+                  showContent={formAnimationState >= FormAnimationState.SHOWING_CONTENT}
+                  formCommand={formCommand}
+                  showFormCursor={formAnimationState === FormAnimationState.TYPING_COMMAND}
+                />
 
+                {/* Vertical Divider */}
+                <div className="hidden items-start justify-center lg:flex lg:flex-shrink-0">
+                  <div className="h-full min-h-96 w-px bg-gray-700"></div>
+                </div>
+
+                {/* Right Side - Social Links */}
+                <SocialMedia
+                  showContent={socialAnimationState >= SocialAnimationState.SHOWING_CONTENT}
+                  socialCommand={socialCommand}
+                  showSocialCursor={socialAnimationState === SocialAnimationState.TYPING_COMMAND}
+                />
+              </div>
             </div>
           </div>
-        </div>
         )}
       </div>
     </section>

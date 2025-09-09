@@ -28,9 +28,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
 
     // Apply tag filters
     if (selectedTags.length > 0) {
-      result = result.filter(post => 
-        selectedTags.every(tag => post.tags.includes(tag))
-      );
+      result = result.filter(post => selectedTags.every(tag => post.tags.includes(tag)));
     }
 
     setFilteredPosts(result);
@@ -39,11 +37,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
 
   // Handle tag toggle
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
+    setSelectedTags(prev => (prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]));
   };
 
   // Clear all filters
@@ -55,7 +49,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
   const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
 
   return (
-    <div className="blog-controls mb-8 pb-6 border-b border-border-subtle">
+    <div className="blog-controls border-border-subtle mb-8 border-b pb-6">
       {/* Search Input */}
       <div className="search-container mb-6">
         <div className="relative">
@@ -63,8 +57,8 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
             type="text"
             placeholder={locale === 'es' ? 'Buscar posts...' : 'Search posts...'}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input w-full px-4 py-3 bg-bg-secondary border border-border-subtle rounded-md text-text-primary font-mono text-sm placeholder:text-text-muted focus:outline-none focus:border-gopher-blue focus:ring-1 focus:ring-gopher-blue/20"
+            onChange={e => setSearchQuery(e.target.value)}
+            className="search-input bg-bg-secondary border-border-subtle text-text-primary placeholder:text-text-muted focus:border-gopher-blue focus:ring-gopher-blue/20 w-full rounded-md border px-4 py-3 font-mono text-sm focus:ring-1 focus:outline-none"
           />
           <div className="absolute inset-y-0 right-3 flex items-center">
             <span className="text-text-muted font-mono text-xs">
@@ -76,19 +70,19 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
 
       {/* Tag Filters */}
       <div className="tag-filters">
-        <div className="flex flex-wrap items-center gap-3 mb-4">
+        <div className="mb-4 flex flex-wrap items-center gap-3">
           <span className="text-text-muted font-mono text-sm">
             {locale === 'es' ? 'Filtrar por:' : 'Filter by:'}
           </span>
-          
+
           {allTags.map(tag => (
             <motion.button
               key={tag}
               onClick={() => toggleTag(tag)}
-              className={`tag-filter px-3 py-1.5 rounded-md font-mono text-xs border transition-all duration-200 ${
+              className={`tag-filter rounded-md border px-3 py-1.5 font-mono text-xs transition-all duration-200 ${
                 selectedTags.includes(tag)
                   ? 'bg-gopher-blue border-gopher-blue text-bg-primary'
-                  : 'bg-transparent border-border-subtle text-text-secondary hover:border-gopher-blue hover:text-gopher-blue'
+                  : 'border-border-subtle text-text-secondary hover:border-gopher-blue hover:text-gopher-blue bg-transparent'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -109,7 +103,8 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
             >
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-text-muted font-mono">
-                  {locale === 'es' ? 'Mostrando' : 'Showing'} {filteredPosts.length} {locale === 'es' ? 'de' : 'of'} {posts.length} posts
+                  {locale === 'es' ? 'Mostrando' : 'Showing'} {filteredPosts.length}{' '}
+                  {locale === 'es' ? 'de' : 'of'} {posts.length} posts
                 </span>
                 {selectedTags.length > 0 && (
                   <span className="text-gopher-blue font-mono">
@@ -117,7 +112,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
                   </span>
                 )}
               </div>
-              
+
               <button
                 onClick={clearFilters}
                 className="clear-filters text-text-muted hover:text-gopher-blue font-mono text-sm underline transition-colors"

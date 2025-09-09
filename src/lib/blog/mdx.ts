@@ -11,7 +11,7 @@ async function getShikiHighlighter(): Promise<Highlighter> {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighter({
       themes: ['github-dark'],
-      langs: ['typescript', 'javascript', 'go', 'rust', 'bash', 'json', 'yaml', 'css', 'html', 'markdown']
+      langs: ['typescript', 'javascript', 'go', 'rust', 'bash', 'json', 'yaml', 'css', 'html', 'markdown'],
     });
   }
   return highlighterPromise;
@@ -19,9 +19,7 @@ async function getShikiHighlighter(): Promise<Highlighter> {
 
 export const mdxOptions = {
   mdxOptions: {
-    remarkPlugins: [
-      remarkGfm,
-    ],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       [
@@ -61,7 +59,7 @@ export function extractTOC(content: string): TOCItem[] {
       toc.push({
         id,
         text,
-        level
+        level,
       });
     }
   }

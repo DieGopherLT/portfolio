@@ -31,7 +31,7 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
       items.push({
         id,
         text,
-        level
+        level,
       });
     }
 
@@ -43,8 +43,8 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
     if (toc.length === 0) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }
@@ -73,7 +73,7 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }
   };
@@ -93,10 +93,10 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
 
         {/* Terminal Content */}
         <div className="terminal-content">
-          <div className="font-mono text-white p-4">
+          <div className="p-4 font-mono text-white">
             {/* Tree Command */}
             <div className="mb-4">
-              <div className="flex items-center gap-2 text-gopher-blue text-sm">
+              <div className="text-gopher-blue flex items-center gap-2 text-sm">
                 <span>diegopher@blog:~$</span>
                 <span className="text-white">tree -I "*.md" --dirsfirst</span>
               </div>
@@ -121,32 +121,28 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
                       transition={{ delay: index * 0.1 }}
                     >
                       {/* Tree Structure */}
-                      <span className="tree-symbol text-text-muted mr-2">
-                        {isLevel2 ? '├──' : '│   └──'}
-                      </span>
+                      <span className="tree-symbol text-text-muted mr-2">{isLevel2 ? '├──' : '│   └──'}</span>
 
                       {/* Clickable Link */}
                       <button
                         onClick={() => scrollToHeading(item.id)}
-                        className={`toc-link relative text-left hover:text-gopher-blue transition-colors cursor-pointer ${
-                          isActive 
-                            ? 'text-gopher-blue font-medium' 
-                            : 'text-text-secondary'
+                        className={`toc-link hover:text-gopher-blue relative cursor-pointer text-left transition-colors ${
+                          isActive ? 'text-gopher-blue font-medium' : 'text-text-secondary'
                         }`}
                         aria-label={`Go to ${item.text}`}
                       >
                         {item.text}
-                        
+
                         {/* Underline for active/hover */}
-                        <motion.div 
-                          className={`absolute bottom-0 left-0 h-px bg-gopher-blue ${
+                        <motion.div
+                          className={`bg-gopher-blue absolute bottom-0 left-0 h-px ${
                             isActive ? 'opacity-100' : 'opacity-0'
                           }`}
                           layoutId="activeUnderline"
                           initial={false}
-                          animate={{ 
+                          animate={{
                             width: isActive ? '100%' : '0%',
-                            opacity: isActive ? 1 : 0
+                            opacity: isActive ? 1 : 0,
                           }}
                           transition={{ duration: 0.2 }}
                         />
@@ -158,8 +154,8 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
             </div>
 
             {/* Footer */}
-            <div className="mt-4 pt-2 border-t border-border-subtle">
-              <div className="text-text-muted text-xs font-mono">
+            <div className="border-border-subtle mt-4 border-t pt-2">
+              <div className="text-text-muted font-mono text-xs">
                 {toc.length} {locale === 'es' ? 'secciones' : 'sections'}
               </div>
             </div>

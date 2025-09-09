@@ -8,19 +8,19 @@ interface LanguageSelectorProps {
   variant?: 'desktop' | 'mobile';
 }
 
-export default function LanguageSelector({ className = "", variant = 'desktop' }: LanguageSelectorProps) {
+export default function LanguageSelector({ className = '', variant = 'desktop' }: LanguageSelectorProps) {
   const { currentLanguage, toggleLanguage } = useLanguageSwitch();
 
   const languages = [
     { code: 'en' as const, label: 'en' },
-    { code: 'es' as const, label: 'es' }
+    { code: 'es' as const, label: 'es' },
   ];
 
   if (variant === 'mobile') {
     return (
       <motion.button
         onClick={toggleLanguage}
-        className={`font-mono pt-4 text-sm text-left w-full hover:bg-zinc-900/50 transition-colors duration-200 rounded p-2 -m-2 ${className}`}
+        className={`-m-2 w-full rounded p-2 pt-4 text-left font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50 ${className}`}
         whileHover={{ x: 4 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -31,9 +31,7 @@ export default function LanguageSelector({ className = "", variant = 'desktop' }
               {index > 0 && <span className="text-muted mx-2">|</span>}
               <span
                 className={`transition-colors duration-200 ${
-                  currentLanguage === lang.code 
-                    ? 'text-gopher-blue font-medium' 
-                    : 'text-muted'
+                  currentLanguage === lang.code ? 'text-gopher-blue font-medium' : 'text-muted'
                 }`}
               >
                 {lang.label}
@@ -48,7 +46,7 @@ export default function LanguageSelector({ className = "", variant = 'desktop' }
   return (
     <motion.button
       onClick={toggleLanguage}
-      className={`font-mono text-sm flex items-center space-x-1 hover:bg-zinc-900/50 transition-colors duration-200 rounded px-2 py-1 -mx-2 -my-1 ${className}`}
+      className={`-mx-2 -my-1 flex items-center space-x-1 rounded px-2 py-1 font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50 ${className}`}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       title={`Current language: ${currentLanguage}. Click to switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
@@ -59,9 +57,7 @@ export default function LanguageSelector({ className = "", variant = 'desktop' }
           {index > 0 && <span className="text-muted mx-1">|</span>}
           <span
             className={`transition-colors duration-200 ${
-              currentLanguage === lang.code 
-                ? 'text-gopher-blue font-medium' 
-                : 'text-muted'
+              currentLanguage === lang.code ? 'text-gopher-blue font-medium' : 'text-muted'
             }`}
           >
             {lang.label}

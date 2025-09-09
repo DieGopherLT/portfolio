@@ -29,11 +29,16 @@ export default function Experience() {
   const jobs: Job[] = t.raw('jobs') as Job[];
 
   return (
-    <section ref={ref} id="experience" className="min-h-screen py-10 px-4" aria-labelledby="experience-heading">
-      <div className="max-w-4xl mx-auto">
-        <h2 
+    <section
+      ref={ref}
+      id="experience"
+      className="min-h-screen px-4 py-10"
+      aria-labelledby="experience-heading"
+    >
+      <div className="mx-auto max-w-4xl">
+        <h2
           id="experience-heading"
-          className="text-4xl md:text-5xl font-light text-white mb-8 text-center"
+          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-once="true"
@@ -43,34 +48,29 @@ export default function Experience() {
 
         {/* Terminal Window con renderizado condicional */}
         {shouldRender && (
-          <div
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
-          >
+          <div data-aos="fade-up" data-aos-delay="800" data-aos-duration="300" data-aos-once="true">
             <TerminalWindow
               title="work_history.log"
               command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
               onTypingComplete={handleTypingComplete}
-              className="max-w-4xl mx-auto"
+              className="mx-auto max-w-4xl"
             />
           </div>
         )}
 
         {showContent && (
-          <div 
-            className="mt-8 max-w-4xl mx-auto"
+          <div
+            className="mx-auto mt-8 max-w-4xl"
             data-aos="fade-up"
             data-aos-duration="400"
             data-aos-once="true"
           >
-            <div className="bg-black border border-gray-800 rounded-lg p-4 md:p-8 font-mono text-white">
+            <div className="rounded-lg border border-gray-800 bg-black p-4 font-mono text-white md:p-8">
               <div className="space-y-8">
                 {jobs.map((job, index) => (
-                  <div 
+                  <div
                     key={index}
-                    className="border-l-2 border-gopher-blue pl-4 md:pl-6 pb-6 last:pb-0"
+                    className="border-gopher-blue border-l-2 pb-6 pl-4 last:pb-0 md:pl-6"
                     data-aos="fade-right"
                     data-aos-duration="500"
                     data-aos-delay={index * 200}
@@ -78,29 +78,25 @@ export default function Experience() {
                   >
                     {/* Job Header */}
                     <div className="mb-4">
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-2">
-                        <h3 className="text-lg md:text-xl font-bold text-white">
-                          {job.position}
-                        </h3>
-                        <span className="text-xs md:text-sm text-secondary bg-gray-800 px-2 py-1 rounded self-start lg:self-center">
+                      <div className="mb-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+                        <h3 className="text-lg font-bold text-white md:text-xl">{job.position}</h3>
+                        <span className="text-secondary self-start rounded bg-gray-800 px-2 py-1 text-xs md:text-sm lg:self-center">
                           {job.type}
                         </span>
                       </div>
-                      <p className="text-base md:text-lg text-gopher-blue font-semibold">
-                        {job.company}
-                      </p>
-                      <p className="text-xs md:text-sm text-muted mt-1">
-                        {job.period}
-                      </p>
-                      
+                      <p className="text-gopher-blue text-base font-semibold md:text-lg">{job.company}</p>
+                      <p className="text-muted mt-1 text-xs md:text-sm">{job.period}</p>
+
                       {/* Company Website - whois style */}
                       {job.website_url && (
-                        <div className="mt-3 p-2 bg-gray-900 rounded border border-gray-700">
+                        <div className="mt-3 rounded border border-gray-700 bg-gray-900 p-2">
                           <div className="font-mono text-xs">
-                            <span className="text-muted">$ whois {job.company.replace(' ', '\\ ')} | grep &apos;Website:&apos;</span>
+                            <span className="text-muted">
+                              $ whois {job.company.replace(' ', '\\ ')} | grep &apos;Website:&apos;
+                            </span>
                             <br />
                             <span className="text-terminal-green">Website: </span>
-                            <a 
+                            <a
                               href={job.website_url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -114,24 +110,21 @@ export default function Experience() {
                     </div>
 
                     {/* Highlights */}
-                    <div className="mb-4 p-3 bg-gray-900 rounded border-l-2 border-terminal-green">
-                      <p className="text-xs md:text-sm text-terminal-green">
+                    <div className="border-terminal-green mb-4 rounded border-l-2 bg-gray-900 p-3">
+                      <p className="text-terminal-green text-xs md:text-sm">
                         <span className="font-semibold">💡 {t('labels.highlight')}:</span> {job.highlights}
                       </p>
                     </div>
 
                     {/* Achievements */}
                     <div className="mb-4">
-                      <h4 className="text-xs md:text-sm font-semibold text-secondary mb-3 uppercase tracking-wide">
+                      <h4 className="text-secondary mb-3 text-xs font-semibold tracking-wide uppercase md:text-sm">
                         {t('labels.achievements')}
                       </h4>
                       <ul className="space-y-2">
                         {job.achievements.map((achievement, idx) => (
-                          <li 
-                            key={idx} 
-                            className="text-xs md:text-sm text-secondary flex items-start gap-3"
-                          >
-                            <span className="text-gopher-blue text-xs mt-1 flex-shrink-0">▶</span>
+                          <li key={idx} className="text-secondary flex items-start gap-3 text-xs md:text-sm">
+                            <span className="text-gopher-blue mt-1 flex-shrink-0 text-xs">▶</span>
                             <span className="leading-relaxed">{achievement}</span>
                           </li>
                         ))}
@@ -140,14 +133,14 @@ export default function Experience() {
 
                     {/* Technologies */}
                     <div>
-                      <h4 className="text-xs md:text-sm font-semibold text-secondary mb-3 uppercase tracking-wide">
+                      <h4 className="text-secondary mb-3 text-xs font-semibold tracking-wide uppercase md:text-sm">
                         {t('labels.tech_stack')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {job.technologies.map((tech, idx) => (
-                          <span 
+                          <span
                             key={idx}
-                            className="text-xs px-2 py-1 bg-gray-800 text-gopher-blue border border-gray-700 rounded font-mono hover:bg-gray-700 transition-colors cursor-default"
+                            className="text-gopher-blue cursor-default rounded border border-gray-700 bg-gray-800 px-2 py-1 font-mono text-xs transition-colors hover:bg-gray-700"
                           >
                             {tech}
                           </span>

@@ -10,19 +10,22 @@ export function useLanguageSwitch() {
   const router = useRouter();
   const nextPathname = useNextPathname(); // Next.js pathname (includes locale)
   const params = useParams();
-  
+
   const currentLanguage = (params?.locale as Language) || 'en';
 
-  const switchLanguage = useCallback((newLanguage: Language) => {
-    // Remove current locale from pathname if it exists
-    let cleanPathname = nextPathname || '/';
-    if (cleanPathname.startsWith(`/${currentLanguage}`)) {
-      cleanPathname = cleanPathname.slice(`/${currentLanguage}`.length) || '/';
-    }
-    
-    // Navigate to the clean pathname with new locale
-    router.push(cleanPathname, { locale: newLanguage });
-  }, [router, nextPathname, currentLanguage]);
+  const switchLanguage = useCallback(
+    (newLanguage: Language) => {
+      // Remove current locale from pathname if it exists
+      let cleanPathname = nextPathname || '/';
+      if (cleanPathname.startsWith(`/${currentLanguage}`)) {
+        cleanPathname = cleanPathname.slice(`/${currentLanguage}`.length) || '/';
+      }
+
+      // Navigate to the clean pathname with new locale
+      router.push(cleanPathname, { locale: newLanguage });
+    },
+    [router, nextPathname, currentLanguage]
+  );
 
   const toggleLanguage = useCallback(() => {
     const newLanguage = currentLanguage === 'en' ? 'es' : 'en';
@@ -32,6 +35,6 @@ export function useLanguageSwitch() {
   return {
     currentLanguage,
     switchLanguage,
-    toggleLanguage
+    toggleLanguage,
   };
 }

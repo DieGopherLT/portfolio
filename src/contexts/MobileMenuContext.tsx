@@ -18,11 +18,13 @@ export function MobileMenuProvider({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <MobileMenuContext.Provider value={{
-      isMobileMenuOpen,
-      setIsMobileMenuOpen,
-      toggleMobileMenu
-    }}>
+    <MobileMenuContext.Provider
+      value={{
+        isMobileMenuOpen,
+        setIsMobileMenuOpen,
+        toggleMobileMenu,
+      }}
+    >
       {children}
     </MobileMenuContext.Provider>
   );

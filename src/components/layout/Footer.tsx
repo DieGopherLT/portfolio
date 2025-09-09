@@ -6,7 +6,7 @@ interface FooterProps {
   className?: string;
 }
 
-export default function Footer({ className = "" }: FooterProps) {
+export default function Footer({ className = '' }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const asciiArt = `██████╗ ██╗███████╗ ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██████╗ ██╗  ████████╗
@@ -17,33 +17,31 @@ export default function Footer({ className = "" }: FooterProps) {
 ╚═════╝ ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝`;
 
   return (
-    <motion.footer 
-      className={`mt-4 bg-primary py-8 border-t border-zinc-800 ${className}`}
+    <motion.footer
+      className={`bg-primary mt-4 border-t border-zinc-800 py-8 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="flex justify-center px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl">
+        <div className="max-w-4xl text-center">
           {/* Built by ASCII Art */}
-          <motion.div 
+          <motion.div
             className="mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="text-muted text-xs mb-2 font-mono">
-              Built by:
-            </div>
+            <div className="text-muted mb-2 font-mono text-xs">Built by:</div>
             <div className="ascii-container flex justify-center">
-              <pre className="ascii-art text-gopher-blue font-mono leading-tight whitespace-pre transform-gpu origin-center scale-[0.6] md:scale-[0.75] lg:scale-[0.9] xl:scale-100 transition-transform duration-300 ease-out">
+              <pre className="ascii-art text-gopher-blue origin-center scale-[0.6] transform-gpu font-mono leading-tight whitespace-pre transition-transform duration-300 ease-out md:scale-[0.75] lg:scale-[0.9] xl:scale-100">
                 {asciiArt}
               </pre>
             </div>
           </motion.div>
 
           {/* Copyright */}
-          <motion.div 
+          <motion.div
             className="text-muted text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

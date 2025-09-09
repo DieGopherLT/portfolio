@@ -15,12 +15,7 @@
       "name": "Diego López Torres",
       "title": "Software Engineer",
       "description": "Building robust and scalable web solutions. Specialized in principles, design patterns, and clean, maintainable code.",
-      "specialties": [
-        "Full Stack Development",
-        "Design Patterns", 
-        "Go & TypeScript",
-        "Linux Passionate"
-      ],
+      "specialties": ["Full Stack Development", "Design Patterns", "Go & TypeScript", "Linux Passionate"],
       "cta": "Explore my work and experience"
     },
     "about": {
@@ -52,13 +47,22 @@
             "Contributed to design and handled deployment of a mining pool proxy",
             "Working on blockchain-integrated systems and hash power"
           ],
-          "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Docker", "GitHub", "DigitalOcean"],
+          "technologies": [
+            "React",
+            "Node.js",
+            "Express",
+            "MongoDB",
+            "TypeScript",
+            "Docker",
+            "GitHub",
+            "DigitalOcean"
+          ],
           "highlights": "Expertise in blockchain projects and decentralized business models"
         },
         {
           "company": "Exhio Consulting",
           "position": "Consultant & Developer",
-          "period": "September 2022 - December 2024", 
+          "period": "September 2022 - December 2024",
           "type": "Consulting",
           "website_url": "https://www.exhio.tech/",
           "achievements": [
@@ -68,26 +72,38 @@
             "Built an administrative dashboard for a logistics company",
             "Developed a package tracking system used by 15,000+ daily users"
           ],
-          "technologies": ["React", "Vue", "Node.js", "Express", "TypeScript", "SQL", "Docker", "GitLab", "GitLab CI", "AWS", "Micro Frontends"],
+          "technologies": [
+            "React",
+            "Vue",
+            "Node.js",
+            "Express",
+            "TypeScript",
+            "SQL",
+            "Docker",
+            "GitLab",
+            "GitLab CI",
+            "AWS",
+            "Micro Frontends"
+          ],
           "highlights": "Legacy web application modernization with cutting-edge technologies and micro frontends"
         }
       ],
       "labels": {
         "highlight": "Featured",
-        "achievements": "Key Achievements", 
+        "achievements": "Key Achievements",
         "tech_stack": "Tech Stack"
       }
     },
     "skills": {
       "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
-      "title": "Skills", 
+      "title": "Skills",
       "categories": {
         "conceptual": {
           "name": "Concepts & Principles",
           "skills": [
             "Clean Code Principles",
             "Design Patterns",
-            "SOLID Principles", 
+            "SOLID Principles",
             "MVC Architecture",
             "Domain Driven Design",
             "RESTful API Design",
@@ -100,7 +116,7 @@
           "skills": [
             "Go (Golang)",
             "Node.js",
-            "Express.js", 
+            "Express.js",
             "Nest.js",
             "SQL Databases",
             "MongoDB",
@@ -110,31 +126,17 @@
         },
         "frontend": {
           "name": "Frontend & UI",
-          "skills": [
-            "TypeScript",
-            "React",
-            "Vue.js",
-            "Tailwind CSS",
-            "Responsive Design",
-            "UI/UX"
-          ]
+          "skills": ["TypeScript", "React", "Vue.js", "Tailwind CSS", "Responsive Design", "UI/UX"]
         },
         "tooling": {
           "name": "Tools & DevOps",
-          "skills": [
-            "Git & GitHub",
-            "Docker",
-            "Linux",
-            "Terminal/CLI",
-            "CI/CD",
-            "Package Managers"
-          ]
+          "skills": ["Git & GitHub", "Docker", "Linux", "Terminal/CLI", "CI/CD", "Package Managers"]
         }
       },
       "highlighted_languages": ["Go", "TypeScript"],
       "highlighted_skills": [
         "Clean Code Principles",
-        "Design Patterns (GoF)", 
+        "Design Patterns (GoF)",
         "SOLID Principles",
         "Go (Golang)",
         "Nest.js",
@@ -182,7 +184,7 @@
         "title": "contact-form.sh",
         "fields": {
           "name": "Name",
-          "email": "Email", 
+          "email": "Email",
           "subject": "Subject",
           "message": "Message"
         },
@@ -190,7 +192,7 @@
         "placeholders": {
           "name": "Your full name",
           "email": "your.email@example.com",
-          "subject": "Message subject", 
+          "subject": "Message subject",
           "message": "Write your message here..."
         },
         "errors": {
@@ -219,7 +221,7 @@
             "description": "Code and projects"
           },
           {
-            "platform": "LinkedIn", 
+            "platform": "LinkedIn",
             "url": "www.linkedin.com/in/diego-lpz-trrs",
             "description": "Professional profile"
           }
@@ -230,7 +232,7 @@
   },
   "navigation": {
     "home": "Home",
-    "about": "About", 
+    "about": "About",
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects",

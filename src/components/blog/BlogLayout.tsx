@@ -11,16 +11,16 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
   const t = useTranslations('common_phrases');
 
   return (
-    <div className="blog-layout min-h-screen bg-bg-primary text-text-primary">
+    <div className="blog-layout bg-bg-primary text-text-primary min-h-screen">
       {/* Blog Navigation */}
-      <nav className="blog-nav sticky top-0 z-50 backdrop-blur-lg bg-black/80 border-b border-border-subtle">
-        <div className="nav-container max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <nav className="blog-nav border-border-subtle sticky top-0 z-50 border-b bg-black/80 backdrop-blur-lg">
+        <div className="nav-container mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           {/* Back Link */}
           <div className="nav-back">
             {showBackLink && (
-              <Link 
+              <Link
                 href={`/${locale}`}
-                className="text-text-muted hover:text-gopher-blue transition-colors font-mono text-sm"
+                className="text-text-muted hover:text-gopher-blue font-mono text-sm transition-colors"
               >
                 ← {locale === 'es' ? 'Volver al portfolio' : 'Back to portfolio'}
               </Link>
@@ -29,9 +29,9 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
 
           {/* Blog Title */}
           <div className="blog-header-title">
-            <Link 
+            <Link
               href={`/blog/${locale}`}
-              className="text-white hover:text-gopher-blue transition-colors font-mono text-lg font-light"
+              className="hover:text-gopher-blue font-mono text-lg font-light text-white transition-colors"
             >
               diegopher/blog
             </Link>
@@ -39,9 +39,9 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
 
           {/* Language Switcher */}
           <div className="nav-links flex items-center gap-4">
-            <Link 
+            <Link
               href={`/blog/${locale === 'en' ? 'es' : 'en'}`}
-              className="text-text-secondary hover:text-text-primary transition-colors text-sm font-mono"
+              className="text-text-secondary hover:text-text-primary font-mono text-sm transition-colors"
             >
               {locale === 'en' ? 'ES' : 'EN'}
             </Link>
@@ -50,9 +50,7 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
       </nav>
 
       {/* Blog Content */}
-      <div className="blog-content">
-        {children}
-      </div>
+      <div className="blog-content">{children}</div>
     </div>
   );
 }
