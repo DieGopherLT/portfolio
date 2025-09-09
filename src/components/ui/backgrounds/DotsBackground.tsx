@@ -13,7 +13,7 @@ import type { DotsBackgroundProps } from './types';
 export function DotsBackground({ className }: DotsBackgroundProps) {
   return (
     <div
-      className={cn('fixed inset-0 -z-10', className)}
+      className={cn('fixed inset-0', className)}
       style={{
         backgroundColor: '#000000',
         backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 1px)',

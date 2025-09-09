@@ -2,11 +2,17 @@
 
 import { cn } from '@/lib/utils';
 
+
+
 import * as React from 'react';
 
 import { type Transition, motion, useMotionValue, useSpring } from 'framer-motion';
 
 import type { StarsBackgroundProps } from './types';
+
+
+
+
 
 // ===== STAR GENERATION UTILITY =====
 function generateStars(count: number, starColor: string): string {
@@ -80,7 +86,6 @@ export function StarsBackground({
   speed = 50,
   transition = { stiffness: 50, damping: 20 },
   starColor = '#00ADD8', // Gopher blue by default
-  pointerEvents = true,
   className,
 }: StarsBackgroundProps) {
   const offsetX = useMotionValue(1);
@@ -104,17 +109,14 @@ export function StarsBackground({
   return (
     <div
       className={cn(
-        'fixed inset-0 -z-10 overflow-hidden',
+        'fixed inset-0 overflow-hidden',
         'bg-[radial-gradient(ellipse_at_bottom,_#1a1a1a_0%,_#000_100%)]',
         className
       )}
       onMouseMove={handleMouseMove}
       aria-hidden="true"
     >
-      <motion.div
-        style={{ x: springX, y: springY }}
-        className={cn({ 'pointer-events-none': !pointerEvents })}
-      >
+      <motion.div style={{ x: springX, y: springY }} className={cn('pointer-events-none')}>
         {/* Small stars - fast movement */}
         <StarLayer
           count={800}

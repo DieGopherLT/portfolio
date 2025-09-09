@@ -1,7 +1,7 @@
 'use client';
 
 import { PostMetadata } from '@/lib/blog/posts';
-import { filterPostsByTag, searchPosts } from '@/lib/blog/utils';
+import { searchPosts } from '@/lib/blog/utils';
 
 import { useEffect, useState } from 'react';
 

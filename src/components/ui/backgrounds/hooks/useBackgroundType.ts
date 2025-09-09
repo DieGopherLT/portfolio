@@ -15,13 +15,13 @@ import type { BackgroundType } from '../types';
  */
 export function useBackgroundType(pathname: string): BackgroundType {
   return React.useMemo(() => {
-    // Blog landing pages get stars for visual impact
-    if (pathname === '/blog' || pathname.match(/^\/[a-z]{2}\/blog$/)) {
+    // Blog landing pages (/blog/[locale]) get stars for visual impact
+    if (pathname.match(/^\/blog\/[a-z]{2}$/)) {
       return 'stars';
     }
 
-    // Individual blog posts get dots for readability
-    if (pathname.includes('/blog/') && pathname.split('/').length > 3) {
+    // Individual blog posts (/blog/[locale]/[slug]) get dots for readability
+    if (pathname.match(/^\/blog\/[a-z]{2}\/[^/]+$/)) {
       return 'dots';
     }
 

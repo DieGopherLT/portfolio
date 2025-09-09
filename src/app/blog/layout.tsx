@@ -2,8 +2,8 @@ import '@/app/globals.css';
 
 import { ReactNode } from 'react';
 
-import { html } from 'framer-motion/client';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+
 
 // Import fonts
 const inter = Inter({
@@ -24,7 +24,7 @@ export default function BlogRootLayout({ children }: BlogLayoutProps) {
   return (
     <html lang="en">
       <head></head>
-      <body className="min-h-screen bg-black text-white">
+      <body className="min-h-screen text-white">
         <div className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>{children}</div>
       </body>
     </html>

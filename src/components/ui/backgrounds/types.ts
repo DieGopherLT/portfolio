@@ -11,13 +11,12 @@ export interface StarsBackgroundProps {
   speed?: number;
   transition?: SpringOptions;
   starColor?: string;
-  pointerEvents?: boolean;
   className?: string;
 }
 
 export interface AdaptiveBackgroundProps {
   children: React.ReactNode;
-  type?: BackgroundType;
+  type?: BackgroundType; // Optional - when not provided, auto-detects based on route
   className?: string;
   starsConfig?: Partial<StarsBackgroundProps>;
 }

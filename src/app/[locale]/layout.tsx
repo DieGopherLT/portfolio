@@ -1,5 +1,6 @@
 import StructuredData from '@/components/StructuredData';
 import { routing } from '@/i18n/routing';
+import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -131,7 +132,9 @@ export default async function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StructuredData locale={locale} />
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <ClientBackgroundWrapper>
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        </ClientBackgroundWrapper>
       </body>
     </html>
   );

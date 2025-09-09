@@ -4,59 +4,54 @@ import { cn } from '@/lib/utils';
 
 import * as React from 'react';
 
+import { usePathname } from 'next/navigation';
 import { DotsBackground } from './DotsBackground';
 import { StarsBackground } from './StarsBackground';
-import { usePrefersReducedMotion } from './hooks/useBackgroundType';
+import { usePrefersReducedMotion, useBackgroundType } from './hooks/useBackgroundType';
 import type { AdaptiveBackgroundProps } from './types';
 
 /**
  * AdaptiveBackground Component
  *
- * A flexible background wrapper that conditionally renders different background types
- * based on context. Designed for terminal-aesthetic portfolios with consistent theming.
+ * A smart background wrapper that automatically detects the appropriate background type
+ * based on the current route, or accepts manual override. Designed for terminal-aesthetic 
+ * portfolios with consistent theming.
  *
  * Features:
+ * - Automatic route-based background detection (when type not specified)
+ * - Manual override capability (when type is specified)
  * - Accessibility: Respects prefers-reduced-motion
- * - Performance: Only renders active background
+ * - Performance: Only renders active background with memoization
  * - Theming: Consistent gopher blue palette
- * - Flexibility: Full configuration control
+ * - Full configuration control
  *
  * Usage Examples:
  *
  * ```tsx
- * // Portfolio sections (minimal dots)
- * <AdaptiveBackground type="dots">
- *   <PortfolioContent />
+ * // Automatic detection (recommended)
+ * <AdaptiveBackground>
+ *   <YourContent />
  * </AdaptiveBackground>
  *
- * // Blog landing (immersive stars)
- * <AdaptiveBackground
- *   type="stars"
- *   starsConfig={{
- *     starColor: '#00ADD8',
- *     speed: 60,
- *     factor: 0.03
- *   }}
- * >
- *   <BlogLanding />
- * </AdaptiveBackground>
- *
- * // Blog posts (back to minimal for readability)
- * <AdaptiveBackground type="dots">
- *   <BlogPost />
+ * // Manual override for specific cases
+ * <AdaptiveBackground type="stars" starsConfig={{ speed: 80 }}>
+ *   <SpecialContent />
  * </AdaptiveBackground>
  * ```
  */
 export function AdaptiveBackground({
   children,
-  type = 'dots',
+  type,
   className,
   starsConfig = {},
 }: AdaptiveBackgroundProps) {
+  const pathname = usePathname();
   const prefersReducedMotion = usePrefersReducedMotion();
+  const autoDetectedType = useBackgroundType(pathname);
 
-  // Force dots background if user prefers reduced motion
-  const effectiveType = prefersReducedMotion ? 'dots' : type;
+  // Use provided type or auto-detected type, then apply accessibility override
+  const resolvedType = type ?? autoDetectedType;
+  const effectiveType = prefersReducedMotion ? 'dots' : resolvedType;
 
   const renderBackground = React.useMemo(() => {
     switch (effectiveType) {
