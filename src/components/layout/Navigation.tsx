@@ -14,6 +14,7 @@ const navItems = [
   { key: 'about', href: '#about' },
   { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
+  { key: 'blog', href: '#blog' },
   { key: 'contact', href: '#contact' }
 ];
 

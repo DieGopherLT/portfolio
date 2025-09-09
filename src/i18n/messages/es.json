@@ -165,6 +165,16 @@
       "message": "Actualmente trabajando en proyectos personales que estarán disponibles próximamente.",
       "placeholder_content": "Esta sección se actualizará con proyectos destacados en desarrollo."
     },
+    "blog": {
+      "terminal_command": "diegopher@portfolio:~$ ls blog/",
+      "title": "Blog",
+      "description": {
+        "title": "Blog Personal",
+        "content": "Insights técnicos, experiencias de desarrollo y reflexiones sobre arquitectura de software. Una inmersión profunda en la filosofía Unix y las prácticas de desarrollo modernas.",
+        "link_text": "Leer todas las entradas →"
+      },
+      "no_posts": "No hay entradas disponibles aún. ¡Regresa pronto!"
+    },
     "contact": {
       "terminal_command": "diegopher@portfolio:~$ connect --help",
       "title": "Contacto",
@@ -224,6 +234,7 @@
     "experience": "Experiencia",
     "skills": "Habilidades",
     "projects": "Proyectos",
+    "blog": "Blog",
     "contact": "Contacto"
   },
   "common_phrases": {
