@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { PostMetadata } from '@/lib/blog/posts';
-import { generatePostUrl, formatReadingTime } from '@/lib/blog/utils';
+import { formatReadingTime, generatePostUrl } from '@/lib/blog/utils';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface PostCardProps {
   post: PostMetadata;

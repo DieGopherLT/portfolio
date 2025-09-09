@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
-import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
+import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+
+import { useCallback, useEffect, useState } from 'react';
+
+import { useTranslations } from 'next-intl';
 
 // Enums para estados de animación independientes
 enum FormAnimationState {

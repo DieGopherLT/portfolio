@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
-import TerminalWindow from '@/components/TerminalWindow';
 import TerminalFooter from '@/components/TerminalFooter';
+import TerminalWindow from '@/components/TerminalWindow';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+
+import { useCallback, useState } from 'react';
+
+import { useTranslations } from 'next-intl';
 
 interface Job {
   company: string;

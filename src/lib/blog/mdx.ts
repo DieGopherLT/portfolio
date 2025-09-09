@@ -1,8 +1,8 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { createHighlighter, type Highlighter } from 'shiki';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import { type Highlighter, createHighlighter } from 'shiki';
 
 // Shiki highlighter instance (cached)
 let highlighterPromise: Promise<Highlighter> | null = null;

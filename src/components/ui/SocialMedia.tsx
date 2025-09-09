@@ -1,8 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+
+import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface SocialLink {
   platform: string;

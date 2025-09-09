@@ -1,4 +1,5 @@
 import { createNavigation } from 'next-intl/navigation';
+
 import { routing } from './routing';
 
 // Wrappers ligeros alrededor de las APIs de navegación de Next.js

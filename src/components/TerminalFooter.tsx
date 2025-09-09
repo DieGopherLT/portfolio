@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+
+import { motion } from 'framer-motion';
 
 interface TerminalFooterProps {
   path?: string;

@@ -1,7 +1,9 @@
-import { ReactNode } from 'react';
-import { Inter, JetBrains_Mono } from 'next/font/google';
 import '@/app/globals.css';
+
+import { ReactNode } from 'react';
+
 import { html } from 'framer-motion/client';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 
 // Import fonts
 const inter = Inter({

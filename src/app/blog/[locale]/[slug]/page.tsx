@@ -1,12 +1,14 @@
-import { Suspense } from 'react';
-import { notFound } from 'next/navigation';
-import { getPostBySlug, getAllPosts } from '@/lib/blog/posts';
-import { isValidLocale, formatDate } from '@/lib/blog/utils';
-import { extractTOC, MDXRemote } from '@/lib/blog/mdx';
-import { MDXComponents } from '@/components/blog/MDXComponents';
 import BlogLayout from '@/components/blog/BlogLayout';
+import { MDXComponents } from '@/components/blog/MDXComponents';
 import TableOfContents from '@/components/blog/TableOfContents';
+import { MDXRemote, extractTOC } from '@/lib/blog/mdx';
+import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
+import { formatDate, isValidLocale } from '@/lib/blog/utils';
 import { formatReadingTime } from '@/lib/blog/utils';
+
+import { Suspense } from 'react';
+
+import { notFound } from 'next/navigation';
 
 interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;

@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { PostMetadata } from '@/lib/blog/posts';
-import { searchPosts, filterPostsByTag } from '@/lib/blog/utils';
+import { filterPostsByTag, searchPosts } from '@/lib/blog/utils';
+
+import { useEffect, useState } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface TagFilterProps {
   posts: PostMetadata[];

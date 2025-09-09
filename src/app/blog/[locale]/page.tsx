@@ -1,7 +1,8 @@
+import BlogControls from '@/components/blog/BlogControls';
+import BlogLayout from '@/components/blog/BlogLayout';
 import { getAllPosts, getAllTags } from '@/lib/blog/posts';
 import { isValidLocale } from '@/lib/blog/utils';
-import BlogLayout from '@/components/blog/BlogLayout';
-import BlogControls from '@/components/blog/BlogControls';
+
 import { redirect } from 'next/navigation';
 
 interface BlogIndexProps {

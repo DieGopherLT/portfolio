@@ -1,5 +1,5 @@
-import TelegramBot from 'node-telegram-bot-api';
 import { NextRequest } from 'next/server';
+import TelegramBot from 'node-telegram-bot-api';
 
 interface ContactData {
   name: string;

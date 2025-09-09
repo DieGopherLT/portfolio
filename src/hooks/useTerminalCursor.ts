@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+
 import type { TargetAndTransition, Transition } from 'framer-motion';
 
 interface TerminalCursorConfig {

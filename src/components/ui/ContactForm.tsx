@@ -1,11 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
 import TerminalSpinner from '@/components/ui/TerminalSpinner';
+
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface ContactFormProps {
   showContent: boolean;

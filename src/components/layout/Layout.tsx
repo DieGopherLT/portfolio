@@ -1,13 +1,16 @@
 'use client';
 
-import Navigation from './Navigation';
-import Header from './Header';
-import Footer from './Footer';
-import MobileMenuOverlay from './MobileMenuOverlay';
 import { MobileMenuProvider, useMobileMenu } from '@/contexts/MobileMenuContext';
+
 import { useEffect } from 'react';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+import Footer from './Footer';
+import Header from './Header';
+import MobileMenuOverlay from './MobileMenuOverlay';
+import Navigation from './Navigation';
 
 interface LayoutProps {
   children: React.ReactNode;

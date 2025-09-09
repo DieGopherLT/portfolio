@@ -1,7 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { cn } from '@/lib/utils';
+
+import * as React from 'react';
+
 import { DotsBackground } from './DotsBackground';
 import { StarsBackground } from './StarsBackground';
 import { usePrefersReducedMotion } from './hooks/useBackgroundType';

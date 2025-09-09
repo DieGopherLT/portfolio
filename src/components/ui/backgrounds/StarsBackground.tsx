@@ -1,8 +1,11 @@
 'use client';
 
-import * as React from 'react';
-import { motion, useMotionValue, useSpring, type Transition } from 'framer-motion';
 import { cn } from '@/lib/utils';
+
+import * as React from 'react';
+
+import { type Transition, motion, useMotionValue, useSpring } from 'framer-motion';
+
 import type { StarsBackgroundProps } from './types';
 
 // ===== STAR GENERATION UTILITY =====

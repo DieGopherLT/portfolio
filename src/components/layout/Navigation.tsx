@@ -1,9 +1,10 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { useMobileMenu } from '@/contexts/MobileMenuContext';
 import LanguageSelector from '@/components/LanguageSelector';
+import { useMobileMenu } from '@/contexts/MobileMenuContext';
+
+import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface NavigationProps {
   className?: string;

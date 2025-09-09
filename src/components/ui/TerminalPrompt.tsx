@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useTerminalCursor } from '@/hooks/useTerminalCursor';
+
+import { motion } from 'framer-motion';
 
 interface TerminalPromptProps {
   command?: string;

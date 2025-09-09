@@ -1,9 +1,9 @@
+import BlogSection from '@/components/blog/BlogSection';
 import Layout from '@/components/layout/Layout';
 import About from '@/components/sections/About';
+import Contact from '@/components/sections/Contact';
 import Experience from '@/components/sections/Experience';
 import Skills from '@/components/sections/Skills';
-import BlogSection from '@/components/blog/BlogSection';
-import Contact from '@/components/sections/Contact';
 import { getRecentPosts } from '@/lib/blog/posts';
 
 interface HomeProps {

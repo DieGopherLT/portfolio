@@ -1,8 +1,10 @@
 'use client';
 
-import { useParams, usePathname as useNextPathname } from 'next/navigation';
 import { useRouter } from '@/i18n/navigation';
+
 import { useCallback } from 'react';
+
+import { usePathname as useNextPathname, useParams } from 'next/navigation';
 
 type Language = 'en' | 'es';
 

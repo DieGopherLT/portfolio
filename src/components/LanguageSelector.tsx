@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useLanguageSwitch } from '@/hooks/useLanguageSwitch';
+
+import { motion } from 'framer-motion';
 
 interface LanguageSelectorProps {
   className?: string;

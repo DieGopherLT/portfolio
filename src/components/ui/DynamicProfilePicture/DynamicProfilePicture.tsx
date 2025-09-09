@@ -4,11 +4,18 @@
  */
 'use client';
 
-import React, { useState, useRef } from 'react';
-import Image from 'next/image';
+import React, { useRef, useState } from 'react';
+
 import { Pause } from 'lucide-react';
-import { useDynamicProfilePicture } from './hooks/useDynamicProfilePicture';
+import Image from 'next/image';
+
 import styles from './DynamicProfilePicture.module.css';
+import { useDynamicProfilePicture } from './hooks/useDynamicProfilePicture';
+
+/**
+ * DynamicProfilePicture - A dynamic profile picture component that cycles through
+ * normal photo, ASCII art, diagonal split, and vertical split states with monitor-style transitions.
+ */
 
 export interface DynamicProfilePictureProps {
   /** Source URL for the normal photo image */

@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+
+import { useCallback, useEffect, useState } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 // Animation states enum
