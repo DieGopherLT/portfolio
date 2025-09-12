@@ -52,7 +52,7 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
 
       <main className="flex min-h-screen w-full flex-col">
         {/* Blog Content */}
-        <ClientBackgroundWrapper type="stars">
+        <ClientBackgroundWrapper type="dots">
           <div className="blog-content relative flex-1">{children}</div>
         </ClientBackgroundWrapper>
         

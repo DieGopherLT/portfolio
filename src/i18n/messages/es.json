@@ -250,5 +250,12 @@
     "view_more": "Ver más",
     "back_to_top": "Volver arriba",
     "download_resume": "Descargar CV"
+  },
+  "not_found": {
+    "title": "404 - Página no encontrada",
+    "heading": "¡Ups! Página no encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "go_home": "Volver al inicio",
+    "go_blog": "Ver publicaciones del blog"
   }
 }

@@ -20,7 +20,7 @@ export default function Header({ className = '' }: HeaderProps) {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       {/* Desktop Grid Layout */}
-      <div className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto] items-center gap-8 px-6 md:grid">
+      <div className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto] items-center gap-8 px-6 md:grid relative z-10">
         {/* Text Content - Left Side */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

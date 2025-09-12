@@ -245,5 +245,12 @@
     "view_more": "View more",
     "back_to_top": "Back to top",
     "download_resume": "Download Resume"
+  },
+  "not_found": {
+    "title": "404 - Page Not Found",
+    "heading": "Oops! Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "go_home": "Go back home",
+    "go_blog": "Browse blog posts"
   }
 }
