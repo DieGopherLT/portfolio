@@ -5,20 +5,10 @@ import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
+import { geistSans, geistMono, fontClassName } from '@/lib/fonts';
 
 import '../globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 // Generate metadata dynamically based on locale
 export async function generateMetadata({
@@ -130,7 +120,7 @@ export default async function RootLayout({
         <link rel="preload" href={geistSans.variable} as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href={geistMono.variable} as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={fontClassName}>
         <StructuredData locale={locale} />
         <ClientBackgroundWrapper>
           <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

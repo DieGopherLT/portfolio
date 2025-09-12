@@ -11,50 +11,51 @@
 
 ### Main Principles
 
-- Form follows terminal function
-- Minimalist Unix philosophy
-- Typing animations create immersion
-- Standard UX with terminal presentation
-- Elegant sophistication through pure black foundations
+- Form follows terminal function (implemented via TerminalPrompt, TerminalWindow components)
+- Minimalist Unix philosophy (clean component architecture, focused functionality)
+- Typing animations create immersion (character-by-character rendering across all sections)
+- Standard UX with terminal presentation (accessible forms with terminal aesthetics)
+- Elegant sophistication through pure black foundations (Geist font pairing with #000000 background)
 
 ## Color Palette
 
 ### Primary Colors
 
 ```css
---bg-primary: #000000;
---text-primary: #ffffff;
---text-secondary: #8b949e;
---text-muted: #6e7681;
+--color-primary: #000000;
+--color-white: #ffffff;
+--color-secondary: #8b949e;
+--color-muted: #6e7681;
 ```
 
 ### Accent Colors
 
 ```css
---gopher-blue: #00add8;
---gopher-blue-hover: #00b4d6;
---gopher-blue-muted: #007d9c;
---terminal-green: #39d353;
---warning-yellow: #f1c40f;
---error-red: #e74c3c;
+--color-gopher-blue: #00add8;
+--color-gopher-blue-hover: #00b4d6;
+--color-gopher-blue-muted: #007d9c;
+--color-terminal-green: #39d353;
+--color-warning-yellow: #f1c40f;
+--color-error-red: #e74c3c;
 ```
 
 ### Syntax Highlighting
 
 ```css
---ts-blue: #007acc;
---go-cyan: #00add8;
---string-green: #98c379;
---keyword-purple: #c678dd;
---comment-gray: #5c6370;
+--color-ts-blue: #007acc;
+--color-go-cyan: #00add8;
+--color-string-green: #98c379;
+--color-keyword-purple: #c678dd;
+--color-comment-gray: #5c6370;
 ```
 
 ## Typography
 
 ### Font Stack
 
-- **Primary**: system-ui, -apple-system, sans-serif
-- **Monospace**: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace
+- **Primary**: Geist (Google Fonts) with fallback to system-ui, -apple-system, sans-serif
+- **Monospace**: Geist_Mono (Google Fonts) with fallback to 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace
+- **CSS Variables**: `--font-geist-sans` and `--font-geist-mono`
 
 ### Hierarchy
 
@@ -138,17 +139,16 @@ macOS terminal window with:
 
 **Typing Animations**:
 
-- Speed: realistic terminal typing
-- Cursor: blinking Unix cursor
-- Optional: subtle keyboard sounds
+- Speed: 50-80ms per character (50 + Math.random() * 30)
+- Cursor: blinking Unix cursor (1.06s cycle)
+- States: 'typing' and 'blinking' modes
+- Implementation: Character-by-character rendering with variable speed
 
-**Sequence Timing**:
+**Animation States** (implemented in sections):
 
-- Title appear: 0.3s
-- Scroll pause: 0.5s
-- Terminal window appear: 0.3s
-- Typing duration: 1.5-3s depending on command
-- Content reveal: 0.4s fade in
+- IDLE → CAT_COMMAND → CAT_OUTPUT → SECOND_COMMAND → SECOND_OUTPUT → COMPLETE
+- Each state triggers specific typing sequences
+- Real-time cursor state management
 
 ### Interactive Elements
 
@@ -210,7 +210,7 @@ r/unixporn aesthetic values
 
 - Smooth 60fps animations
 - Efficient scroll handling
-- Fast font loading
+- Fast Geist font loading from Google Fonts
 - Minimal JavaScript for core functionality
 
 ## Accessibility
@@ -247,7 +247,7 @@ r/unixporn aesthetic values
 
 - Character-by-character typing rendering must be efficient
 - Smooth scroll behavior with section locking during animations
-- Optimized monospace font loading
+- Optimized Geist_Mono font loading for consistent ASCII art rendering
 - Minimal JavaScript footprint
 
 ### Development Philosophy

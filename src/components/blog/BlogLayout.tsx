@@ -1,4 +1,5 @@
 import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
+import Footer from '@/components/layout/Footer';
 
 import Link from 'next/link';
 
@@ -49,10 +50,14 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
         </div>
       </nav>
 
-      {/* Blog Content */}
-      <ClientBackgroundWrapper type="stars">
-        <div className="blog-content relative">{children}</div>
-      </ClientBackgroundWrapper>
+      <main className="flex min-h-screen w-full flex-col">
+        {/* Blog Content */}
+        <ClientBackgroundWrapper type="stars">
+          <div className="blog-content relative flex-1">{children}</div>
+        </ClientBackgroundWrapper>
+        
+        <Footer />
+      </main>
     </div>
   );
 }

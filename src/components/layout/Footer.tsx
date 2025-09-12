@@ -18,7 +18,7 @@ export default function Footer({ className = '' }: FooterProps) {
 
   return (
     <motion.footer
-      className={`bg-primary mt-4 border-t border-zinc-800 py-8 ${className}`}
+      className={`relative z-10 bg-primary mt-4 border-t border-zinc-800 py-8 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}

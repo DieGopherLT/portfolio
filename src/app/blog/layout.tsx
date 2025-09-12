@@ -2,19 +2,7 @@ import '@/app/globals.css';
 
 import { ReactNode } from 'react';
 
-import { Inter, JetBrains_Mono } from 'next/font/google';
-
-
-// Import fonts
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-reading',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-});
+import { fontClassName } from '@/lib/fonts';
 
 interface BlogLayoutProps {
   children: ReactNode;
@@ -25,7 +13,7 @@ export default function BlogRootLayout({ children }: BlogLayoutProps) {
     <html lang="en">
       <head></head>
       <body className="min-h-screen text-white">
-        <div className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>{children}</div>
+        <div className={fontClassName}>{children}</div>
       </body>
     </html>
   );
