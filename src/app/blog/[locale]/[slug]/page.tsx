@@ -1,7 +1,7 @@
 import BlogLayout from '@/components/blog/BlogLayout';
 import { MDXComponents } from '@/components/blog/MDXComponents';
 import TableOfContents from '@/components/blog/TableOfContents';
-import { MDXRemote, extractTOC } from '@/lib/blog/mdx';
+import { MDXRemote } from '@/lib/blog/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
 import { formatDate, isValidLocale } from '@/lib/blog/utils';
 import { formatReadingTime } from '@/lib/blog/utils';

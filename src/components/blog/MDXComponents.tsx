@@ -1,7 +1,48 @@
-import { ReactNode } from 'react';
+import { AnchorHTMLAttributes, HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
 
+import { MDXComponents as MDXComponentsType } from 'mdx/types';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// Type definitions for HTML elements with proper props
+interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
+  children: ReactNode;
+}
+
+interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
+  children: ReactNode;
+}
+
+interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  href?: string;
+  children: ReactNode;
+}
+
+interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+  src: string;
+  alt: string;
+  title?: string;
+}
+
+interface CodeProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
+}
+
+interface ListProps extends HTMLAttributes<HTMLUListElement | HTMLOListElement> {
+  children: ReactNode;
+}
+
+interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
+  children: ReactNode;
+}
+
+interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
+  children: ReactNode;
+}
+
+interface PreProps extends HTMLAttributes<HTMLPreElement> {
+  children: ReactNode;
+}
 
 // Custom components for MDX content
 
@@ -93,15 +134,15 @@ function FileTree({ children }: FileTreeProps) {
 }
 
 // Main MDX components mapping
-export const MDXComponents = {
+export const MDXComponents: MDXComponentsType = {
   // Override default HTML elements
-  h1: ({ children, ...props }: any) => (
+  h1: ({ children, ...props }: HeadingProps) => (
     <h1 className="text-text-primary mt-8 mb-6 text-3xl font-light first:mt-0" {...props}>
       {children}
     </h1>
   ),
 
-  h2: ({ children, ...props }: any) => (
+  h2: ({ children, ...props }: HeadingProps) => (
     <h2
       className="text-text-primary border-border-subtle mt-8 mb-4 border-b pb-2 text-2xl font-light"
       {...props}
@@ -110,19 +151,19 @@ export const MDXComponents = {
     </h2>
   ),
 
-  h3: ({ children, ...props }: any) => (
+  h3: ({ children, ...props }: HeadingProps) => (
     <h3 className="text-text-primary mt-6 mb-3 text-xl font-light" {...props}>
       {children}
     </h3>
   ),
 
-  p: ({ children, ...props }: any) => (
+  p: ({ children, ...props }: ParagraphProps) => (
     <p className="text-text-secondary mb-4 leading-relaxed" {...props}>
       {children}
     </p>
   ),
 
-  a: ({ href, children, ...props }: any) => {
+  a: ({ href, children, ...props }: LinkProps) => {
     // Internal links
     if (href?.startsWith('/')) {
       return (
@@ -163,13 +204,13 @@ export const MDXComponents = {
     );
   },
 
-  img: ({ src, alt, title, ...props }: any) => (
+  img: ({ src, alt, title, width, height, ...props }: ImageProps) => (
     <figure className="figure my-8">
       <Image
         src={src}
         alt={alt}
-        width={800}
-        height={400}
+        width={typeof width === 'number' ? width : 800}
+        height={typeof height === 'number' ? height : 400}
         className="figure-image border-border-subtle w-full rounded-lg border"
         {...props}
       />
@@ -181,13 +222,13 @@ export const MDXComponents = {
     </figure>
   ),
 
-  code: ({ children, ...props }: any) => (
+  code: ({ children, ...props }: CodeProps) => (
     <code className="bg-bg-tertiary text-gopher-blue rounded px-1.5 py-0.5 font-mono text-sm" {...props}>
       {children}
     </code>
   ),
 
-  pre: ({ children, ...props }: any) => (
+  pre: ({ children, ...props }: PreProps) => (
     <pre
       className="bg-bg-code-block border-border-subtle my-6 overflow-x-auto rounded-lg border p-4 font-mono text-sm"
       {...props}
@@ -196,25 +237,25 @@ export const MDXComponents = {
     </pre>
   ),
 
-  ul: ({ children, ...props }: any) => (
+  ul: ({ children, ...props }: ListProps) => (
     <ul className="text-text-secondary mb-4 list-inside list-disc space-y-2" {...props}>
       {children}
     </ul>
   ),
 
-  ol: ({ children, ...props }: any) => (
+  ol: ({ children, ...props }: ListProps) => (
     <ol className="text-text-secondary mb-4 list-inside list-decimal space-y-2" {...props}>
       {children}
     </ol>
   ),
 
-  li: ({ children, ...props }: any) => (
+  li: ({ children, ...props }: ListItemProps) => (
     <li className="leading-relaxed" {...props}>
       {children}
     </li>
   ),
 
-  blockquote: ({ children, ...props }: any) => (
+  blockquote: ({ children, ...props }: BlockquoteProps) => (
     <blockquote
       className="border-gopher-blue text-text-secondary my-6 border-l-4 py-2 pl-6 italic"
       {...props}
@@ -223,7 +264,7 @@ export const MDXComponents = {
     </blockquote>
   ),
 
-  hr: (props: any) => <hr className="border-border-subtle my-8" {...props} />,
+  hr: (props: HTMLAttributes<HTMLHRElement>) => <hr className="border-border-subtle my-8" {...props} />,
 
   // Custom components
   Callout,
