@@ -179,6 +179,14 @@
       "page": {
         "title": "Personal Blog",
         "description": "Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices."
+      },
+      "post": {
+        "back_to_blog": "← Back to blog",
+        "updated": "Updated",
+        "footer": {
+          "enjoyed": "Enjoyed this post? ",
+          "share_knowledge": "Share the knowledge!"
+        }
       }
     },
     "contact": {

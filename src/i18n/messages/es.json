@@ -184,6 +184,14 @@
       "page": {
         "title": "Blog Personal",
         "description": "Insights técnicos, experiencias de desarrollo y reflexiones sobre arquitectura de software. Una inmersión profunda en la filosofía Unix y las prácticas de desarrollo modernas."
+      },
+      "post": {
+        "back_to_blog": "← Volver al blog",
+        "updated": "Actualizado",
+        "footer": {
+          "enjoyed": "¿Te gustó este post? ",
+          "share_knowledge": "¡Compártelo!"
+        }
       }
     },
     "contact": {

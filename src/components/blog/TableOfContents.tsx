@@ -1,6 +1,8 @@
 'use client';
 
 import { TOCItem } from '@/lib/blog/mdx';
+import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import { cn } from '@/lib/utils';
 
 import { useEffect, useState } from 'react';
 
@@ -14,7 +16,6 @@ interface TableOfContentsProps {
 export default function TableOfContents({ content, locale }: TableOfContentsProps) {
   const [toc, setToc] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
-  const [isVisible, setIsVisible] = useState(true);
 
   // Extract TOC from content
   useEffect(() => {
@@ -52,7 +53,10 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
           }
         });
       },
-      { rootMargin: '-20% 0% -70% 0%' }
+      { 
+        rootMargin: '-100px 0% -70% 0%',
+        threshold: 0.1
+      }
     );
 
     // Observe all headings
@@ -73,15 +77,20 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+      // Calculate offset to account for navigation header
+      const headerOffset = 100; // Adjust based on your header height
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     }
   };
 
   return (
-    <div className="toc-container sticky top-24 h-fit">
+    <div className="toc-container lg:sticky lg:top-24 h-fit">
       <div className="terminal-window">
         {/* Terminal Header */}
         <div className="terminal-header">
@@ -97,15 +106,16 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
         <div className="terminal-content">
           <div className="p-4 font-mono text-white">
             {/* Tree Command */}
-            <div className="mb-4">
-              <div className="text-gopher-blue flex items-center gap-2 text-sm">
-                <span>diegopher@blog:~$</span>
-                <span className="text-white">tree -I "*.md" --dirsfirst</span>
-              </div>
+            <div className="mb-6">
+              <TerminalPrompt 
+                command='tree -I "*.md" --dirs-first' 
+                path="~/blog" 
+                className="text-sm"
+              />
             </div>
 
             {/* Tree Output */}
-            <div className="tree-output">
+            <div className="tree-output ml-2">
               <AnimatePresence>
                 {toc.map((item, index) => {
                   const isActive = activeId === item.id;
@@ -115,9 +125,10 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
                   return (
                     <motion.div
                       key={item.id}
-                      className={`toc-item flex items-center text-sm leading-relaxed ${
-                        isLevel3 ? 'ml-4' : ''
-                      }`}
+                      className={cn(
+                        'toc-item flex items-center text-sm leading-relaxed',
+                        isLevel3 && 'ml-4'
+                      )}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -128,18 +139,23 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
                       {/* Clickable Link */}
                       <button
                         onClick={() => scrollToHeading(item.id)}
-                        className={`toc-link hover:text-gopher-blue relative cursor-pointer text-left transition-colors ${
-                          isActive ? 'text-gopher-blue font-medium' : 'text-text-secondary'
-                        }`}
+                        className={cn(
+                          'toc-link relative cursor-pointer text-left transition-colors duration-200',
+                          'hover:text-gopher-blue',
+                          isActive 
+                            ? 'text-gopher-blue font-medium' 
+                            : 'text-text-secondary'
+                        )}
                         aria-label={`Go to ${item.text}`}
                       >
                         {item.text}
 
                         {/* Underline for active/hover */}
                         <motion.div
-                          className={`bg-gopher-blue absolute bottom-0 left-0 h-px ${
+                          className={cn(
+                            'bg-gopher-blue absolute bottom-0 left-0 h-px',
                             isActive ? 'opacity-100' : 'opacity-0'
-                          }`}
+                          )}
                           layoutId="activeUnderline"
                           initial={false}
                           animate={{

@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { geistSans, geistMono, fontClassName } from '@/lib/fonts';
+import { fontClassName } from '@/lib/fonts';
 
 import '../globals.css';
 
@@ -117,8 +117,6 @@ export default async function RootLayout({
     <html lang={locale}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preload" href={geistSans.variable} as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href={geistMono.variable} as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className={fontClassName}>
         <StructuredData locale={locale} />

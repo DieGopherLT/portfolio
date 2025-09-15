@@ -142,20 +142,37 @@ export const MDXComponents: MDXComponentsType = {
     </h1>
   ),
 
-  h2: ({ children, ...props }: HeadingProps) => (
-    <h2
-      className="text-text-primary border-border-subtle mt-8 mb-4 border-b pb-2 text-2xl font-light"
-      {...props}
-    >
-      {children}
-    </h2>
-  ),
+  h2: ({ children, ...props }: HeadingProps) => {
+    const id = typeof children === 'string' 
+      ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      : undefined;
+    
+    return (
+      <h2
+        id={id}
+        className="text-text-primary border-border-subtle mt-8 mb-4 border-b pb-2 text-2xl font-light"
+        {...props}
+      >
+        {children}
+      </h2>
+    );
+  },
 
-  h3: ({ children, ...props }: HeadingProps) => (
-    <h3 className="text-text-primary mt-6 mb-3 text-xl font-light" {...props}>
-      {children}
-    </h3>
-  ),
+  h3: ({ children, ...props }: HeadingProps) => {
+    const id = typeof children === 'string' 
+      ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      : undefined;
+      
+    return (
+      <h3 
+        id={id}
+        className="text-text-primary mt-6 mb-3 text-xl font-light" 
+        {...props}
+      >
+        {children}
+      </h3>
+    );
+  },
 
   p: ({ children, ...props }: ParagraphProps) => (
     <p className="text-text-secondary mb-4 leading-relaxed" {...props}>
