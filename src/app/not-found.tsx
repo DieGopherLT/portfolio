@@ -129,7 +129,7 @@ export default function NotFound() {
                     </Link>
 
                     <Link
-                      href={`/${locale}/blog`}
+                      href={`/blog/${locale}`}
                       className="border border-gopher-blue text-gopher-blue hover:bg-gopher-blue hover:text-black px-6 py-3 font-medium transition-all duration-200 hover:scale-105 transform text-center"
                     >
                       {t.go_blog}

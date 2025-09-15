@@ -1,3 +1,8 @@
+'use client';
+
+import LanguageSelector from '@/components/LanguageSelector';
+
+import { div } from 'framer-motion/client';
 import Link from 'next/link';
 
 interface BlogNavigationProps {
@@ -8,21 +13,21 @@ interface BlogNavigationProps {
 export default function BlogNavigation({ locale, showBackLink = true }: BlogNavigationProps) {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-700 bg-black/80 backdrop-blur-lg">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        {/* Back Link */}
-        <div>
-          {showBackLink && (
+      <div className="mx-auto grid grid-cols-3 max-w-5xl items-center py-4">
+        {/* Left side - Back Link */}
+        {showBackLink && (
+          <div className="justify-self-start">
             <Link
               href={`/${locale}`}
               className="font-mono text-sm text-gray-400 transition-colors hover:text-gopher-blue"
             >
-              ← {locale === 'es' ? 'Volver al portfolio' : 'Back to portfolio'}
+              ←
             </Link>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Blog Title */}
-        <div>
+        {/* Center - Blog Title */}
+        <div className="justify-self-center">
           <Link
             href={`/blog/${locale}`}
             className="font-mono text-lg font-light text-white transition-colors hover:text-gopher-blue"
@@ -31,14 +36,9 @@ export default function BlogNavigation({ locale, showBackLink = true }: BlogNavi
           </Link>
         </div>
 
-        {/* Language Switcher */}
-        <div className="flex items-center gap-4">
-          <Link
-            href={`/blog/${locale === 'en' ? 'es' : 'en'}`}
-            className="font-mono text-sm text-gray-300 transition-colors hover:text-white"
-          >
-            {locale === 'en' ? 'ES' : 'EN'}
-          </Link>
+        {/* Right side - Language Switcher */}
+        <div className="justify-self-end">
+          <LanguageSelector className="text-sm" />
         </div>
       </div>
     </nav>

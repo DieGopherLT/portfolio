@@ -180,7 +180,11 @@
         "content": "Insights técnicos, experiencias de desarrollo y reflexiones sobre arquitectura de software. Una inmersión profunda en la filosofía Unix y las prácticas de desarrollo modernas.",
         "link_text": "Leer todas las entradas →"
       },
-      "no_posts": "No hay entradas disponibles aún. ¡Regresa pronto!"
+      "no_posts": "No hay entradas disponibles aún. ¡Regresa pronto!",
+      "page": {
+        "title": "Blog Personal",
+        "description": "Insights técnicos, experiencias de desarrollo y reflexiones sobre arquitectura de software. Una inmersión profunda en la filosofía Unix y las prácticas de desarrollo modernas."
+      }
     },
     "contact": {
       "terminal_command": "diegopher@portfolio:~$ connect --help",

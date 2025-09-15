@@ -175,7 +175,11 @@
         "content": "Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices.",
         "link_text": "Read all posts →"
       },
-      "no_posts": "No posts available yet. Come back soon!"
+      "no_posts": "No posts available yet. Come back soon!",
+      "page": {
+        "title": "Personal Blog",
+        "description": "Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices."
+      }
     },
     "contact": {
       "terminal_command": "diegopher@portfolio:~$ connect --help",

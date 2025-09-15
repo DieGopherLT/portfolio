@@ -43,7 +43,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               {/* Breadcrumb */}
               <nav className="post-breadcrumb mb-6" aria-label="Breadcrumb">
                 <a
-                  href={`/blog/${locale}`}
+                  href={`/${locale}/blog`}
                   className="text-text-muted hover:text-gopher-blue font-mono text-sm transition-colors"
                 >
                   ← {locale === 'es' ? 'Volver al blog' : 'Back to blog'}
@@ -187,8 +187,8 @@ export async function generateMetadata({ params }: BlogPostProps) {
     },
     alternates: {
       languages: {
-        en: `/blog/en/${metadata.slug.en}`,
-        es: `/blog/es/${metadata.slug.es}`,
+        en: `/en/blog/${metadata.slug.en}`,
+        es: `/es/blog/${metadata.slug.es}`,
       },
     },
   };
