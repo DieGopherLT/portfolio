@@ -2,7 +2,6 @@
 
 import LanguageSelector from '@/components/LanguageSelector';
 
-import { div } from 'framer-motion/client';
 import Link from 'next/link';
 
 interface BlogNavigationProps {
