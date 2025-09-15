@@ -1,12 +1,71 @@
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+'use client';
+
 import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
 import { fontClassName } from '@/lib/fonts';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import './globals.css';
 
+// Local translations for standalone 404 page
+const translations = {
+  en: {
+    description: "The page you're looking for doesn't exist or has been moved.",
+    go_home: "Go back home",
+    go_blog: "Browse blog posts"
+  },
+  es: {
+    description: "La página que buscas no existe o ha sido movida.",
+    go_home: "Volver al inicio",
+    go_blog: "Ver entradas del blog"
+  }
+} as const;
+
+type Locale = keyof typeof translations;
+
+// Detect locale from URL with browser language fallback
+function detectLocale(pathname: string): Locale {
+  // First try URL detection
+  if (pathname.startsWith('/es/') || pathname.startsWith('/es')) {
+    return 'es';
+  }
+  if (pathname.startsWith('/en/') || pathname.startsWith('/en')) {
+    return 'en';
+  }
+  
+  // Fallback to browser preferred languages
+  if (typeof navigator !== 'undefined' && navigator.languages) {
+    const preferredLanguage = navigator.languages[0];
+    if (preferredLanguage?.startsWith('es')) {
+      return 'es';
+    }
+  }
+  
+  // Default fallback
+  return 'en';
+}
+
 export default function NotFound() {
-  const t = useTranslations('not_found');
+  const pathname = usePathname();
+  const locale = detectLocale(pathname);
+  const t = translations[locale];
+
+  const ascii404 = `\
+██╗  ██╗ ██████╗ ██╗  ██╗
+██║  ██║██╔═████╗██║  ██║
+███████║██║██╔██║███████║
+╚════██║████╔╝██║╚════██║
+     ██║╚██████╔╝     ██║
+     ╚═╝ ╚═════╝      ╚═╝`;
+
+  const asciiNotFound = `\
+███╗   ██╗ ██████╗ ████████╗    ███████╗ ██████╗ ██╗   ██╗███╗   ██╗██████╗ 
+████╗  ██║██╔═══██╗╚══██╔══╝    ██╔════╝██╔═══██╗██║   ██║████╗  ██║██╔══██╗
+██╔██╗ ██║██║   ██║   ██║       █████╗  ██║   ██║██║   ██║██╔██╗ ██║██║  ██║
+██║╚██╗██║██║   ██║   ██║       ██╔══╝  ██║   ██║██║   ██║██║╚██╗██║██║  ██║
+██║ ╚████║╚██████╔╝   ██║       ██║     ╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝
+╚═╝  ╚═══╝ ╚═════╝    ╚═╝       ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝`;
 
   return (
     <html lang="en">
@@ -14,31 +73,69 @@ export default function NotFound() {
       <body className={`bg-black text-white ${fontClassName} antialiased`}>
         <ClientBackgroundWrapper type="dots">
           <div className="min-h-screen flex items-center justify-center text-white">
-            <div className="text-center px-6 max-w-2xl relative z-10">
-              <h1 className="text-9xl font-bold text-gopher-blue mb-8">404</h1>
-              
-              <h2 className="text-4xl font-light mb-6 text-white">
-                {t('heading')}
-              </h2>
-              
-              <p className="text-xl text-secondary mb-12 leading-relaxed">
-                {t('description')}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link
-                  href="/en"
-                  className="px-8 py-4 bg-gopher-blue hover:bg-gopher-blue-hover text-black font-medium rounded-md transition-colors duration-200"
-                >
-                  {t('go_home')}
-                </Link>
-                
-                <Link
-                  href="/en/blog"
-                  className="px-8 py-4 border border-gopher-blue text-gopher-blue hover:bg-gopher-blue hover:text-black font-medium rounded-md transition-all duration-200"
-                >
-                  {t('go_blog')}
-                </Link>
+            <div className="text-center px-6 max-w-4xl relative z-10">
+              {/* Terminal Window using existing component styles */}
+              <div className="terminal-window max-w-3xl mx-auto">
+                {/* Terminal Title Bar */}
+                <div className="terminal-header">
+                  <div className="traffic-lights">
+                    <div className="traffic-light close"></div>
+                    <div className="traffic-light minimize"></div>
+                    <div className="traffic-light maximize"></div>
+                  </div>
+                  <div className="window-title">user@portfolio: ~/error</div>
+                </div>
+
+                {/* Terminal Content */}
+                <div className="terminal-content text-left">
+                  {/* Error Message */}
+                  <div className="mb-6 text-red-400">
+                    <span className="text-gray-400">bash:</span> {pathname || '/path'}: No such file or
+                    directory
+                  </div>
+
+                  {/* 404 ASCII Art */}
+                  <div className="mb-8 text-center">
+                    <pre className="text-gopher-blue font-mono leading-tight whitespace-pre text-xs sm:text-sm md:text-base lg:text-lg select-none">
+                      {ascii404}
+                    </pre>
+                  </div>
+
+                  {/* NOT FOUND ASCII Art */}
+                  <div className="mb-8 text-center">
+                    <pre className="text-white font-mono leading-tight whitespace-pre text-[10px] sm:text-xs md:text-sm select-none">
+                      {asciiNotFound}
+                    </pre>
+                  </div>
+
+                  {/* Description */}
+                  <div className="mb-6 text-gray-300 text-center">
+                    <span className="text-gray-500"># </span>
+                    {t.description}
+                  </div>
+
+                  {/* Available Options */}
+                  <div className="mb-4 text-gray-400">
+                    <span className="text-gray-500"># Available options:</span>
+                  </div>
+
+                  {/* Command Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                      href={`/${locale}`}
+                      className="border border-gopher-blue text-gopher-blue hover:bg-gopher-blue hover:text-black px-6 py-3 font-medium transition-all duration-200 hover:scale-105 transform text-center"
+                    >
+                      {t.go_home}
+                    </Link>
+
+                    <Link
+                      href={`/${locale}/blog`}
+                      className="border border-gopher-blue text-gopher-blue hover:bg-gopher-blue hover:text-black px-6 py-3 font-medium transition-all duration-200 hover:scale-105 transform text-center"
+                    >
+                      {t.go_blog}
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
