@@ -2,6 +2,7 @@
 
 import LanguageSelector from '@/components/LanguageSelector';
 
+import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
 interface BlogNavigationProps {
@@ -12,15 +13,15 @@ interface BlogNavigationProps {
 export default function BlogNavigation({ locale, showBackLink = true }: BlogNavigationProps) {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-700 bg-black/80 backdrop-blur-lg">
-      <div className="mx-auto grid grid-cols-3 max-w-5xl items-center py-4">
+      <div className="mx-auto grid grid-cols-3 w-11/12 md:w-full max-w-5xl items-center py-4">
         {/* Left side - Back Link */}
         {showBackLink && (
           <div className="justify-self-start">
             <Link
               href={`/${locale}`}
-              className="font-mono text-sm text-gray-400 transition-colors hover:text-gopher-blue"
+              className="flex items-center text-sm text-gray-400 transition-colors hover:text-gopher-blue"
             >
-              ←
+              <ChevronLeft className="h-5 w-5" />
             </Link>
           </div>
         )}
@@ -28,7 +29,7 @@ export default function BlogNavigation({ locale, showBackLink = true }: BlogNavi
         {/* Center - Blog Title */}
         <div className="justify-self-center">
           <Link
-            href={`/blog/${locale}`}
+            href={`/${locale}/blog`}
             className="font-mono text-lg font-light text-white transition-colors hover:text-gopher-blue"
           >
             diegopher/blog

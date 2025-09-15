@@ -189,7 +189,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                         <div className="text-ts-blue">
                           →{' '}
                           <Link
-                            href={`/blog/${locale}`}
+                            href={`/${locale}/blog`}
                             className="text-gopher-blue hover:text-gopher-blue-hover underline"
                           >
                             {t('description.link_text')}
@@ -246,7 +246,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                                 <span className="text-gopher-blue">-rw-r--r--</span>
                                 <span className="text-warning-yellow">{formatDate(post.date)}</span>
                                 <Link
-                                  href={`/blog/${locale}/${post.slug}`}
+                                  href={`/${locale}/blog/${post.slug}`}
                                   className="hover:text-gopher-blue text-white transition-colors"
                                 >
                                   {post.title}.md

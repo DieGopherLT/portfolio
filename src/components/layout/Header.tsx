@@ -48,7 +48,7 @@ export default function Header({ className = '' }: HeaderProps) {
       </div>
 
       {/* Mobile Stacked Layout */}
-      <div className="flex flex-col items-center gap-6 px-6 md:hidden">
+      <div className="flex flex-col items-center gap-6 px-6 md:hidden relative z-10">
         {/* Dynamic Profile Picture - Top on Mobile */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

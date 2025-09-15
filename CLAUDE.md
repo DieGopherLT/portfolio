@@ -42,6 +42,28 @@ See @docs/design_guidelines.md
 - Respect reduced motion settings
 - High contrast dark theme compliance
 
+### Background System
+
+#### AdaptiveBackground Component
+- Smart background system that automatically detects appropriate background type based on route
+- `src/components/ui/backgrounds/AdaptiveBackground.tsx` - Main wrapper component
+- Supports manual override with `type` prop or auto-detection based on pathname
+- Respects `prefers-reduced-motion` (falls back to dots when motion is reduced)
+- Available types: `'stars'`, `'dots'`, `'none'`
+
+#### DotsBackground Component  
+- `src/components/ui/backgrounds/DotsBackground.tsx` - Minimal terminal-aesthetic background
+- Uses `fixed inset-0` positioning with radial gradient dots pattern
+- **CRITICAL Z-INDEX CONSIDERATION**: Background uses `fixed` positioning which can overlay content
+- **Solution**: UI elements that need to appear above background must use `relative z-10` or higher
+- Example: Header mobile layout requires `relative z-10` to appear above background
+
+#### Z-Index Guidelines
+- Background components: z-index 0 (default)
+- UI content above background: `relative z-10` minimum
+- Navigation and overlays: higher z-index as needed
+- Always test mobile layouts for background overlap issues
+
 ## Domain related
 
 - Domain was bought on Cloudflare.
