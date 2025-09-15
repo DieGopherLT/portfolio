@@ -1,7 +1,7 @@
 import { PostMetadata } from './posts';
 
 export function generatePostUrl(metadata: PostMetadata, locale: 'en' | 'es'): string {
-  return `/blog/${locale}/${metadata.slug[locale]}`;
+  return `/${locale}/blog/${metadata.slug[locale]}`;
 }
 
 export function formatReadingTime(minutes: number, locale: 'en' | 'es'): string {

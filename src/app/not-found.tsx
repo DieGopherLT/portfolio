@@ -73,7 +73,7 @@ export default function NotFound() {
       <body className={`bg-black text-white ${fontClassName} antialiased`}>
         <ClientBackgroundWrapper type="dots">
           <div className="min-h-screen flex items-center justify-center text-white">
-            <div className="text-center px-6 max-w-4xl relative z-10">
+            <div className="text-center w-11/12 mx-auto md:w-full px-6 max-w-4xl relative z-10">
               {/* Terminal Window using existing component styles */}
               <div className="terminal-window max-w-3xl mx-auto">
                 {/* Terminal Title Bar */}
@@ -95,15 +95,15 @@ export default function NotFound() {
                   </div>
 
                   {/* 404 ASCII Art */}
-                  <div className="mb-8 text-center">
-                    <pre className="text-gopher-blue font-mono leading-tight whitespace-pre text-xs sm:text-sm md:text-base lg:text-lg select-none">
+                  <div className="text-center">
+                    <pre className="text-gopher-blue font-mono leading-tight whitespace-pre select-none transform-gpu transition-transform duration-300 ease-out md:scale-[0.75] lg:scale-[0.9] xl:scale-100">
                       {ascii404}
                     </pre>
                   </div>
 
                   {/* NOT FOUND ASCII Art */}
-                  <div className="mb-8 text-center">
-                    <pre className="text-white font-mono leading-tight whitespace-pre text-[10px] sm:text-xs md:text-sm select-none">
+                  <div className="mb-8 flex justify-center">
+                    <pre className="text-white font-mono leading-tight whitespace-pre select-none scale-[0.3] transform-gpu transition-transform duration-300 ease-out sm:scale-[0.4] md:scale-[0.5] lg:scale-[0.6] xl:scale-[0.7]">
                       {asciiNotFound}
                     </pre>
                   </div>
@@ -129,7 +129,7 @@ export default function NotFound() {
                     </Link>
 
                     <Link
-                      href={`/blog/${locale}`}
+                      href={`/${locale}/blog`}
                       className="border border-gopher-blue text-gopher-blue hover:bg-gopher-blue hover:text-black px-6 py-3 font-medium transition-all duration-200 hover:scale-105 transform text-center"
                     >
                       {t.go_blog}
