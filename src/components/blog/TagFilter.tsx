@@ -4,6 +4,7 @@ import { PostMetadata } from '@/lib/blog/posts';
 import { searchPosts } from '@/lib/blog/utils';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -15,6 +16,7 @@ interface TagFilterProps {
 }
 
 export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: TagFilterProps) {
+  const t = useTranslations('sections.blog.filter');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [filteredPosts, setFilteredPosts] = useState(posts);
@@ -57,7 +59,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
         <div className="relative">
           <input
             type="text"
-            placeholder={locale === 'es' ? 'Buscar posts...' : 'Search posts...'}
+            placeholder={t('search_placeholder')}
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             className="search-input bg-bg-secondary border-border-subtle text-text-primary placeholder:text-text-muted focus:border-gopher-blue focus:ring-gopher-blue/20 w-full rounded-md border px-4 py-3 font-mono text-sm focus:ring-1 focus:outline-none"
@@ -74,7 +76,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
       <div className="tag-filters">
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <span className="text-text-muted font-mono text-sm">
-            {locale === 'es' ? 'Filtrar por:' : 'Filter by:'}
+            {t('filter_by')}
           </span>
 
           {allTags.map(tag => (
@@ -105,12 +107,11 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
             >
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-text-muted font-mono">
-                  {locale === 'es' ? 'Mostrando' : 'Showing'} {filteredPosts.length}{' '}
-                  {locale === 'es' ? 'de' : 'of'} {posts.length} posts
+                  {t('showing')} {filteredPosts.length} {t('of')} {posts.length} {t('posts')}
                 </span>
                 {selectedTags.length > 0 && (
                   <span className="text-gopher-blue font-mono">
-                    • {selectedTags.length} {locale === 'es' ? 'tags activos' : 'active tags'}
+                    • {selectedTags.length} {t('active_tags')}
                   </span>
                 )}
               </div>
@@ -119,7 +120,7 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
                 onClick={clearFilters}
                 className="clear-filters text-text-muted hover:text-gopher-blue font-mono text-sm underline transition-colors"
               >
-                {locale === 'es' ? 'Limpiar filtros' : 'Clear filters'}
+                {t('clear_filters')}
               </button>
             </motion.div>
           )}

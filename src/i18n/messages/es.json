@@ -192,6 +192,17 @@
           "enjoyed": "¿Te gustó este post? ",
           "share_knowledge": "¡Compártelo!"
         }
+      },
+      "filter": {
+        "search_placeholder": "Buscar posts...",
+        "filter_by": "Filtrar por:",
+        "showing": "Mostrando",
+        "of": "de",
+        "posts": "posts",
+        "active_tags": "tags activos",
+        "clear_filters": "Limpiar filtros",
+        "no_posts_found": "No se encontraron posts",
+        "no_posts_subtitle": "Prueba ajustando los filtros o vuelve más tarde."
       }
     },
     "contact": {

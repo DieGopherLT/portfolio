@@ -187,6 +187,17 @@
           "enjoyed": "Enjoyed this post? ",
           "share_knowledge": "Share the knowledge!"
         }
+      },
+      "filter": {
+        "search_placeholder": "Search posts...",
+        "filter_by": "Filter by:",
+        "showing": "Showing",
+        "of": "of",
+        "posts": "posts",
+        "active_tags": "active tags",
+        "clear_filters": "Clear filters",
+        "no_posts_found": "No posts found",
+        "no_posts_subtitle": "Try adjusting your filters or check back later."
       }
     },
     "contact": {
