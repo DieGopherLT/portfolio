@@ -22,6 +22,87 @@ See @docs/design_guidelines.md
 
 ## Technical Implementation
 
+## Internationalization
+
+- See @i18n/ to find all related files.
+- @i18n/messages/en.json for English texts.
+- @i18n/messages/es.json for Spanish texts.
+
+## Blog System Architecture
+
+### Routing Structure
+
+The blog uses Next.js App Router with dynamic multilingual routing:
+
+```
+/src/app/[locale]/blog/[slug]/page.tsx
+```
+
+This generates routes like:
+- `/en/blog/portfolio-development-process`
+- `/es/blog/proceso-desarrollo-portfolio`
+
+### Content Organization
+
+```
+content/blog/
+└── [post-id]/                  # Physical folder (must match metadata.id)
+    ├── metadata.json           # Multilingual metadata
+    ├── en.mdx                 # English content
+    └── es.mdx                 # Spanish content
+```
+
+### Metadata Structure
+
+Each post requires a `metadata.json` file with:
+
+```json
+{
+  "id": "folder-name",          // CRITICAL: Must match physical folder name
+  "slug": {
+    "en": "english-url-slug",   // Public URL for English version
+    "es": "spanish-url-slug"    // Public URL for Spanish version (can be different)
+  },
+  "title": {
+    "en": "English Title",
+    "es": "Título en Español"
+  },
+  "description": {
+    "en": "English description",
+    "es": "Descripción en español"
+  },
+  "publishedAt": "YYYY-MM-DD",
+  "updatedAt": "YYYY-MM-DD",
+  "tags": ["tag1", "tag2"],
+  "featured": true|false,
+  "readingTime": {
+    "en": 5,                   // Minutes for English version
+    "es": 5                    // Minutes for Spanish version
+  }
+}
+```
+
+### Key Routing Rules
+
+1. **`id` field**: Must exactly match the physical folder name in `content/blog/`
+2. **`slug` fields**: Define the public URLs and can be completely different between languages
+3. **Static Generation**: All routes are pre-generated at build time via `generateStaticParams()`
+
+### URL Resolution Flow
+
+1. User visits `/es/blog/proceso-desarrollo-portfolio`
+2. Next.js extracts: `locale="es"`, `slug="proceso-desarrollo-portfolio"`
+3. `getPostBySlug()` finds post where `metadata.slug.es === "proceso-desarrollo-portfolio"`
+4. Uses `metadata.id` to load content from `content/blog/[id]/es.mdx`
+5. Renders page with Spanish content and metadata
+
+### SEO & Language Support
+
+- Each language version gets its own URL for optimal SEO
+- `generateMetadata()` creates language-specific meta tags
+- `alternates.languages` links between language versions
+- Supports completely different slug naming conventions per language
+
 ### Frontend Stack
 
 - Modern JavaScript framework (choice flexible)
