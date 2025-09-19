@@ -13,7 +13,7 @@ interface BlogNavigationProps {
 export default function BlogNavigation({ locale, showBackLink = true }: BlogNavigationProps) {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-700 bg-black/80 backdrop-blur-lg">
-      <div className="mx-auto grid grid-cols-3 w-11/12 md:w-full max-w-5xl items-center py-4">
+      <div className="mx-auto grid grid-cols-3 w-11/12 xl:w-full max-w-5xl items-center py-4">
         {/* Left side - Back Link */}
         {showBackLink && (
           <div className="justify-self-start">
