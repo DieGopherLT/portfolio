@@ -1,7 +1,9 @@
 'use client';
 
 import LanguageSelector from '@/components/LanguageSelector';
+import { NAV_ITEMS } from '@/constants/navigation';
 import { useMobileMenu } from '@/contexts/MobileMenuContext';
+import { scrollToSection } from '@/lib/navigation';
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -10,32 +12,9 @@ interface NavigationProps {
   className?: string;
 }
 
-const navItems = [
-  { key: 'home', href: '#hero' },
-  { key: 'about', href: '#about' },
-  { key: 'experience', href: '#experience' },
-  { key: 'skills', href: '#skills' },
-  { key: 'blog', href: '#blog' },
-  { key: 'contact', href: '#contact' },
-];
-
 export default function Navigation({ className = '' }: NavigationProps) {
   const t = useTranslations('navigation');
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80; // Height of navbar + some padding
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <motion.nav
@@ -55,10 +34,10 @@ export default function Navigation({ className = '' }: NavigationProps) {
 
             {/* Center navigation */}
             <div className="flex gap-6 lg:gap-8" role="menubar" aria-label="Portfolio sections">
-              {navItems.map(item => (
+              {NAV_ITEMS.map(item => (
                 <motion.button
                   key={item.key}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, 80)}
                   className="nav-link text-secondary hover:text-gopher-blue px-2 py-1 text-sm font-medium transition-colors duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

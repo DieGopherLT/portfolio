@@ -1,6 +1,8 @@
 'use client';
 
 import LanguageSelector from '@/components/LanguageSelector';
+import { NAV_ITEMS } from '@/constants/navigation';
+import { scrollToSection } from '@/lib/navigation';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -10,30 +12,11 @@ interface MobileMenuOverlayProps {
   onClose: () => void;
 }
 
-const navItems = [
-  { key: 'home', href: '#hero' },
-  { key: 'about', href: '#about' },
-  { key: 'experience', href: '#experience' },
-  { key: 'skills', href: '#skills' },
-  { key: 'blog', href: '#blog' },
-  { key: 'contact', href: '#contact' },
-];
-
 export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlayProps) {
   const t = useTranslations('navigation');
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 40; // Height of navbar + some padding
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
+  const handleScrollToSection = (href: string) => {
+    scrollToSection(href, 40);
     onClose();
   };
 
@@ -98,10 +81,10 @@ export default function MobileMenuOverlay({ isOpen, onClose }: MobileMenuOverlay
                     <LanguageSelector variant="mobile" />
                   </motion.div> */}
 
-                  {navItems.map((item, index) => (
+                  {NAV_ITEMS.map((item, index) => (
                     <motion.button
                       key={item.key}
-                      onClick={() => scrollToSection(item.href)}
+                      onClick={() => handleScrollToSection(item.href)}
                       className="text-secondary hover:text-gopher-blue focus:ring-gopher-blue focus:ring-opacity-50 block w-full rounded px-4 py-2 text-left text-lg font-medium transition-colors duration-200 focus:ring-2 focus:outline-none"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}

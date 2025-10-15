@@ -2,6 +2,7 @@
 
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
 import TerminalSpinner from '@/components/ui/TerminalSpinner';
+import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -46,7 +47,7 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
     setSubmitState('typing');
 
     // Simular tiempo de animación del comando
-    await new Promise(resolve => setTimeout(resolve, 800));
+    await delay(ANIMATION_DELAYS.INITIAL);
 
     setSubmitState('sending');
 

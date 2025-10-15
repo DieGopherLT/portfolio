@@ -2,6 +2,7 @@
 
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalWindow from '@/components/TerminalWindow';
+import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 
 import { useCallback, useState } from 'react';
@@ -26,7 +27,7 @@ export default function Skills() {
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
   const handleTypingComplete = useCallback(() => {
-    setTimeout(() => setShowContent(true), 400);
+    setTimeout(() => setShowContent(true), ANIMATION_DELAYS.MEDIUM);
   }, []);
 
   const categories: SkillsCategories = t.raw('categories') as SkillsCategories;

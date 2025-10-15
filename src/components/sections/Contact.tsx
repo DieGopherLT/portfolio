@@ -2,6 +2,7 @@
 
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
+import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
@@ -47,16 +48,16 @@ export default function Contact() {
 
     try {
       // Delay inicial
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 1. Form command typing
       setFormAnimationState(FormAnimationState.TYPING_COMMAND);
       await typeText('./contact-form.sh', setFormCommand);
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await delay(ANIMATION_DELAYS.SHORT);
 
       // 2. Show form content
       setFormAnimationState(FormAnimationState.SHOWING_CONTENT);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 3. Complete
       setFormAnimationState(FormAnimationState.COMPLETE);
@@ -71,16 +72,16 @@ export default function Contact() {
 
     try {
       // Delay inicial (ligeramente mayor para efecto escalonado)
-      await new Promise(resolve => setTimeout(resolve, 700));
+      await delay(ANIMATION_DELAYS.LONG);
 
       // 1. Social command typing
       setSocialAnimationState(SocialAnimationState.TYPING_COMMAND);
       await typeText(t('social.command').replace('diegopher@portfolio:~$ ', ''), setSocialCommand);
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await delay(ANIMATION_DELAYS.SHORT);
 
       // 2. Show social content
       setSocialAnimationState(SocialAnimationState.SHOWING_CONTENT);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 3. Complete
       setSocialAnimationState(SocialAnimationState.COMPLETE);

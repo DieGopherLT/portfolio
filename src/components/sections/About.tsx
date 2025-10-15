@@ -2,6 +2,7 @@
 
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
@@ -41,25 +42,25 @@ export default function About() {
 
     try {
       // Delay inicial
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await delay(ANIMATION_DELAYS.INITIAL);
 
       // 1. Cat comando
       setAnimationState(AnimationState.CAT_COMMAND);
       await typeText('cat /etc/developer.conf', setCatCommand);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 2. Cat output
       setAnimationState(AnimationState.CAT_OUTPUT);
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await delay(ANIMATION_DELAYS.CONTENT_REVEAL);
 
       // 3. Segundo comando
       setAnimationState(AnimationState.SECOND_COMMAND);
       await typeText('cat about-me.md', setSecondCommand);
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await delay(ANIMATION_DELAYS.SHORT);
 
       // 4. Segundo output
       setAnimationState(AnimationState.SECOND_OUTPUT);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 5. Completo
       setAnimationState(AnimationState.COMPLETE);
