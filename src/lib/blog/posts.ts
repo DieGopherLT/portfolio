@@ -127,21 +127,3 @@ export async function getAllTags(): Promise<string[]> {
 
   return Array.from(tagSet).sort();
 }
-
-export function formatDate(dateString: string, locale: 'en' | 'es'): string {
-  const date = new Date(dateString);
-
-  if (locale === 'es') {
-    return date.toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  }
-
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}

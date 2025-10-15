@@ -30,6 +30,15 @@ export function formatDate(dateString: string, locale: 'en' | 'es'): string {
   return date.toLocaleDateString('en-US', options);
 }
 
+export function formatDateShort(dateString: string, locale: 'en' | 'es'): string {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    month: 'short',
+    day: '2-digit',
+  };
+  return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', options);
+}
+
 export function getPostPreview(content: string, maxLength: number = 150): string {
   // Remove MDX/markdown syntax and get plain text
   const plainText = content

@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes, HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
 
+import { slugify } from '@/lib/blog/utils';
 import { MDXComponents as MDXComponentsType } from 'mdx/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -143,10 +144,8 @@ export const MDXComponents: MDXComponentsType = {
   ),
 
   h2: ({ children, ...props }: HeadingProps) => {
-    const id = typeof children === 'string' 
-      ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-      : undefined;
-    
+    const id = typeof children === 'string' ? slugify(children) : undefined;
+
     return (
       <h2
         id={id}
@@ -159,14 +158,12 @@ export const MDXComponents: MDXComponentsType = {
   },
 
   h3: ({ children, ...props }: HeadingProps) => {
-    const id = typeof children === 'string' 
-      ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-      : undefined;
-      
+    const id = typeof children === 'string' ? slugify(children) : undefined;
+
     return (
-      <h3 
+      <h3
         id={id}
-        className="text-text-primary mt-6 mb-3 text-xl font-light" 
+        className="text-text-primary mt-6 mb-3 text-xl font-light"
         {...props}
       >
         {children}

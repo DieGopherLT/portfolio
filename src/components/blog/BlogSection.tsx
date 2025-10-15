@@ -2,6 +2,7 @@
 
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import { formatDateShort, formatReadingTime } from '@/lib/blog/utils';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
@@ -86,21 +87,6 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
       runAnimation();
     }
   }, [shouldRender, runAnimation, animationState]);
-
-  // Format date for display
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
-      month: 'short',
-      day: '2-digit',
-    });
-  };
-
-  // Format reading time
-  const formatReadingTime = (minutes: number): string => {
-    const mins = Math.max(1, Math.round(minutes));
-    return locale === 'es' ? `${mins}min` : `${mins}min`;
-  };
 
   return (
     <section ref={ref} id="blog" className="min-h-screen px-4 py-10" aria-labelledby="blog-heading">
@@ -228,7 +214,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                             >
                               <div className="flex items-center gap-3">
                                 <span className="text-gopher-blue">-rw-r--r--</span>
-                                <span className="text-warning-yellow">{formatDate(post.date)}</span>
+                                <span className="text-warning-yellow">{formatDateShort(post.date, locale)}</span>
                                 <Link
                                   href={`/${locale}/blog/${post.slug}`}
                                   className="hover:text-gopher-blue text-white transition-colors"
@@ -237,7 +223,7 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                                 </Link>
                               </div>
                               <span className="text-text-muted text-xs">
-                                {formatReadingTime(post.readingTime)}
+                                {formatReadingTime(post.readingTime, locale)}
                               </span>
                             </motion.div>
                           ))

@@ -3,6 +3,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { type Highlighter, createHighlighter } from 'shiki';
+import { slugify } from './utils';
 
 // Shiki highlighter instance (cached)
 let highlighterPromise: Promise<Highlighter> | null = null;
@@ -49,10 +50,7 @@ export function extractTOC(content: string): TOCItem[] {
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+    const id = slugify(text);
 
     // Only include h2 and h3
     if (level >= 2 && level <= 3) {

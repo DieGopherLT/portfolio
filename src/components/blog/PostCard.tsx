@@ -1,5 +1,5 @@
 import { PostMetadata } from '@/lib/blog/posts';
-import { formatReadingTime, generatePostUrl } from '@/lib/blog/utils';
+import { formatDate, formatReadingTime, generatePostUrl } from '@/lib/blog/utils';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -13,16 +13,6 @@ interface PostCardProps {
 export default function PostCard({ post, locale, index = 0 }: PostCardProps) {
   const postUrl = generatePostUrl(post, locale);
   const readingTimeText = formatReadingTime(post.readingTime[locale], locale);
-
-  // Format date
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
 
   return (
     <motion.article
@@ -39,7 +29,7 @@ export default function PostCard({ post, locale, index = 0 }: PostCardProps) {
       <div className="post-card-content border-border-subtle border-b py-8 transition-all duration-200">
         {/* Post Date */}
         <time dateTime={post.publishedAt} className="post-date text-text-muted mb-2 block font-mono text-sm">
-          {formatDate(post.publishedAt)}
+          {formatDate(post.publishedAt, locale)}
         </time>
 
         {/* Post Title */}

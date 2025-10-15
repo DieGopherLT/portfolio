@@ -1,6 +1,6 @@
 'use client';
 
-import { TOCItem } from '@/lib/blog/mdx';
+import { extractTOC, TOCItem } from '@/lib/blog/mdx';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
 import { cn } from '@/lib/utils';
 
@@ -19,25 +19,7 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
 
   // Extract TOC from content
   useEffect(() => {
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-    const items: TOCItem[] = [];
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const text = match[2].trim();
-      const id = text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-
-      items.push({
-        id,
-        text,
-        level,
-      });
-    }
-
+    const items = extractTOC(content);
     setToc(items);
   }, [content]);
 
