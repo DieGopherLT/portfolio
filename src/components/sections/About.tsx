@@ -3,6 +3,7 @@
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 import { useCallback, useEffect, useState } from 'react';
 
@@ -24,32 +25,15 @@ export default function About() {
   const personalInfo = useTranslations('personal_info');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
+  // Hook de typing centralizado
+  const { typeText } = useTypingAnimation({ autoStart: false });
+
   // Estado principal de la animación
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
 
   // Estados para el contenido de los comandos
   const [catCommand, setCatCommand] = useState('');
   const [secondCommand, setSecondCommand] = useState('');
-
-  const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
-    return new Promise(resolve => {
-      setter(''); // Reset
-      let currentIndex = 0;
-      const typingSpeed = 50 + Math.random() * 30;
-
-      const typeChar = () => {
-        if (currentIndex < text.length) {
-          setter(text.slice(0, currentIndex + 1));
-          currentIndex++;
-          setTimeout(typeChar, typingSpeed);
-        } else {
-          resolve();
-        }
-      };
-
-      typeChar();
-    });
-  }, []);
 
   // Función principal de animación
   const runAnimation = useCallback(async () => {

@@ -3,6 +3,7 @@
 import ContactForm from '@/components/ui/ContactForm';
 import SocialMedia from '@/components/ui/SocialMedia';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 import { useCallback, useEffect, useState } from 'react';
 
@@ -27,6 +28,9 @@ export default function Contact() {
   const t = useTranslations('sections.contact');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
+  // Hook de typing centralizado
+  const { typeText } = useTypingAnimation({ autoStart: false });
+
   // Estados independientes para cada animación
   const [formAnimationState, setFormAnimationState] = useState<FormAnimationState>(FormAnimationState.IDLE);
   const [socialAnimationState, setSocialAnimationState] = useState<SocialAnimationState>(
@@ -36,26 +40,6 @@ export default function Contact() {
   // Estados para el contenido de los comandos
   const [formCommand, setFormCommand] = useState('');
   const [socialCommand, setSocialCommand] = useState('');
-
-  const typeText = useCallback((text: string, setter: (value: string) => void): Promise<void> => {
-    return new Promise(resolve => {
-      setter(''); // Reset
-      let currentIndex = 0;
-      const typingSpeed = 50 + Math.random() * 30;
-
-      const typeChar = () => {
-        if (currentIndex < text.length) {
-          setter(text.slice(0, currentIndex + 1));
-          currentIndex++;
-          setTimeout(typeChar, typingSpeed);
-        } else {
-          resolve();
-        }
-      };
-
-      typeChar();
-    });
-  }, []);
 
   // Función de animación para el formulario de contacto
   const runFormAnimation = useCallback(async () => {

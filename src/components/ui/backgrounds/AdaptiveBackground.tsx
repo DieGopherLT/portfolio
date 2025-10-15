@@ -61,7 +61,6 @@ export function AdaptiveBackground({
             factor={0.03}
             speed={60}
             starColor="#00ADD8"
-            pointerEvents={true}
             {...starsConfig}
           />
         );
