@@ -1,7 +1,11 @@
+'use client';
+
 import { AnchorHTMLAttributes, HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
 
 import { slugify } from '@/lib/blog/utils';
+import { cn } from '@/lib/utils';
 import { MDXComponents as MDXComponentsType } from 'mdx/types';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -88,6 +92,7 @@ interface CodeBlockProps {
 }
 
 function CodeBlock({ children, className, filename }: CodeBlockProps) {
+  const t = useTranslations('sections.blog.code_block');
   const language = className?.replace('language-', '') || 'text';
 
   return (
@@ -99,7 +104,7 @@ function CodeBlock({ children, className, filename }: CodeBlockProps) {
             className="code-copy border-border-subtle hover:bg-gopher-blue hover:border-gopher-blue hover:text-bg-primary rounded border px-2 py-1 font-mono text-xs transition-all"
             onClick={() => navigator.clipboard.writeText(children)}
           >
-            copy
+            {t('copy')}
           </button>
         </div>
       )}
@@ -287,7 +292,23 @@ export const MDXComponents: MDXComponentsType = {
   FileTree,
 
   // Layout components
-  Grid: ({ children, cols = 2 }: { children: ReactNode; cols?: number }) => (
-    <div className={`grid grid-cols-${cols} my-8 gap-6`}>{children}</div>
-  ),
+  Grid: ({ children, cols = 2 }: { children: ReactNode; cols?: number }) => {
+    const gridColsMap: Record<number, string> = {
+      1: 'grid-cols-1',
+      2: 'grid-cols-2',
+      3: 'grid-cols-3',
+      4: 'grid-cols-4',
+    };
+
+    return (
+      <div
+        className={cn(
+          'grid my-8 gap-6',
+          gridColsMap[cols] || gridColsMap[2]
+        )}
+      >
+        {children}
+      </div>
+    );
+  },
 };

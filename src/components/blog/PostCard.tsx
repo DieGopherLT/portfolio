@@ -2,6 +2,7 @@ import { PostMetadata } from '@/lib/blog/posts';
 import { formatDate, formatReadingTime, generatePostUrl } from '@/lib/blog/utils';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 interface PostCardProps {
@@ -11,6 +12,7 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post, locale, index = 0 }: PostCardProps) {
+  const t = useTranslations('sections.blog.post_card');
   const postUrl = generatePostUrl(post, locale);
   const readingTimeText = formatReadingTime(post.readingTime[locale], locale);
 
@@ -68,7 +70,7 @@ export default function PostCard({ post, locale, index = 0 }: PostCardProps) {
           <div className="featured-badge mt-3">
             <span className="text-warning-yellow inline-flex items-center gap-1 font-mono text-xs">
               <span className="text-warning-yellow">★</span>
-              {locale === 'es' ? 'Destacado' : 'Featured'}
+              {t('featured')}
             </span>
           </div>
         )}

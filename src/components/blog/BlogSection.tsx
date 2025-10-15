@@ -2,15 +2,22 @@
 
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
-import { formatDateShort, formatReadingTime } from '@/lib/blog/utils';
+import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
+import { formatDateShort, formatReadingTime } from '@/lib/blog/utils';
 
 import { useCallback, useEffect, useState } from 'react';
+
+
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+
+
+
+
 
 // Animation states enum
 enum AnimationState {
@@ -38,7 +45,6 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
   const t = useTranslations('sections.blog');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  // Hook de typing centralizado
   const { typeText } = useTypingAnimation({ autoStart: false });
 
   // Animation state
@@ -54,25 +60,25 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
 
     try {
       // Initial delay
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await delay(ANIMATION_DELAYS.INITIAL);
 
       // 1. Cat command
       setAnimationState(AnimationState.CAT_COMMAND);
       await typeText('cat about-blog.md', setCatCommand);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 2. Cat output
       setAnimationState(AnimationState.CAT_OUTPUT);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await delay(ANIMATION_DELAYS.CONTENT_DISPLAY);
 
       // 3. LS command
       setAnimationState(AnimationState.LS_COMMAND);
       await typeText('ls blog/', setLsCommand);
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await delay(ANIMATION_DELAYS.SHORT);
 
       // 4. LS output
       setAnimationState(AnimationState.LS_OUTPUT);
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 5. Complete
       setAnimationState(AnimationState.COMPLETE);
@@ -214,7 +220,9 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
                             >
                               <div className="flex items-center gap-3">
                                 <span className="text-gopher-blue">-rw-r--r--</span>
-                                <span className="text-warning-yellow">{formatDateShort(post.date, locale)}</span>
+                                <span className="text-warning-yellow">
+                                  {formatDateShort(post.date, locale)}
+                                </span>
                                 <Link
                                   href={`/${locale}/blog/${post.slug}`}
                                   className="hover:text-gopher-blue text-white transition-colors"

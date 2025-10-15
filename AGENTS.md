@@ -26,6 +26,7 @@ This document provides complete technical guidelines for development. For projec
 - **Tailwind CSS 4**: Utility-first styling with custom theme
 - **Framer Motion 12**: Declarative animations (typing effects, transitions)
 - **AOS 2.3.4**: Scroll animations
+- **CLSX**: Clean conditionaal styles, prefer over template strings
 
 ### Internationalization
 - **next-intl 4.3.5**: Route-based i18n with locale switching

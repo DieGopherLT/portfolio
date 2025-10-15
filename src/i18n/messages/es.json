@@ -203,6 +203,12 @@
         "clear_filters": "Limpiar filtros",
         "no_posts_found": "No se encontraron posts",
         "no_posts_subtitle": "Prueba ajustando los filtros o vuelve más tarde."
+      },
+      "post_card": {
+        "featured": "Destacado"
+      },
+      "code_block": {
+        "copy": "copiar"
       }
     },
     "contact": {

@@ -13,6 +13,8 @@ export const ANIMATION_DELAYS = {
   LONG: 700,
   /** Delay before revealing content after typing (1500ms) */
   CONTENT_REVEAL: 1500,
+  /** Delay for displaying command output (2000ms) */
+  CONTENT_DISPLAY: 2000,
 } as const;
 
 /**

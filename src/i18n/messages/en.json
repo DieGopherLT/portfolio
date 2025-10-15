@@ -198,6 +198,12 @@
         "clear_filters": "Clear filters",
         "no_posts_found": "No posts found",
         "no_posts_subtitle": "Try adjusting your filters or check back later."
+      },
+      "post_card": {
+        "featured": "Featured"
+      },
+      "code_block": {
+        "copy": "copy"
       }
     },
     "contact": {
