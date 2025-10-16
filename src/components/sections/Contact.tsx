@@ -10,7 +10,6 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
-// Enums para estados de animación independientes
 enum FormAnimationState {
   IDLE = 0,
   TYPING_COMMAND = 1,
@@ -29,25 +28,20 @@ export default function Contact() {
   const t = useTranslations('sections.contact');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  // Hook de typing centralizado
   const { typeText } = useTypingAnimation({ autoStart: false });
 
-  // Estados independientes para cada animación
   const [formAnimationState, setFormAnimationState] = useState<FormAnimationState>(FormAnimationState.IDLE);
   const [socialAnimationState, setSocialAnimationState] = useState<SocialAnimationState>(
     SocialAnimationState.IDLE
   );
 
-  // Estados para el contenido de los comandos
   const [formCommand, setFormCommand] = useState('');
   const [socialCommand, setSocialCommand] = useState('');
 
-  // Función de animación para el formulario de contacto
   const runFormAnimation = useCallback(async () => {
     if (!shouldRender) return;
 
     try {
-      // Delay inicial
       await delay(ANIMATION_DELAYS.MEDIUM);
 
       // 1. Form command typing
@@ -66,12 +60,11 @@ export default function Contact() {
     }
   }, [shouldRender, typeText]);
 
-  // Función de animación para los enlaces sociales
   const runSocialAnimation = useCallback(async () => {
     if (!shouldRender) return;
 
     try {
-      // Delay inicial (ligeramente mayor para efecto escalonado)
+      // Slightly longer delay for staggered effect
       await delay(ANIMATION_DELAYS.LONG);
 
       // 1. Social command typing
@@ -90,7 +83,6 @@ export default function Contact() {
     }
   }, [shouldRender, typeText, t]);
 
-  // Efecto principal que ejecuta ambas animaciones en paralelo
   useEffect(() => {
     const runAllAnimations = async () => {
       if (
@@ -98,7 +90,7 @@ export default function Contact() {
         formAnimationState === FormAnimationState.IDLE &&
         socialAnimationState === SocialAnimationState.IDLE
       ) {
-        // Ejecutar ambas animaciones en paralelo
+        // Run both animations in parallel
         await Promise.all([runFormAnimation(), runSocialAnimation()]);
       }
     };

@@ -39,11 +39,11 @@ export default function SocialMedia({ showContent, socialCommand, showSocialCurs
           <div className="space-y-4">
             <div className="border-b border-gray-800 pb-4">
               <h3 className="mb-2 text-lg font-semibold text-white">
-                <span className="text-keyword-purple">#</span> Redes Sociales
+                <span className="text-keyword-purple">#</span> {t('social.section_title')}
               </h3>
               <p className="text-secondary text-sm">
                 <span className="text-comment-gray">{'//'} </span>
-                Conéctate conmigo en estas plataformas
+                {t('social.section_subtitle')}
               </p>
             </div>
 

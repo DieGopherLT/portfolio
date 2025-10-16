@@ -46,13 +46,13 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
   const onSubmit = async (data: ContactFormData) => {
     setSubmitState('typing');
 
-    // Simular tiempo de animación del comando
+    // Simulate command animation timing
     await delay(ANIMATION_DELAYS.INITIAL);
 
     setSubmitState('sending');
 
     try {
-      // Enviar mensaje a Telegram
+      // Send message to Telegram
       const response = await fetch('/api/telegram', {
         method: 'POST',
         headers: {
@@ -72,7 +72,7 @@ export default function ContactForm({ showContent, formCommand, showFormCursor }
 
       setSubmitState('success');
 
-      // Reset después de mostrar éxito
+      // Reset after showing success message
       setTimeout(() => {
         setSubmitState('idle');
         reset();

@@ -6,11 +6,13 @@ interface ContactData {
   email: string;
   subject: string;
   message: string;
+  locale?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message }: ContactData = await request.json();
+    const body = await request.json();
+    const { name, email, subject, message, locale = 'en' }: ContactData = body;
 
     if (!name || !email || !subject || !message) {
       return Response.json({ message: 'All fields are required' }, { status: 400 });
@@ -26,7 +28,9 @@ export async function POST(request: NextRequest) {
 
     const bot = new TelegramBot(botToken);
 
-    const messageText = `
+    // Use locale to determine message template
+    const messageText = locale === 'es'
+      ? `
 🔔 *Nuevo mensaje del portfolio*
 
 👤 *Nombre:* ${name}
@@ -35,7 +39,17 @@ export async function POST(request: NextRequest) {
 
 💬 *Mensaje:*
 ${message}
-    `.trim();
+      `.trim()
+      : `
+🔔 *New portfolio message*
+
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+📝 *Subject:* ${subject}
+
+💬 *Message:*
+${message}
+      `.trim();
 
     await bot.sendMessage(chatId, messageText, { parse_mode: 'Markdown' });
 

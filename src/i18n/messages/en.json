@@ -136,14 +136,17 @@
       "highlighted_languages": ["Go", "TypeScript"],
       "highlighted_skills": [
         "Clean Code Principles",
-        "Design Patterns (GoF)",
+        "Design Patterns",
         "SOLID Principles",
         "Go (Golang)",
         "Nest.js",
-        "MongoDB",
         "TypeScript",
         "Linux",
-        "Git & GitHub"
+        "Git & GitHub",
+        "REST APIs",
+        "React",
+        "UI/UX",
+        "Terminal/CLI"
       ],
       "expertise_level": "3+ years professional experience",
       "skill_levels": {
@@ -243,6 +246,8 @@
       "social": {
         "title": "my-networks.md",
         "command": "diegopher@portfolio:~$ cat my-networks.md",
+        "section_title": "Social Networks",
+        "section_subtitle": "Connect with me on these platforms",
         "links": [
           {
             "platform": "GitHub",

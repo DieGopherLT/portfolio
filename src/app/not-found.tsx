@@ -1,5 +1,6 @@
 'use client';
 
+import { ERROR_404_ASCII, NOT_FOUND_ASCII } from '@/constants/ascii';
 import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
 import { fontClassName } from '@/lib/fonts';
 
@@ -51,22 +52,6 @@ export default function NotFound() {
   const locale = detectLocale(pathname);
   const t = translations[locale];
 
-  const ascii404 = `\
-██╗  ██╗ ██████╗ ██╗  ██╗
-██║  ██║██╔═████╗██║  ██║
-███████║██║██╔██║███████║
-╚════██║████╔╝██║╚════██║
-     ██║╚██████╔╝     ██║
-     ╚═╝ ╚═════╝      ╚═╝`;
-
-  const asciiNotFound = `\
-███╗   ██╗ ██████╗ ████████╗    ███████╗ ██████╗ ██╗   ██╗███╗   ██╗██████╗ 
-████╗  ██║██╔═══██╗╚══██╔══╝    ██╔════╝██╔═══██╗██║   ██║████╗  ██║██╔══██╗
-██╔██╗ ██║██║   ██║   ██║       █████╗  ██║   ██║██║   ██║██╔██╗ ██║██║  ██║
-██║╚██╗██║██║   ██║   ██║       ██╔══╝  ██║   ██║██║   ██║██║╚██╗██║██║  ██║
-██║ ╚████║╚██████╔╝   ██║       ██║     ╚██████╔╝╚██████╔╝██║ ╚████║██████╔╝
-╚═╝  ╚═══╝ ╚═════╝    ╚═╝       ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═════╝`;
-
   return (
     <html lang="en">
       <head />
@@ -97,14 +82,14 @@ export default function NotFound() {
                   {/* 404 ASCII Art */}
                   <div className="text-center">
                     <pre className="text-gopher-blue font-mono leading-tight whitespace-pre select-none transform-gpu transition-transform duration-300 ease-out md:scale-[0.75] lg:scale-[0.9] xl:scale-100">
-                      {ascii404}
+                      {ERROR_404_ASCII}
                     </pre>
                   </div>
 
                   {/* NOT FOUND ASCII Art */}
                   <div className="mb-8 flex justify-center">
                     <pre className="text-white font-mono leading-tight whitespace-pre select-none scale-[0.3] transform-gpu transition-transform duration-300 ease-out sm:scale-[0.4] md:scale-[0.5] lg:scale-[0.6] xl:scale-[0.7]">
-                      {asciiNotFound}
+                      {NOT_FOUND_ASCII}
                     </pre>
                   </div>
 

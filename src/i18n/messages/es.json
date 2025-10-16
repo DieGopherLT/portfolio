@@ -106,14 +106,14 @@
         "conceptual": {
           "name": "Conceptos & Principios",
           "skills": [
-            "Principios Clean Code",
-            "Design Patterns",
+            "Principios Código Limpio",
+            "Patrones de Diseño",
             "SOLID",
-            "MVC Architecture",
-            "Domain Driven Design",
-            "RESTful API Design",
+            "Arquitectura MVC",
+            "Diseño basado en Dominios (DDD)",
+            "Diseño de API RESTful",
             "Programación Orientada a Objetos",
-            "Dependency Injection"
+            "Inyección de Dependencias"
           ]
         },
         "backend": {
@@ -131,24 +131,27 @@
         },
         "frontend": {
           "name": "Frontend & UI",
-          "skills": ["TypeScript", "React", "Vue.js", "Tailwind CSS", "Responsive Design", "UI/UX"]
+          "skills": ["TypeScript", "React", "Vue.js", "Tailwind CSS", "Diseño Responsivo", "UI/UX"]
         },
         "tooling": {
           "name": "Herramientas & DevOps",
-          "skills": ["Git & GitHub", "Docker", "Linux", "Terminal/CLI", "CI/CD", "Package Managers"]
+          "skills": ["Git & GitHub", "Docker", "Linux", "Terminal/CLI", "CI/CD", "Manejadores de Paquetes"]
         }
       },
       "highlighted_languages": ["Go", "TypeScript"],
       "highlighted_skills": [
-        "Clean Code Principles",
-        "Design Patterns",
+        "Principios Código Limpio",
+        "Patrones de Diseño",
         "SOLID",
         "Go (Golang)",
         "Nest.js",
-        "MongoDB",
         "TypeScript",
         "Linux",
-        "Git & GitHub"
+        "Git & GitHub",
+        "REST APIs",
+        "React",
+        "UI/UX",
+        "Terminal/CLI"
       ],
       "expertise_level": "3+ años de experiencia profesional",
       "skill_levels": {
@@ -248,6 +251,8 @@
       "social": {
         "title": "mis-redes.md",
         "command": "diegopher@portfolio:~$ cat mis-redes.md",
+        "section_title": "Redes Sociales",
+        "section_subtitle": "Conéctate conmigo en estas plataformas",
         "links": [
           {
             "platform": "GitHub",

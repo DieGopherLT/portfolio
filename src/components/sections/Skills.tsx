@@ -5,7 +5,7 @@ import TerminalWindow from '@/components/TerminalWindow';
 import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
@@ -35,24 +35,39 @@ export default function Skills() {
   const highlightedSkills: string[] = t.raw('highlighted_skills') as string[];
   const skillLevels: Record<string, string> = t.raw('skill_levels') as Record<string, string>;
 
-  const isHighlighted = (skill: string): boolean => {
-    return highlightedSkills.includes(skill);
-  };
+  const isHighlighted = useCallback(
+    (skill: string): boolean => highlightedSkills.includes(skill),
+    [highlightedSkills]
+  );
 
-  const sortSkillsByHighlight = (skills: string[]): string[] => {
-    return skills.sort((a, b) => {
-      const aHighlighted = isHighlighted(a);
-      const bHighlighted = isHighlighted(b);
+  const sortSkillsByHighlight = useCallback(
+    (skills: string[]): string[] => {
+      return [...skills].sort((a, b) => {
+        const aHighlighted = highlightedSkills.includes(a);
+        const bHighlighted = highlightedSkills.includes(b);
 
-      // Si ambos están resaltados o ninguno está resaltado, mantener orden original
-      if (aHighlighted === bHighlighted) {
-        return 0;
-      }
+        // Both highlighted or both not highlighted - maintain original order
+        if (aHighlighted === bHighlighted) {
+          return 0;
+        }
 
-      // Los resaltados van primero
-      return aHighlighted ? -1 : 1;
+        // Highlighted skills come first
+        return aHighlighted ? -1 : 1;
+      });
+    },
+    [highlightedSkills]
+  );
+
+  const sortedCategories = useMemo(() => {
+    const result: Record<string, SkillCategory> = {};
+    Object.entries(categories).forEach(([key, category]) => {
+      result[key] = {
+        ...category,
+        skills: sortSkillsByHighlight(category.skills),
+      };
     });
-  };
+    return result as unknown as SkillsCategories;
+  }, [categories, sortSkillsByHighlight]);
 
   const getSkillLevel = (skill: string): string => {
     return skillLevels[skill] || '';
@@ -91,7 +106,7 @@ export default function Skills() {
           {t('title')}
         </h2>
 
-        {/* Terminal Window con renderizado condicional */}
+        {/* Terminal Window with conditional rendering */}
         {shouldRender && (
           <div data-aos="fade-up" data-aos-delay="800" data-aos-duration="300" data-aos-once="true">
             <TerminalWindow
@@ -134,7 +149,7 @@ export default function Skills() {
 
                 {/* Skills Categories */}
                 <div className="space-y-6">
-                  {Object.entries(categories).map(([categoryKey, category], index) => (
+                  {Object.entries(sortedCategories).map(([categoryKey, category], index) => (
                     <div
                       key={categoryKey}
                       className="border-gopher-blue border-l-2 pl-4 md:pl-6"
@@ -150,7 +165,7 @@ export default function Skills() {
                       </div>
 
                       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                        {sortSkillsByHighlight(category.skills).map((skill: string, idx: number) => (
+                        {category.skills.map((skill: string, idx: number) => (
                           <div
                             key={idx}
                             className={`cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm ${

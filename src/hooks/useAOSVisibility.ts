@@ -22,7 +22,7 @@ export function useAOSVisibility(options: UseAOSVisibilityOptions = {}) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Pequeño delay para que AOS inicie su animación primero
+          // Small delay for AOS animation to start first
           setTimeout(() => setShouldRender(true), 100);
         }
       },

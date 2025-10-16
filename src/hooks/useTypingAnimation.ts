@@ -22,10 +22,10 @@ export function useTypingAnimation({
   const [showCursor, setShowCursor] = useState(true);
 
   /**
-   * Función de typing que puede usarse tanto automáticamente como manualmente
-   * @param text - El texto a escribir
-   * @param setter - Setter opcional para actualizar estado externo
-   * @returns Promise que se resuelve cuando termina de escribir
+   * Typing function that can be used automatically or manually
+   * @param text - Text to type
+   * @param setter - Optional setter to update external state
+   * @returns Promise that resolves when typing completes
    */
   const typeText = useCallback(
     (text: string, setter?: (value: string) => void): Promise<void> => {

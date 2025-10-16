@@ -1,5 +1,6 @@
 'use client';
 
+import { FOOTER_ASCII_ART } from '@/constants/ascii';
 import { motion } from 'framer-motion';
 
 interface FooterProps {
@@ -8,13 +9,6 @@ interface FooterProps {
 
 export default function Footer({ className = '' }: FooterProps) {
   const currentYear = new Date().getFullYear();
-
-  const asciiArt = `██████╗ ██╗███████╗ ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██████╗ ██╗  ████████╗
-██╔══██╗██║██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║  ██║██╔════╝██╔══██╗██║  ╚══██╔══╝
-██║  ██║██║█████╗  ██║  ███╗██║   ██║██████╔╝███████║█████╗  ██████╔╝██║     ██║   
-██║  ██║██║██╔══╝  ██║   ██║██║   ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗██║     ██║   
-██████╔╝██║███████╗╚██████╔╝╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████╗██║   
-╚═════╝ ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝`;
 
   return (
     <motion.footer
@@ -35,7 +29,7 @@ export default function Footer({ className = '' }: FooterProps) {
             <div className="text-muted mb-2 font-mono text-xs">Built by:</div>
             <div className="ascii-container flex justify-center">
               <pre className="ascii-art text-gopher-blue origin-center scale-[0.6] transform-gpu font-mono leading-tight whitespace-pre transition-transform duration-300 ease-out md:scale-[0.75] lg:scale-[0.9] xl:scale-100">
-                {asciiArt}
+                {FOOTER_ASCII_ART}
               </pre>
             </div>
           </motion.div>

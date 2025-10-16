@@ -77,7 +77,7 @@ export function DynamicProfilePicture({
   const handleClick = () => {
     if (isPausedInternal) {
       resumeAnimation();
-      // Quitar focus cuando se reanuda para evitar el rastro de puntos
+      // Remove focus when resuming to avoid focus outline
       containerRef.current?.blur();
     } else {
       pauseAnimation();

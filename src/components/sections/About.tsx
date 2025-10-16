@@ -6,12 +6,15 @@ import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
-import { useCallback, useEffect, useState } from 'react';
+
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
-// Enum para estados de animación
 enum AnimationState {
   IDLE = 0,
   CAT_COMMAND = 1,
@@ -26,55 +29,47 @@ export default function About() {
   const personalInfo = useTranslations('personal_info');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  // Hook de typing centralizado
   const { typeText } = useTypingAnimation({ autoStart: false });
 
-  // Estado principal de la animación
   const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
 
-  // Estados para el contenido de los comandos
   const [catCommand, setCatCommand] = useState('');
   const [secondCommand, setSecondCommand] = useState('');
 
-  // Función principal de animación
   const runAnimation = useCallback(async () => {
     if (!shouldRender) return;
 
     try {
-      // Delay inicial
       await delay(ANIMATION_DELAYS.INITIAL);
 
-      // 1. Cat comando
       setAnimationState(AnimationState.CAT_COMMAND);
       await typeText('cat /etc/developer.conf', setCatCommand);
       await delay(ANIMATION_DELAYS.MEDIUM);
 
-      // 2. Cat output
       setAnimationState(AnimationState.CAT_OUTPUT);
       await delay(ANIMATION_DELAYS.CONTENT_REVEAL);
 
-      // 3. Segundo comando
       setAnimationState(AnimationState.SECOND_COMMAND);
       await typeText('cat about-me.md', setSecondCommand);
       await delay(ANIMATION_DELAYS.SHORT);
 
-      // 4. Segundo output
       setAnimationState(AnimationState.SECOND_OUTPUT);
       await delay(ANIMATION_DELAYS.MEDIUM);
 
-      // 5. Completo
       setAnimationState(AnimationState.COMPLETE);
     } catch (error) {
       console.error('Animation error:', error);
     }
   }, [shouldRender, typeText]);
 
-  // Efecto principal simplificado
+  const runAnimationRef = useRef(runAnimation);
+  runAnimationRef.current = runAnimation;
+
   useEffect(() => {
     if (shouldRender && animationState === AnimationState.IDLE) {
-      runAnimation();
+      runAnimationRef.current();
     }
-  }, [shouldRender, runAnimation, animationState]);
+  }, [shouldRender, animationState]);
 
   return (
     <section ref={ref} id="about" className="min-h-screen px-4 py-10" aria-labelledby="about-heading">
