@@ -2,6 +2,7 @@
 
 import { PostMetadata } from '@/lib/blog/posts';
 import { searchPosts } from '@/lib/blog/utils';
+import { cn } from '@/lib/utils';
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -83,11 +84,12 @@ export default function TagFilter({ posts, locale, onFilteredPosts, allTags }: T
             <motion.button
               key={tag}
               onClick={() => toggleTag(tag)}
-              className={`tag-filter rounded-md border px-3 py-1.5 font-mono text-xs transition-all duration-200 ${
+              className={cn(
+                'tag-filter rounded-md border px-3 py-1.5 font-mono text-xs transition-all duration-200',
                 selectedTags.includes(tag)
                   ? 'bg-gopher-blue border-gopher-blue text-bg-primary'
                   : 'border-border-subtle text-text-secondary hover:border-gopher-blue hover:text-gopher-blue bg-transparent'
-              }`}
+              )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

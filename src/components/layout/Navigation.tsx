@@ -4,6 +4,7 @@ import LanguageSelector from '@/components/LanguageSelector';
 import { NAV_ITEMS } from '@/constants/navigation';
 import { useMobileMenu } from '@/contexts/MobileMenuContext';
 import { scrollToSection } from '@/lib/navigation';
+import { cn } from '@/lib/utils';
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -18,7 +19,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
 
   return (
     <motion.nav
-      className={`sticky top-0 z-50 border-b border-zinc-800 bg-black/90 backdrop-blur-sm ${className}`}
+      className={cn('sticky top-0 z-50 border-b border-zinc-800 bg-black/90 backdrop-blur-sm', className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}

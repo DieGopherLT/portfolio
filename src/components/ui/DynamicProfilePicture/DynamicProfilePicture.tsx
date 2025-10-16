@@ -9,6 +9,7 @@ import React, { useRef, useState } from 'react';
 import { Pause } from 'lucide-react';
 import Image from 'next/image';
 
+import { cn } from '@/lib/utils';
 import styles from './DynamicProfilePicture.module.css';
 import { useDynamicProfilePicture } from './hooks/useDynamicProfilePicture';
 
@@ -88,7 +89,7 @@ export function DynamicProfilePicture({
   if (imageErrors.normal && imageErrors.ascii) {
     return (
       <div
-        className={`${styles['dpp-container']} ${styles[`dpp-size-${size}`]} ${styles['dpp-error']} ${className}`}
+        className={cn(styles['dpp-container'], styles[`dpp-size-${size}`], styles['dpp-error'], className)}
         role="img"
         aria-label={alt}
       >
@@ -101,7 +102,7 @@ export function DynamicProfilePicture({
   if (!isImagesLoaded) {
     return (
       <div
-        className={`${styles['dpp-container']} ${styles[`dpp-size-${size}`]} ${styles['dpp-loading']} ${className}`}
+        className={cn(styles['dpp-container'], styles[`dpp-size-${size}`], styles['dpp-loading'], className)}
         role="img"
         aria-label="Loading profile picture"
       />
@@ -142,7 +143,7 @@ export function DynamicProfilePicture({
             src={normalImageSrc}
             alt={alt}
             fill
-            className={`${styles['dpp-image-layer']} ${styles['dpp-image-normal']}`}
+            className={cn(styles['dpp-image-layer'], styles['dpp-image-normal'])}
             style={{ objectFit: 'cover' }}
             priority={priority}
             onError={() => handleImageError('normal')}
@@ -159,7 +160,7 @@ export function DynamicProfilePicture({
             src={asciiImageSrc}
             alt={`${alt} (ASCII art version)`}
             fill
-            className={`${styles['dpp-image-layer']} ${styles['dpp-image-ascii']}`}
+            className={cn(styles['dpp-image-layer'], styles['dpp-image-ascii'])}
             style={{ objectFit: 'cover' }}
             priority={priority}
             onError={() => handleImageError('ascii')}

@@ -1,6 +1,7 @@
 'use client';
 
 import TerminalPrompt from '@/components/ui/TerminalPrompt';
+import { cn } from '@/lib/utils';
 
 import { motion } from 'framer-motion';
 
@@ -12,7 +13,7 @@ interface TerminalFooterProps {
 export default function TerminalFooter({ path = '~', className = '' }: TerminalFooterProps) {
   return (
     <motion.div
-      className={`terminal-footer ${className}`}
+      className={cn('terminal-footer', className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay: 0.2 }}

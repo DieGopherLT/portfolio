@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 import DynamicProfilePicture from '../ui/DynamicProfilePicture';
 
@@ -14,7 +15,7 @@ export default function Header({ className = '' }: HeaderProps) {
 
   return (
     <motion.header
-      className={`py-4 ${className}`}
+      className={cn('py-4', className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}

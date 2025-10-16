@@ -1,6 +1,7 @@
 'use client';
 
 import { MobileMenuProvider, useMobileMenu } from '@/contexts/MobileMenuContext';
+import { cn } from '@/lib/utils';
 
 import { useEffect } from 'react';
 
@@ -30,7 +31,7 @@ function LayoutContent({ children, className = '' }: LayoutProps) {
   }, []);
 
   return (
-    <div className={`min-h-screen text-white ${className}`}>
+    <div className={cn('min-h-screen text-white', className)}>
       <Navigation />
 
       <main className="flex min-h-screen w-full flex-col">

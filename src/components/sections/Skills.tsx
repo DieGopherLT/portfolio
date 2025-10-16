@@ -4,6 +4,7 @@ import TerminalFooter from '@/components/TerminalFooter';
 import TerminalWindow from '@/components/TerminalWindow';
 import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
+import { cn } from '@/lib/utils';
 
 import { useCallback, useMemo, useState } from 'react';
 
@@ -159,7 +160,7 @@ export default function Skills() {
                       data-aos-once="true"
                     >
                       <div className="mb-4">
-                        <h3 className={`text-lg font-bold md:text-xl ${getCategoryColor(categoryKey)} mb-2`}>
+                        <h3 className={cn('text-lg font-bold md:text-xl mb-2', getCategoryColor(categoryKey))}>
                           {getCategoryIcon(categoryKey)} {category.name}
                         </h3>
                       </div>
@@ -168,11 +169,12 @@ export default function Skills() {
                         {category.skills.map((skill: string, idx: number) => (
                           <div
                             key={idx}
-                            className={`cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm ${
+                            className={cn(
+                              'cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
                               isHighlighted(skill)
                                 ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
                                 : 'text-secondary border-gray-700 bg-gray-800 hover:bg-gray-700'
-                            }`}
+                            )}
                           >
                             <span className="flex items-center gap-2">
                               {isHighlighted(skill) && <span className="text-warning-yellow text-xs">★</span>}
@@ -204,9 +206,7 @@ export default function Skills() {
                           key={idx}
                           className="bg-gopher-blue/5 border-gopher-blue flex items-center gap-3 rounded-lg border p-3"
                         >
-                          <span
-                            className={`text-lg ${isIntermediate ? 'text-warning-yellow' : 'text-warning-yellow'}`}
-                          >
+                          <span className={cn('text-lg text-warning-yellow')}>
                             {isIntermediate ? '◐' : '★'}
                           </span>
                           <div>

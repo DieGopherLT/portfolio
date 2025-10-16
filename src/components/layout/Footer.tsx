@@ -1,6 +1,7 @@
 'use client';
 
 import { FOOTER_ASCII_ART } from '@/constants/ascii';
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 interface FooterProps {
@@ -12,7 +13,7 @@ export default function Footer({ className = '' }: FooterProps) {
 
   return (
     <motion.footer
-      className={`relative z-10 bg-primary mt-4 border-t border-zinc-800 py-8 ${className}`}
+      className={cn('relative z-10 bg-primary mt-4 border-t border-zinc-800 py-8', className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}

@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 
 interface TerminalSpinnerProps {
@@ -19,5 +20,5 @@ export default function TerminalSpinner({ className = '' }: TerminalSpinnerProps
     return () => clearInterval(interval);
   }, []);
 
-  return <span className={`text-terminal-green font-mono ${className}`}>{spinnerChars[currentChar]}</span>;
+  return <span className={cn('text-terminal-green font-mono', className)}>{spinnerChars[currentChar]}</span>;
 }

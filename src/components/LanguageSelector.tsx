@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguageSwitch } from '@/hooks/useLanguageSwitch';
+import { cn } from '@/lib/utils';
 
 import { motion } from 'framer-motion';
 
@@ -21,7 +22,7 @@ export default function LanguageSelector({ className = '', variant = 'desktop' }
     return (
       <motion.button
         onClick={toggleLanguage}
-        className={`-m-2 w-full rounded p-2 pt-4 text-left font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50 ${className}`}
+        className={cn('-m-2 w-full rounded p-2 pt-4 text-left font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50', className)}
         whileHover={{ x: 4 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -31,9 +32,10 @@ export default function LanguageSelector({ className = '', variant = 'desktop' }
             <span key={lang.code} className="flex items-center">
               {index > 0 && <span className="text-muted mx-2">|</span>}
               <span
-                className={`transition-colors duration-200 ${
+                className={cn(
+                  'transition-colors duration-200',
                   currentLanguage === lang.code ? 'text-gopher-blue font-medium' : 'text-muted'
-                }`}
+                )}
               >
                 {lang.label}
               </span>
@@ -47,7 +49,7 @@ export default function LanguageSelector({ className = '', variant = 'desktop' }
   return (
     <motion.button
       onClick={toggleLanguage}
-      className={`-mx-2 -my-1 flex items-center space-x-1 rounded px-2 py-1 font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50 ${className}`}
+      className={cn('-mx-2 -my-1 flex items-center space-x-1 rounded px-2 py-1 font-mono text-sm transition-colors duration-200 hover:bg-zinc-900/50', className)}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       title={`Current language: ${currentLanguage}. Click to switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
@@ -57,9 +59,10 @@ export default function LanguageSelector({ className = '', variant = 'desktop' }
         <span key={lang.code} className="flex items-center">
           {index > 0 && <span className="text-muted mx-1">|</span>}
           <span
-            className={`transition-colors duration-200 ${
+            className={cn(
+              'transition-colors duration-200',
               currentLanguage === lang.code ? 'text-gopher-blue font-medium' : 'text-muted'
-            }`}
+            )}
           >
             {lang.label}
           </span>
