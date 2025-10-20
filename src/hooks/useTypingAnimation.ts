@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseTypingAnimationOptions {
   command?: string;
@@ -56,15 +56,19 @@ export function useTypingAnimation({
   );
 
   // Auto-start solo si autoStart=true y hay comando
+  // Use ref pattern to avoid typeText recreation causing effect re-runs
+  const typeTextRef = useRef(typeText);
+  typeTextRef.current = typeText;
+
   useEffect(() => {
     if (!command || !autoStart) return;
 
     const startTimer = setTimeout(() => {
-      typeText(command);
+      typeTextRef.current(command);
     }, startDelay);
 
     return () => clearTimeout(startTimer);
-  }, [command, autoStart, startDelay, typeText]);
+  }, [command, autoStart, startDelay]);
 
   // Cursor parpadeante
   useEffect(() => {

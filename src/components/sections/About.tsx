@@ -62,6 +62,8 @@ export default function About() {
     }
   }, [shouldRender, typeText]);
 
+  // Ref pattern to avoid circular dependency: runAnimation modifies animationState
+  // which would otherwise cause infinite loops when used in the effect dependency array
   const runAnimationRef = useRef(runAnimation);
   runAnimationRef.current = runAnimation;
 

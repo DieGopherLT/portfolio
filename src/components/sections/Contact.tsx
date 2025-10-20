@@ -6,7 +6,7 @@ import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
@@ -83,6 +83,13 @@ export default function Contact() {
     }
   }, [shouldRender, typeText, t]);
 
+  // Ref pattern to prevent circular dependencies: animations modify state
+  // which would otherwise cause infinite loops when used in effect dependencies
+  const runFormAnimationRef = useRef(runFormAnimation);
+  const runSocialAnimationRef = useRef(runSocialAnimation);
+  runFormAnimationRef.current = runFormAnimation;
+  runSocialAnimationRef.current = runSocialAnimation;
+
   useEffect(() => {
     const runAllAnimations = async () => {
       if (
@@ -91,12 +98,12 @@ export default function Contact() {
         socialAnimationState === SocialAnimationState.IDLE
       ) {
         // Run both animations in parallel
-        await Promise.all([runFormAnimation(), runSocialAnimation()]);
+        await Promise.all([runFormAnimationRef.current(), runSocialAnimationRef.current()]);
       }
     };
 
     runAllAnimations();
-  }, [shouldRender, runFormAnimation, runSocialAnimation, formAnimationState, socialAnimationState]);
+  }, [shouldRender, formAnimationState, socialAnimationState]);
 
   return (
     <section ref={ref} id="contact" className="px-4 py-10" aria-labelledby="contact-heading">
