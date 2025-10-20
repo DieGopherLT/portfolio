@@ -196,10 +196,9 @@ export default function Skills() {
                   </div>
                   <div className="flex flex-wrap gap-4">
                     {highlightedLanguages.map((lang: string, idx: number) => {
-                      const skill =
-                        `${lang} (Golang)` === `${lang} (Golang)` && lang === 'Go' ? 'Go (Golang)' : lang;
-                      const level = getSkillLevel(skill);
-                      const isIntermediate = level === 'Intermediate' || level === 'Intermedio';
+                      const skillKey = lang === 'Go' ? 'Go (Golang)' : lang;
+                      const level = getSkillLevel(skillKey);
+                      const isIntermediate = level.toLowerCase().includes('intermediate');
 
                       return (
                         <div

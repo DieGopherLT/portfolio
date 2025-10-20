@@ -1,6 +1,6 @@
 import StructuredData from '@/components/StructuredData';
 import { routing } from '@/i18n/routing';
-import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
+import { DotsBackground } from '@/components/ui/backgrounds';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -120,9 +120,8 @@ export default async function RootLayout({
       </head>
       <body className={fontClassName}>
         <StructuredData locale={locale} />
-        <ClientBackgroundWrapper>
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        </ClientBackgroundWrapper>
+        <DotsBackground />
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

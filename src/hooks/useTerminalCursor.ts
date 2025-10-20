@@ -6,12 +6,12 @@ import type { TargetAndTransition, Transition } from 'framer-motion';
 
 interface TerminalCursorConfig {
   /**
-   * Para cursor parpadeante continuo (como en footer o prompt final)
+   * For continuous blinking cursor (like in footer or final prompt)
    */
   blinking: TargetAndTransition;
 
   /**
-   * Para cursor durante tipeo (se controla con estado showCursor)
+   * For cursor during typing (controlled with showCursor state)
    */
   typing: {
     transition: Transition;
@@ -19,8 +19,8 @@ interface TerminalCursorConfig {
 }
 
 /**
- * Hook para unificar las animaciones del cursor de terminal
- * Basado en el ritmo tranquilo del TerminalFooter (1.06s)
+ * Hook to unify terminal cursor animations
+ * Based on the steady rhythm of TerminalFooter (1.06s)
  */
 export function useTerminalCursor(): TerminalCursorConfig {
   return useMemo(

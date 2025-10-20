@@ -1,4 +1,4 @@
-import { ClientBackgroundWrapper } from '@/components/ui/ClientBackgroundWrapper';
+import { DotsBackground } from '@/components/ui/backgrounds';
 import Footer from '@/components/layout/Footer';
 import BlogNavigation from './BlogNavigation';
 
@@ -13,14 +13,12 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
   return (
     <div className="flex min-h-screen flex-col text-white">
       <BlogNavigation locale={locale} showBackLink={showBackLink} />
-
-      <main className="flex-1">
+      <DotsBackground />
+      <main className="flex-1 relative z-10">
         {/* Blog Content */}
-        <ClientBackgroundWrapper type="dots">
-          <div className="relative">{children}</div>
-        </ClientBackgroundWrapper>
+        {children}
       </main>
-      
+
       <Footer />
     </div>
   );

@@ -1,22 +1,12 @@
 /**
  * Background System Exports
  *
- * Unified export file for the adaptive background system.
- * Import from this file to access all background components and utilities.
+ * Minimal background components for the portfolio.
+ * DotsBackground provides a clean, performance-optimized background.
  */
 
-// Main components
-export { AdaptiveBackground } from './AdaptiveBackground';
+// Main component
 export { DotsBackground } from './DotsBackground';
-export { StarsBackground } from './StarsBackground';
-
-// Hooks
-export { useBackgroundType, usePrefersReducedMotion } from './hooks/useBackgroundType';
 
 // Types
-export type {
-  BackgroundType,
-  AdaptiveBackgroundProps,
-  DotsBackgroundProps,
-  StarsBackgroundProps,
-} from './types';
+export type { DotsBackgroundProps } from './types';

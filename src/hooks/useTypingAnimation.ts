@@ -34,28 +34,33 @@ export function useTypingAnimation({
         targetSetter('');
         setIsTyping(true);
 
-        let currentIndex = 0;
+        const chars = text.split('');
+        const startTime = performance.now();
         const actualTypingSpeed = typingSpeed + Math.random() * 30;
 
-        const typeChar = () => {
-          if (currentIndex < text.length) {
-            targetSetter(text.slice(0, currentIndex + 1));
-            currentIndex++;
-            setTimeout(typeChar, actualTypingSpeed);
-          } else {
+        const animate = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const currentIndex = Math.floor(elapsed / actualTypingSpeed);
+
+          if (currentIndex >= chars.length) {
+            targetSetter(text);
             setIsTyping(false);
-            resolve();
             onTypingComplete?.();
+            resolve();
+            return;
           }
+
+          targetSetter(text.slice(0, currentIndex + 1));
+          requestAnimationFrame(animate);
         };
 
-        typeChar();
+        requestAnimationFrame(animate);
       });
     },
     [typingSpeed, onTypingComplete]
   );
 
-  // Auto-start solo si autoStart=true y hay comando
+  // Only auto-start if autoStart=true and command is provided
   // Use ref pattern to avoid typeText recreation causing effect re-runs
   const typeTextRef = useRef(typeText);
   typeTextRef.current = typeText;
@@ -70,7 +75,7 @@ export function useTypingAnimation({
     return () => clearTimeout(startTimer);
   }, [command, autoStart, startDelay]);
 
-  // Cursor parpadeante
+  // Blinking cursor animation
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);

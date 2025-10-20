@@ -5,6 +5,7 @@ import { NAV_ITEMS } from '@/constants/navigation';
 import { useMobileMenu } from '@/contexts/MobileMenuContext';
 import { scrollToSection } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
+import { useActiveSection } from '@/hooks/useActiveSection';
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -16,6 +17,7 @@ interface NavigationProps {
 export default function Navigation({ className = '' }: NavigationProps) {
   const t = useTranslations('navigation');
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
+  const activeSection = useActiveSection(NAV_ITEMS.map(item => item.href));
 
   return (
     <motion.nav
@@ -39,10 +41,16 @@ export default function Navigation({ className = '' }: NavigationProps) {
                 <motion.button
                   key={item.key}
                   onClick={() => scrollToSection(item.href, 80)}
-                  className="nav-link text-secondary hover:text-gopher-blue px-2 py-1 text-sm font-medium transition-colors duration-200"
+                  className={cn(
+                    'nav-link px-2 py-1 text-sm font-medium transition-colors duration-200',
+                    activeSection === item.href
+                      ? 'text-gopher-blue font-semibold'
+                      : 'text-secondary hover:text-gopher-blue'
+                  )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   role="menuitem"
+                  aria-current={activeSection === item.href ? 'page' : undefined}
                   aria-label={`Navigate to ${t(item.key)} section`}
                 >
                   {t(item.key)}
