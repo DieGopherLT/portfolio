@@ -118,17 +118,6 @@ app/layout.tsx (Root)
 
 **Section Animation Sequence**: `IDLE → CAT_COMMAND → CAT_OUTPUT → SECOND_COMMAND → SECOND_OUTPUT → COMPLETE`
 
-### Background System
-
-```shell
-AdaptiveBackground
-├── Route detection (pathname.includes('/blog/') → dots, else → stars)
-├── Reduced motion fallback → dots
-└── Manual override via type prop
-```
-
-**Z-index**: Backgrounds use `fixed inset-0`, UI elements need `relative z-10+`
-
 ### Blog System
 
 **Content Structure**:

@@ -1,4 +1,3 @@
-import { DotsBackground } from '@/components/ui/backgrounds';
 import Footer from '@/components/layout/Footer';
 import BlogNavigation from './BlogNavigation';
 
@@ -13,8 +12,7 @@ export default function BlogLayout({ children, locale, showBackLink = true }: Bl
   return (
     <div className="flex min-h-screen flex-col text-white">
       <BlogNavigation locale={locale} showBackLink={showBackLink} />
-      <DotsBackground />
-      <main className="flex-1 relative z-10">
+      <main className="flex-1">
         {/* Blog Content */}
         {children}
       </main>

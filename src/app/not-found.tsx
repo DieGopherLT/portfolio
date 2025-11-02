@@ -1,7 +1,6 @@
 'use client';
 
 import { ERROR_404_ASCII, NOT_FOUND_ASCII } from '@/constants/ascii';
-import { DotsBackground } from '@/components/ui/backgrounds';
 import { fontClassName } from '@/lib/fonts';
 
 import Link from 'next/link';
@@ -56,8 +55,7 @@ export default function NotFound() {
     <html lang="en">
       <head />
       <body className={`bg-black text-white ${fontClassName} antialiased`}>
-        <DotsBackground />
-        <div className="min-h-screen flex items-center justify-center text-white relative z-10">
+        <div className="min-h-screen flex items-center justify-center text-white">
           <div className="text-center w-11/12 mx-auto md:w-full px-6 max-w-4xl">
               {/* Terminal Window using existing component styles */}
               <div className="terminal-window max-w-3xl mx-auto">

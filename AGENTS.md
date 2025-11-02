@@ -32,7 +32,6 @@ portfolio/
 │   │   ├── sections/              # Landing sections (About, Skills, Experience, Contact)
 │   │   ├── layout/                # Structural layout (Header, Footer, Navigation)
 │   │   ├── ui/                    # Reusable UI (TerminalPrompt, ContactForm, etc.)
-│   │   ├── ui/backgrounds/        # Background systems (DotsBackground, AdaptiveBackground)
 │   │   └── blog/                  # Blog components (PostCard, TOC, MDXComponents)
 │   ├── hooks/                     # Custom React hooks (useTypingAnimation, etc.)
 │   ├── lib/
@@ -503,23 +502,6 @@ The `id` MUST match the folder name. Slugs can be completely different per langu
 - `getPostsByTag(tag)` - Filter by tag
 - `getAllTags()` - All unique tags
 - `formatDate(dateString, locale)` - Locale-aware formatting
-
-### Background System
-
-**AdaptiveBackground** (`src/components/ui/backgrounds/AdaptiveBackground.tsx`):
-
-- Auto-detection: blog routes → dots, landing → stars
-- Manual override: `<AdaptiveBackground type="dots" />`
-- Respects `prefers-reduced-motion`
-- Types: `'stars'`, `'dots'`, `'none'`
-
-**CRITICAL Z-index Gotcha**:
-
-Backgrounds use `fixed inset-0` positioning. UI elements that need to appear above background MUST use `relative z-10` or higher.
-
-**Common issue**: Mobile navigation overlays disappearing behind background.
-
-**Solution**: Always add `relative z-10+` to UI components that should appear above backgrounds.
 
 ## Common Patterns
 
