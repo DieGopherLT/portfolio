@@ -1,7 +1,7 @@
 import BlogLayout from '@/components/blog/BlogLayout';
 import { MDXComponents } from '@/components/blog/MDXComponents';
 import TableOfContents from '@/components/blog/TableOfContents';
-import { MDXRemote } from '@/lib/blog/mdx';
+import { MDXRemote, mdxOptions } from '@/lib/blog/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
 import { formatDate, isValidLocale } from '@/lib/blog/utils';
 import { formatReadingTime } from '@/lib/blog/utils';
@@ -107,16 +107,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 </div>
               }
             >
-              <MDXRemote
-                source={content}
-                options={{
-                  mdxOptions: {
-                    remarkPlugins: [],
-                    rehypePlugins: [],
-                  },
-                }}
-                components={MDXComponents}
-              />
+              <MDXRemote source={content} options={mdxOptions} components={MDXComponents} />
             </Suspense>
           </div>
         </div>
@@ -186,16 +177,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                   </div>
                 }
               >
-                <MDXRemote
-                  source={content}
-                  options={{
-                    mdxOptions: {
-                      remarkPlugins: [],
-                      rehypePlugins: [],
-                    },
-                  }}
-                  components={MDXComponents}
-                />
+                <MDXRemote source={content} options={mdxOptions} components={MDXComponents} />
               </Suspense>
             </div>
           </div>

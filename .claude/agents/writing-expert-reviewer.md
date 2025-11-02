@@ -1,7 +1,7 @@
 ---
 name: writing-expert-reviewer
 description: Use this agent when you need expert writing review, style analysis, or text improvement suggestions. Examples include: reviewing blog posts, emails, documentation, marketing copy, or any written content that needs professional evaluation for clarity, authenticity, and correctness. Also use when you want to identify and maintain consistent writing style across documents, or when you need multiple revision options for the same text.
-tools: Read, mcp__sequential-thinking__sequentialthinking, Write, LS, Grep
+tools: Read, mcp__sequential-thinking__sequentialthinking, AskUserQuestion,, Write
 model: sonnet
 color: orange
 ---

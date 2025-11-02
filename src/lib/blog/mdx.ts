@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import type { Pluggable } from 'unified';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
@@ -18,23 +19,27 @@ async function getShikiHighlighter(): Promise<Highlighter> {
   return highlighterPromise;
 }
 
+const remarkPlugins: Pluggable[] = [remarkGfm];
+
+const rehypePlugins: Pluggable[] = [
+  rehypeSlug,
+  [
+    rehypeAutolinkHeadings,
+    {
+      behavior: 'wrap',
+      properties: {
+        className: ['anchor-link'],
+      },
+    },
+  ] as Pluggable,
+];
+
 export const mdxOptions = {
   mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'wrap',
-          properties: {
-            className: ['anchor-link'],
-          },
-        },
-      ],
-    ],
+    remarkPlugins,
+    rehypePlugins,
   },
-};
+} as const;
 
 export interface TOCItem {
   id: string;
