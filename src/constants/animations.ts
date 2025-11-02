@@ -18,6 +18,19 @@ export const ANIMATION_DELAYS = {
 } as const;
 
 /**
+ * Typing animation configuration
+ * Values in milliseconds
+ */
+export const TYPING_CONFIG = {
+  /** Base speed per character (50ms) */
+  DEFAULT_SPEED: 50,
+  /** Random variation range to simulate natural typing (0-30ms) */
+  SPEED_VARIATION: 30,
+  /** Cursor blinking interval (530ms per blink cycle) */
+  CURSOR_BLINK_INTERVAL: 530,
+} as const;
+
+/**
  * Helper function to create a Promise that resolves after a delay
  * @param ms - Milliseconds to wait
  */

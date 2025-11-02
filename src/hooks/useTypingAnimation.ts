@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { TYPING_CONFIG } from '@/constants/animations';
 
 interface UseTypingAnimationOptions {
   command?: string;
@@ -13,7 +14,7 @@ interface UseTypingAnimationOptions {
 export function useTypingAnimation({
   command = '',
   onTypingComplete,
-  typingSpeed = 50,
+  typingSpeed = TYPING_CONFIG.DEFAULT_SPEED,
   startDelay = 300,
   autoStart = true,
 }: UseTypingAnimationOptions = {}) {
@@ -36,7 +37,7 @@ export function useTypingAnimation({
 
         const chars = text.split('');
         const startTime = performance.now();
-        const actualTypingSpeed = typingSpeed + Math.random() * 30;
+        const actualTypingSpeed = typingSpeed + Math.random() * TYPING_CONFIG.SPEED_VARIATION;
 
         const animate = (currentTime: number) => {
           const elapsed = currentTime - startTime;
@@ -79,7 +80,7 @@ export function useTypingAnimation({
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
-    }, 530);
+    }, TYPING_CONFIG.CURSOR_BLINK_INTERVAL);
 
     return () => clearInterval(cursorInterval);
   }, []);
