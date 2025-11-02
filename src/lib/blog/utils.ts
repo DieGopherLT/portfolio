@@ -63,8 +63,12 @@ export function slugify(text: string): string {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[\s\W-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .normalize('NFD') // Decompose characters: á → a + ́
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritical marks
+    .replace(/[^\w\s-]/g, '') // Remove special characters (¿, ¡, etc)
+    .replace(/\s+/g, '-') // Spaces → hyphens
+    .replace(/-+/g, '-') // Multiple hyphens → single hyphen
+    .replace(/^-+|-+$/g, ''); // Clean edges
 }
 
 export function isValidLocale(locale: string): locale is 'en' | 'es' {

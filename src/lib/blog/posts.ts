@@ -21,6 +21,7 @@ export interface PostMetadata {
   updatedAt?: string;
   tags: string[];
   featured: boolean;
+  hidden?: boolean;
   readingTime: {
     en: number;
     es: number;
@@ -107,21 +108,26 @@ export async function getPostBySlug(slug: string, locale: 'en' | 'es'): Promise<
   }
 }
 
-export async function getRecentPosts(limit: number = 5): Promise<PostMetadata[]> {
+export async function getPublishedPosts(): Promise<PostMetadata[]> {
   const allPosts = await getAllPosts();
-  return allPosts.slice(0, limit);
+  return allPosts.filter(post => !post.hidden);
+}
+
+export async function getRecentPosts(limit: number = 5): Promise<PostMetadata[]> {
+  const publishedPosts = await getPublishedPosts();
+  return publishedPosts.slice(0, limit);
 }
 
 export async function getPostsByTag(tag: string): Promise<PostMetadata[]> {
-  const allPosts = await getAllPosts();
-  return allPosts.filter(post => post.tags.includes(tag));
+  const publishedPosts = await getPublishedPosts();
+  return publishedPosts.filter(post => post.tags.includes(tag));
 }
 
 export async function getAllTags(): Promise<string[]> {
-  const allPosts = await getAllPosts();
+  const publishedPosts = await getPublishedPosts();
   const tagSet = new Set<string>();
 
-  allPosts.forEach(post => {
+  publishedPosts.forEach(post => {
     post.tags.forEach(tag => tagSet.add(tag));
   });
 

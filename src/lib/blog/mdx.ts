@@ -1,7 +1,6 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { Pluggable } from 'unified';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { type Highlighter, createHighlighter } from 'shiki';
 import { slugify } from './utils';
@@ -22,7 +21,6 @@ async function getShikiHighlighter(): Promise<Highlighter> {
 const remarkPlugins: Pluggable[] = [remarkGfm];
 
 const rehypePlugins: Pluggable[] = [
-  rehypeSlug,
   [
     rehypeAutolinkHeadings,
     {

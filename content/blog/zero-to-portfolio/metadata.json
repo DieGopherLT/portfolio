@@ -15,7 +15,8 @@
   "publishedAt": "2025-09-20",
   "updatedAt": "2025-09-20",
   "tags": ["ai", "portfolio", "development", "workflow"],
-  "featured": true,
+  "featured": false,
+  "hidden": true,
   "readingTime": {
     "en": 3,
     "es": 3

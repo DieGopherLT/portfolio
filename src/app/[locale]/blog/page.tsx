@@ -1,6 +1,6 @@
 import BlogControls from '@/components/blog/BlogControls';
 import BlogLayout from '@/components/blog/BlogLayout';
-import { getAllPosts, getAllTags } from '@/lib/blog/posts';
+import { getPublishedPosts, getAllTags } from '@/lib/blog/posts';
 import { isValidLocale } from '@/lib/blog/utils';
 
 
@@ -24,8 +24,8 @@ export default async function BlogIndex({ params }: BlogIndexProps) {
   // Get translations
   const t = await getTranslations({ locale });
 
-  // Get all posts and tags
-  const posts = await getAllPosts();
+  // Get published posts and tags
+  const posts = await getPublishedPosts();
   const allTags = await getAllTags();
 
   return (
