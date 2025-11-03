@@ -57,24 +57,7 @@ export default function TableOfContents({ content, locale }: TableOfContentsProp
 
   // Handle click to scroll to heading
   const scrollToHeading = (id: string) => {
-    // Detect current viewport to select the correct layout
-    const isMobile = window.matchMedia('(max-width: 1023px)').matches;
-
-    // Select the correct layout based on viewport
-    const layoutSelector = isMobile
-      ? '.block.lg\\:hidden' // Mobile layout
-      : '.lg\\:grid'; // Desktop layout
-
-    // Search for the heading within the visible layout
-    let element = document.querySelector(`${layoutSelector} #${CSS.escape(id)}`) as HTMLElement | null;
-
-    // Fallback: try getElementById if contextual selector fails
-    if (!element) {
-      console.warn(
-        `Heading "${id}" not found in ${isMobile ? 'mobile' : 'desktop'} layout, trying fallback`
-      );
-      element = document.getElementById(id);
-    }
+    const element = document.getElementById(id);
 
     if (!element) {
       console.warn(`Heading with id "${id}" not found in the DOM`);
