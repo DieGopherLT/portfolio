@@ -115,116 +115,112 @@ export default function Skills() {
               command={t('terminal_command').replace('diegopher@portfolio:~$ ', '')}
               onTypingComplete={handleTypingComplete}
               className="mx-auto max-w-4xl"
-            />
-          </div>
-        )}
-
-        {showContent && (
-          <div
-            className="mx-auto mt-8 max-w-4xl"
-            data-aos="fade-up"
-            data-aos-duration="400"
-            data-aos-once="true"
-          >
-            <div className="rounded-lg border border-gray-800 bg-black p-4 font-mono text-white md:p-8">
-              <div className="space-y-8">
-                {/* Header Info */}
-                <div className="border-b border-gray-800 pb-4">
-                  <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                    <span className="text-gopher-blue font-semibold">{t('labels.overview')}</span>
-                    <span className="text-secondary rounded bg-gray-800 px-2 py-1 text-xs">
-                      {t('expertise_level')}
-                    </span>
-                  </div>
-                  <div className="text-secondary text-sm">
-                    <div className="flex flex-wrap gap-4">
-                      <div>
-                        {t('labels.specialization')}: {t('labels.backend_development')}
-                      </div>
-                      <div>
-                        {t('labels.main_languages')}: {highlightedLanguages.join(', ')}
+            >
+              {showContent && (
+                <div
+                  className="space-y-8 p-8"
+                  data-aos="fade-up"
+                  data-aos-duration="400"
+                  data-aos-once="true"
+                >
+                  {/* Header Info */}
+                  <div className="border-b border-gray-800 pb-4">
+                    <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <span className="text-gopher-blue font-semibold">{t('labels.overview')}</span>
+                      <span className="text-secondary rounded bg-gray-800 px-2 py-1 text-xs">
+                        {t('expertise_level')}
+                      </span>
+                    </div>
+                    <div className="text-secondary text-sm">
+                      <div className="flex flex-wrap gap-4">
+                        <div>
+                          {t('labels.specialization')}: {t('labels.backend_development')}
+                        </div>
+                        <div>
+                          {t('labels.main_languages')}: {highlightedLanguages.join(', ')}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Skills Categories */}
-                <div className="space-y-6">
-                  {Object.entries(sortedCategories).map(([categoryKey, category], index) => (
-                    <div
-                      key={categoryKey}
-                      className="border-gopher-blue border-l-2 pl-4 md:pl-6"
-                      data-aos="fade-right"
-                      data-aos-duration="500"
-                      data-aos-delay={index * 150}
-                      data-aos-once="true"
-                    >
-                      <div className="mb-4">
-                        <h3 className={cn('text-lg font-bold md:text-xl mb-2', getCategoryColor(categoryKey))}>
-                          {getCategoryIcon(categoryKey)} {category.name}
-                        </h3>
+                  {/* Skills Categories */}
+                  <div className="space-y-6">
+                    {Object.entries(sortedCategories).map(([categoryKey, category], index) => (
+                      <div
+                        key={categoryKey}
+                        className="border-gopher-blue border-l-2 pl-4 md:pl-6"
+                        data-aos="fade-right"
+                        data-aos-duration="500"
+                        data-aos-delay={index * 150}
+                        data-aos-once="true"
+                      >
+                        <div className="mb-4">
+                          <h3 className={cn('text-lg font-bold md:text-xl mb-2', getCategoryColor(categoryKey))}>
+                            {getCategoryIcon(categoryKey)} {category.name}
+                          </h3>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                          {category.skills.map((skill: string, idx: number) => (
+                            <div
+                              key={idx}
+                              className={cn(
+                                'cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
+                                isHighlighted(skill)
+                                  ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
+                                  : 'text-secondary border-gray-700 bg-gray-800 hover:bg-gray-700'
+                              )}
+                            >
+                              <span className="flex items-center gap-2">
+                                {isHighlighted(skill) && <span className="text-warning-yellow text-xs">★</span>}
+                                {skill}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
+                    ))}
+                  </div>
 
-                      <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                        {category.skills.map((skill: string, idx: number) => (
+                  {/* Highlighted Languages Section */}
+                  <div className="border-t border-gray-800 pt-6">
+                    <div className="mb-4">
+                      <h4 className="text-secondary mb-3 text-sm font-semibold tracking-wide uppercase">
+                        {t('labels.highlighted_section')}
+                      </h4>
+                    </div>
+                    <div className="flex flex-wrap gap-4">
+                      {highlightedLanguages.map((lang: string, idx: number) => {
+                        const skillKey = lang === 'Go' ? 'Go (Golang)' : lang;
+                        const level = getSkillLevel(skillKey);
+                        const isIntermediate = level.toLowerCase().includes('intermediate');
+
+                        return (
                           <div
                             key={idx}
-                            className={cn(
-                              'cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
-                              isHighlighted(skill)
-                                ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
-                                : 'text-secondary border-gray-700 bg-gray-800 hover:bg-gray-700'
-                            )}
+                            className="bg-gopher-blue/5 border-gopher-blue flex items-center gap-3 rounded-lg border p-3"
                           >
-                            <span className="flex items-center gap-2">
-                              {isHighlighted(skill) && <span className="text-warning-yellow text-xs">★</span>}
-                              {skill}
+                            <span className={cn('text-lg text-warning-yellow')}>
+                              {isIntermediate ? '◐' : '★'}
                             </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Highlighted Languages Section */}
-                <div className="border-t border-gray-800 pt-6">
-                  <div className="mb-4">
-                    <h4 className="text-secondary mb-3 text-sm font-semibold tracking-wide uppercase">
-                      {t('labels.highlighted_section')}
-                    </h4>
-                  </div>
-                  <div className="flex flex-wrap gap-4">
-                    {highlightedLanguages.map((lang: string, idx: number) => {
-                      const skillKey = lang === 'Go' ? 'Go (Golang)' : lang;
-                      const level = getSkillLevel(skillKey);
-                      const isIntermediate = level.toLowerCase().includes('intermediate');
-
-                      return (
-                        <div
-                          key={idx}
-                          className="bg-gopher-blue/5 border-gopher-blue flex items-center gap-3 rounded-lg border p-3"
-                        >
-                          <span className={cn('text-lg text-warning-yellow')}>
-                            {isIntermediate ? '◐' : '★'}
-                          </span>
-                          <div>
-                            <div className="text-gopher-blue text-sm font-semibold">{lang}</div>
-                            <div className="text-secondary text-xs">
-                              {isIntermediate
-                                ? t('labels.intermediate_experience')
-                                : t('labels.advanced_experience')}
+                            <div>
+                              <div className="text-gopher-blue text-sm font-semibold">{lang}</div>
+                              <div className="text-secondary text-xs">
+                                {isIntermediate
+                                  ? t('labels.intermediate_experience')
+                                  : t('labels.advanced_experience')}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
 
-                <TerminalFooter path="~/skills" />
-              </div>
-            </div>
+                  <TerminalFooter path="~/skills" />
+                </div>
+              )}
+            </TerminalWindow>
           </div>
         )}
       </div>

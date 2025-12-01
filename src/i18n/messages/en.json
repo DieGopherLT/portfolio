@@ -182,7 +182,7 @@
       "title": "Blog",
       "description": {
         "title": "Personal Blog",
-        "content": "Technical insights, development experiences, and thoughts about software architecture. A deeper dive into the Unix philosophy and modern development practices.",
+        "content": "Technical insights, development experiences, and thoughts about software architecture.",
         "link_text": "Read all posts →"
       },
       "no_posts": "No posts available yet. Come back soon!",

@@ -8,7 +8,8 @@ import { motion } from 'framer-motion';
 
 interface TerminalWindowProps {
   title?: string;
-  command: string;
+  command?: string;
+  children?: React.ReactNode;
   onTypingComplete?: () => void;
   className?: string;
 }
@@ -16,12 +17,14 @@ interface TerminalWindowProps {
 export default function TerminalWindow({
   title = 'diegopher@portfolio: ~',
   command,
+  children,
   onTypingComplete,
   className = '',
 }: TerminalWindowProps) {
   const { displayedText } = useTypingAnimation({
-    command,
+    command: command || '',
     onTypingComplete,
+    autoStart: !!command,
   });
 
   return (
@@ -41,7 +44,10 @@ export default function TerminalWindow({
       </div>
 
       <div className="terminal-content">
-        <TerminalPrompt command={displayedText} showCursor={true} cursorState="blinking" />
+        {command && (
+          <TerminalPrompt command={displayedText} showCursor={true} cursorState="blinking" />
+        )}
+        {children}
       </div>
     </motion.div>
   );

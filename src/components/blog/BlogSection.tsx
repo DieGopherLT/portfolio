@@ -1,5 +1,6 @@
 'use client';
 
+import TerminalWindow from '@/components/TerminalWindow';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { formatDateShort, formatReadingTime } from '@/lib/blog/utils';
 
@@ -37,77 +38,62 @@ export default function BlogSection({ recentPosts = [], locale }: BlogSectionPro
         </h2>
 
         {shouldRender && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="terminal-window"
+          <TerminalWindow
+            title="recent_posts.sh"
+            className="mx-auto max-w-4xl"
           >
-            {/* Terminal Header */}
-            <div className="terminal-header">
-              <div className="traffic-lights">
-                <div className="traffic-light close"></div>
-                <div className="traffic-light minimize"></div>
-                <div className="traffic-light maximize"></div>
+            <div className="p-8">
+              {/* Header */}
+              <div className="mb-6">
+                <h3 className="mb-1 text-2xl font-semibold text-white">{t('description.title')}</h3>
+                <p className="text-lg text-secondary">{t('description.content')}</p>
               </div>
-              <div className="window-title">recent_posts.sh</div>
-            </div>
 
-            {/* Terminal Content */}
-            <div className="terminal-content">
-              <div className="p-8">
-                {/* Header */}
-                <div className="mb-6">
-                  <h3 className="mb-1 text-2xl font-semibold text-white">{t('description.title')}</h3>
-                  <p className="text-lg text-secondary">{t('description.content')}</p>
-                </div>
+              {/* Divider */}
+              <div className="mb-6 h-px bg-white/10"></div>
 
-                {/* Divider */}
-                <div className="mb-6 h-px bg-white/10"></div>
-
-                {/* Posts List */}
-                <div className="space-y-3">
-                  {recentPosts.length > 0 ? (
-                    recentPosts.map((post, index) => (
-                      <motion.article
-                        key={post.slug}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="group"
+              {/* Posts List */}
+              <div className="space-y-3">
+                {recentPosts.length > 0 ? (
+                  recentPosts.map((post, index) => (
+                    <motion.article
+                      key={post.slug}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="group"
+                    >
+                      <Link
+                        href={`/${locale}/blog/${post.slug}`}
+                        className="flex items-center gap-3 text-sm transition-colors hover:text-gopher-blue"
                       >
-                        <Link
-                          href={`/${locale}/blog/${post.slug}`}
-                          className="flex items-center gap-3 text-sm transition-colors hover:text-gopher-blue"
-                        >
-                          <span className="text-white group-hover:text-gopher-blue">{post.title}</span>
-                          <span className="text-gopher-blue">|</span>
-                          <span className="text-secondary">{formatDateShort(post.date, locale)}</span>
-                          <span className="text-gopher-blue">|</span>
-                          <span className="text-secondary">
-                            {formatReadingTime(post.readingTime, locale)}
-                          </span>
-                        </Link>
-                      </motion.article>
-                    ))
-                  ) : (
-                    <p className="text-sm text-secondary">{t('no_posts')}</p>
-                  )}
-                </div>
-
-                {/* Divider */}
-                <div className="my-6 h-px bg-white/10"></div>
-
-                {/* View All Link */}
-                <Link
-                  href={`/${locale}/blog`}
-                  className="inline-flex items-center gap-2 text-gopher-blue transition-colors hover:text-gopher-blue-hover"
-                >
-                  → {t('description.link_text')}
-                </Link>
+                        <span className="text-white group-hover:text-gopher-blue">{post.title}</span>
+                        <span className="text-gopher-blue">|</span>
+                        <span className="text-secondary">{formatDateShort(post.date, locale)}</span>
+                        <span className="text-gopher-blue">|</span>
+                        <span className="text-secondary">
+                          {formatReadingTime(post.readingTime, locale)}
+                        </span>
+                      </Link>
+                    </motion.article>
+                  ))
+                ) : (
+                  <p className="text-sm text-secondary">{t('no_posts')}</p>
+                )}
               </div>
+
+              {/* Divider */}
+              <div className="my-6 h-px bg-white/10"></div>
+
+              {/* View All Link */}
+              <Link
+                href={`/${locale}/blog`}
+                className="inline-flex items-center gap-2 text-gopher-blue transition-colors hover:text-gopher-blue-hover"
+              >
+                → {t('description.link_text')}
+              </Link>
             </div>
-          </motion.div>
+          </TerminalWindow>
         )}
       </div>
     </section>
