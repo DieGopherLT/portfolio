@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/mdx": "^2.0.13",
     "aos": "^2.3.4",
     "clsx": "^2.1.1",

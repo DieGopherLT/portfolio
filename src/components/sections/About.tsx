@@ -1,77 +1,33 @@
 'use client';
 
-import TerminalFooter from '@/components/TerminalFooter';
-import TerminalPrompt from '@/components/ui/TerminalPrompt';
-import { ANIMATION_DELAYS, delay } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
-import { useTypingAnimation } from '@/hooks/useTypingAnimation';
-
-
-
-import { useCallback, useEffect, useRef, useState } from 'react';
-
-
-
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
-enum AnimationState {
-  IDLE = 0,
-  CAT_COMMAND = 1,
-  CAT_OUTPUT = 2,
-  SECOND_COMMAND = 3,
-  SECOND_OUTPUT = 4,
-  COMPLETE = 5,
+interface Highlight {
+  icon: string;
+  text: string;
 }
+
+const iconMap: Record<string, string> = {
+  star: '★',
+  diamond: '◆',
+  arrow: '▶',
+};
+
+const iconColorMap: Record<string, string> = {
+  star: 'text-warning-yellow',
+  diamond: 'text-keyword-purple',
+  arrow: 'text-ts-blue',
+};
 
 export default function About() {
   const t = useTranslations('sections.about');
   const personalInfo = useTranslations('personal_info');
   const { ref, shouldRender } = useAOSVisibility({ threshold: 0.2 });
 
-  const { typeText } = useTypingAnimation({ autoStart: false });
-
-  const [animationState, setAnimationState] = useState<AnimationState>(AnimationState.IDLE);
-
-  const [catCommand, setCatCommand] = useState('');
-  const [secondCommand, setSecondCommand] = useState('');
-
-  const runAnimation = useCallback(async () => {
-    if (!shouldRender) return;
-
-    try {
-      await delay(ANIMATION_DELAYS.INITIAL);
-
-      setAnimationState(AnimationState.CAT_COMMAND);
-      await typeText('cat /etc/developer.conf', setCatCommand);
-      await delay(ANIMATION_DELAYS.MEDIUM);
-
-      setAnimationState(AnimationState.CAT_OUTPUT);
-      await delay(ANIMATION_DELAYS.CONTENT_REVEAL);
-
-      setAnimationState(AnimationState.SECOND_COMMAND);
-      await typeText('cat about-me.md', setSecondCommand);
-      await delay(ANIMATION_DELAYS.SHORT);
-
-      setAnimationState(AnimationState.SECOND_OUTPUT);
-      await delay(ANIMATION_DELAYS.MEDIUM);
-
-      setAnimationState(AnimationState.COMPLETE);
-    } catch (error) {
-      console.error('Animation error:', error);
-    }
-  }, [shouldRender, typeText]);
-
-  // Ref pattern to avoid circular dependency: runAnimation modifies animationState
-  // which would otherwise cause infinite loops when used in the effect dependency array
-  const runAnimationRef = useRef(runAnimation);
-  runAnimationRef.current = runAnimation;
-
-  useEffect(() => {
-    if (shouldRender && animationState === AnimationState.IDLE) {
-      runAnimationRef.current();
-    }
-  }, [shouldRender, animationState]);
+  const badges = t.raw('badges') as string[];
+  const highlights = t.raw('highlights') as Highlight[];
 
   return (
     <section ref={ref} id="about" className="min-h-screen px-4 py-10" aria-labelledby="about-heading">
@@ -86,14 +42,12 @@ export default function About() {
           {t('title')}
         </h2>
 
-        {/* Single Terminal Window */}
         {shouldRender && (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="terminal-window"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="300"
-            data-aos-once="true"
           >
             {/* macOS Terminal Header */}
             <div className="terminal-header">
@@ -107,133 +61,54 @@ export default function About() {
 
             {/* Terminal Content */}
             <div className="terminal-content">
-              <div className="p-6 font-mono text-white">
-                {/* Cat Command */}
-                <AnimatePresence>
-                  {animationState >= AnimationState.CAT_COMMAND && (
-                    <motion.div
-                      key="cat-command"
-                      className="mb-4"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: 'easeOut' }}
-                    >
-                      <TerminalPrompt
-                        command={catCommand}
-                        showCursor={animationState === AnimationState.CAT_COMMAND}
-                        cursorState="blinking"
-                        commandClassName="text-sm"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              <div className="p-8">
+                {/* Header con nombre y título */}
+                <div className="mb-6">
+                  <h3 className="mb-1 text-2xl font-semibold text-white">{personalInfo('full_name')}</h3>
+                  <p className="text-secondary text-lg">{personalInfo('title')}</p>
+                </div>
 
-                {/* Cat Command Output */}
-                <AnimatePresence>
-                  {animationState >= AnimationState.CAT_OUTPUT && (
-                    <motion.div
-                      key="cat-output"
-                      className="mb-6 pl-0"
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
-                    >
-                      <div className="space-y-1 pl-4 text-sm">
-                        <div>
-                          <span className="text-keyword-purple">[profile]</span>
-                        </div>
-                        <div>
-                          <span className="text-ts-blue">name</span>=
-                          <span className="text-string-green">&quot;{personalInfo('full_name')}&quot;</span>
-                        </div>
-                        <div>
-                          <span className="text-ts-blue">role</span>=
-                          <span className="text-string-green">
-                            &quot;{personalInfo('title')} && {personalInfo('specialization')}&quot;
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-ts-blue">preferences</span>=
-                          <span className="text-string-green">&quot;{personalInfo('preference')}&quot;</span>
-                        </div>
-                        <div>
-                          <span className="text-ts-blue">uptime</span>=
-                          <span className="text-string-green">
-                            &quot;{personalInfo('experience_years')}+ years&quot;
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-ts-blue">age</span>=
-                          <span className="text-string-green">&quot;{personalInfo('age')}&quot;</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Badges row */}
+            <div className="mb-6 flex flex-wrap gap-2">
+              {badges.map((badge, index) => (
+                <motion.span
+                  key={badge}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="rounded-md bg-gopher-blue/15 px-3 py-1 text-sm font-medium text-gopher-blue"
+                >
+                  {badge}
+                </motion.span>
+              ))}
+            </div>
 
-                {/* Second Command */}
-                <AnimatePresence>
-                  {animationState >= AnimationState.SECOND_COMMAND && (
-                    <motion.div
-                      key="second-command"
-                      className="mb-4"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: 'easeOut' }}
-                    >
-                      <TerminalPrompt
-                        command={secondCommand}
-                        showCursor={animationState === AnimationState.SECOND_COMMAND}
-                        cursorState="blinking"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Divider */}
+            <div className="mb-6 h-px bg-white/10"></div>
 
-                {/* Second Command Output */}
-                <AnimatePresence>
-                  {animationState >= AnimationState.SECOND_OUTPUT && (
-                    <motion.div
-                      className="mb-6 pl-0"
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
-                    >
-                      <div className="text-secondary space-y-4 leading-relaxed">
-                        <p className="text-white">
-                          <span className="text-terminal-green">$</span> {t('content.intro')}
-                        </p>
-                        <p>
-                          <span className="text-gopher-blue">→</span> {t('content.expertise')}
-                        </p>
-                        <p>
-                          <span className="text-warning-yellow">★</span> {t('content.passion')}
-                        </p>
-                        <p>
-                          <span className="text-keyword-purple">◆</span> {t('content.philosophy')}
-                        </p>
-                        <p>
-                          <span className="text-ts-blue">▶</span> {t('content.current_focus')}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Intro paragraph */}
+            <p className="text-secondary mb-6 leading-relaxed">{t('intro')}</p>
 
-                <AnimatePresence>
-                  {animationState === AnimationState.COMPLETE && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: 'easeOut' }}
-                    >
-                      <TerminalFooter path="~/about" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Highlights */}
+            <div className="space-y-4">
+              {highlights.map((highlight, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                  className="flex items-start gap-3"
+                >
+                  <span className={`mt-1 text-lg ${iconColorMap[highlight.icon]}`}>
+                    {iconMap[highlight.icon]}
+                  </span>
+                  <p className="text-secondary flex-1 leading-relaxed">{highlight.text}</p>
+                </motion.div>
+              ))}
+            </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

@@ -24,19 +24,26 @@
       "cta": "Explora mi trabajo y experiencia"
     },
     "about": {
-      "system_command": "diegopher@portfolio:~$ uname -a",
-      "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
       "title": "Sobre mí",
-      "content": {
-        "intro": "Ingeniero de software egresado de la Universidad de Guadalajara, con 3 años de experiencia profesional construyendo aplicaciones web",
-        "expertise": "Me enfoco en desarrollo fullstack, brillo cuando se trata de identificar problemas, qué principio o patrón lo resuelve y aplicarlo.",
-        "passion": "Soy feliz programando, especialmente en entornos Linux. Disfruto optimizando flujos de trabajo y explorando nuevas tecnologías.",
-        "philosophy": "Soy pragmático en mi forma de trabajar. Buena parte de los problemas que afrontamos ya fueron resueltos y las soluciones están ahí fuera, me apasiona investigarlas y agregarlas a mi arsenal.",
-        "current_focus": "Me adentro al mundo del DevOps y programación agéntica, ya no se trata solo de crear apps, sino también llevárselas a los usuarios."
-      }
+      "badges": ["Backend", "Go", "TypeScript", "Linux"],
+      "intro": "Ingeniero de software egresado de la Universidad de Guadalajara, con 3 años de experiencia profesional construyendo aplicaciones web. Me enfoco en desarrollo fullstack, brillo cuando se trata de identificar problemas, qué principio o patrón lo resuelve y aplicarlo.",
+      "highlights": [
+        {
+          "icon": "star",
+          "text": "Soy feliz programando, especialmente en entornos Linux. Disfruto optimizando flujos de trabajo y explorando nuevas tecnologías."
+        },
+        {
+          "icon": "diamond",
+          "text": "Soy pragmático en mi forma de trabajar. Buena parte de los problemas que afrontamos ya fueron resueltos y las soluciones están ahí fuera, me apasiona investigarlas y agregarlas a mi arsenal."
+        },
+        {
+          "icon": "arrow",
+          "text": "Me adentro al mundo del DevOps y programación agéntica, ya no se trata solo de crear apps, sino también llevárselas a los usuarios."
+        }
+      ]
     },
     "experience": {
-      "terminal_command": "diegopher@portfolio:~$ history | grep work",
+      "terminal_command": "diegopher@portfolio:~$ ./career.sh --timeline",
       "title": "Experiencia",
       "jobs": [
         {
@@ -100,7 +107,7 @@
       }
     },
     "skills": {
-      "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
+      "terminal_command": "diegopher@portfolio:~$ ./my-skills.sh --list --verbose",
       "title": "Habilidades",
       "categories": {
         "conceptual": {
@@ -217,6 +224,10 @@
     "contact": {
       "terminal_command": "diegopher@portfolio:~$ connect --help",
       "title": "Contacto",
+      "header": {
+        "title": "Contáctame",
+        "subtitle": "¿Tienes alguna pregunta o quieres colaborar? ¡Envíame un mensaje!"
+      },
       "form": {
         "title": "contact-form.sh",
         "fields": {

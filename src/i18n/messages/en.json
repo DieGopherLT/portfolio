@@ -19,19 +19,26 @@
       "cta": "Explore my work and experience"
     },
     "about": {
-      "system_command": "diegopher@portfolio:~$ uname -a",
-      "terminal_command": "diegopher@portfolio:~$ cat about-me.md",
       "title": "About Me",
-      "content": {
-        "intro": "Software engineer from Universidad de Guadalajara with 3 years of professional experience building web applications",
-        "expertise": "I focus on fullstack development, and I shine when it comes to identifying problems, finding which principle or pattern solves them, and applying them.",
-        "passion": "I'm happy coding, especially in Linux environments. I enjoy optimizing workflows and exploring new technologies.",
-        "philosophy": "I'm pragmatic in my approach to development. Most of the problems we face have already been solved and the solutions are out there—I'm passionate about researching them and adding them to my arsenal.",
-        "current_focus": "I'm diving into the DevOps world and agentic programming—it's not just about creating apps anymore, but also getting them to users."
-      }
+      "badges": ["Backend", "Go", "TypeScript", "Linux"],
+      "intro": "Software engineer from Universidad de Guadalajara with 3 years of professional experience building web applications. I focus on fullstack development, and I shine when it comes to identifying problems, finding which principle or pattern solves them, and applying them.",
+      "highlights": [
+        {
+          "icon": "star",
+          "text": "I'm happy coding, especially in Linux environments. I enjoy optimizing workflows and exploring new technologies."
+        },
+        {
+          "icon": "diamond",
+          "text": "I'm pragmatic in my approach to development. Most of the problems we face have already been solved and the solutions are out there—I'm passionate about researching them and adding them to my arsenal."
+        },
+        {
+          "icon": "arrow",
+          "text": "I'm diving into the DevOps world and agentic programming—it's not just about creating apps anymore, but also getting them to users."
+        }
+      ]
     },
     "experience": {
-      "terminal_command": "diegopher@portfolio:~$ history | grep work",
+      "terminal_command": "diegopher@portfolio:~$ ./career.sh --timeline",
       "title": "Experience",
       "jobs": [
         {
@@ -95,7 +102,7 @@
       }
     },
     "skills": {
-      "terminal_command": "diegopher@portfolio:~$ skills --list --verbose",
+      "terminal_command": "diegopher@portfolio:~$ ./my-skills.sh --list --verbose",
       "title": "Skills",
       "categories": {
         "conceptual": {
@@ -212,6 +219,10 @@
     "contact": {
       "terminal_command": "diegopher@portfolio:~$ connect --help",
       "title": "Contact",
+      "header": {
+        "title": "Get in Touch",
+        "subtitle": "Have a question or want to collaborate? Drop me a message!"
+      },
       "form": {
         "title": "contact-form.sh",
         "fields": {
