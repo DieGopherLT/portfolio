@@ -2,7 +2,8 @@ export const NAV_ITEMS = [
   { key: 'about', href: '#about' },
   { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
-  { key: 'blog', href: '#blog' },
+  // TODO: Re-enable when blog is ready
+  // { key: 'blog', href: '#blog' },
   { key: 'contact', href: '#contact' },
 ] as const;
 

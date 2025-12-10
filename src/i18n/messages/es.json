@@ -183,7 +183,6 @@
       "placeholder_content": "Esta sección se actualizará con proyectos destacados en desarrollo."
     },
     "blog": {
-      "terminal_command": "diegopher@portfolio:~$ ls blog/",
       "title": "Blog",
       "description": {
         "title": "Blog Personal",
@@ -260,10 +259,7 @@
         }
       },
       "social": {
-        "title": "mis-redes.md",
-        "command": "diegopher@portfolio:~$ cat mis-redes.md",
         "section_title": "Redes Sociales",
-        "section_subtitle": "Conéctate conmigo en estas plataformas",
         "links": [
           {
             "platform": "GitHub",
@@ -272,7 +268,7 @@
           },
           {
             "platform": "LinkedIn",
-            "url": "www.linkedin.com/in/diego-lpz-trrs",
+            "url": "https://www.linkedin.com/in/diego-lpz-trrs",
             "description": "Perfil profesional"
           }
         ],
@@ -288,13 +284,6 @@
     "projects": "Proyectos",
     "blog": "Blog",
     "contact": "Contacto"
-  },
-  "common_phrases": {
-    "scroll_hint": "Desplázate para explorar",
-    "loading": "Cargando...",
-    "view_more": "Ver más",
-    "back_to_top": "Volver arriba",
-    "download_resume": "Descargar CV"
   },
   "not_found": {
     "title": "404 - Página no encontrada",

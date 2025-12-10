@@ -178,7 +178,6 @@
       "placeholder_content": "This section will be updated with featured projects in development."
     },
     "blog": {
-      "terminal_command": "diegopher@portfolio:~$ ls blog/",
       "title": "Blog",
       "description": {
         "title": "Personal Blog",
@@ -255,10 +254,7 @@
         }
       },
       "social": {
-        "title": "my-networks.md",
-        "command": "diegopher@portfolio:~$ cat my-networks.md",
         "section_title": "Social Networks",
-        "section_subtitle": "Connect with me on these platforms",
         "links": [
           {
             "platform": "GitHub",
@@ -267,7 +263,7 @@
           },
           {
             "platform": "LinkedIn",
-            "url": "www.linkedin.com/in/diego-lpz-trrs",
+            "url": "https://www.linkedin.com/in/diego-lpz-trrs",
             "description": "Professional profile"
           }
         ],
@@ -283,13 +279,6 @@
     "projects": "Projects",
     "blog": "Blog",
     "contact": "Contact"
-  },
-  "common_phrases": {
-    "scroll_hint": "Scroll to explore",
-    "loading": "Loading...",
-    "view_more": "View more",
-    "back_to_top": "Back to top",
-    "download_resume": "Download Resume"
   },
   "not_found": {
     "title": "404 - Page Not Found",
