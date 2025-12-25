@@ -6,6 +6,7 @@ import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { cn } from '@/lib/utils';
 
+import { BookOpen, Terminal } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
@@ -17,9 +18,7 @@ interface SkillCategory {
 
 interface SkillsCategories {
   conceptual: SkillCategory;
-  backend: SkillCategory;
-  frontend: SkillCategory;
-  tooling: SkillCategory;
+  technical: SkillCategory;
 }
 
 export default function Skills() {
@@ -32,9 +31,7 @@ export default function Skills() {
   }, []);
 
   const categories: SkillsCategories = t.raw('categories') as SkillsCategories;
-  const highlightedLanguages: string[] = t.raw('highlighted_languages') as string[];
   const highlightedSkills: string[] = t.raw('highlighted_skills') as string[];
-  const skillLevels: Record<string, string> = t.raw('skill_levels') as Record<string, string>;
 
   const isHighlighted = useCallback(
     (skill: string): boolean => highlightedSkills.includes(skill),
@@ -70,26 +67,20 @@ export default function Skills() {
     return result as unknown as SkillsCategories;
   }, [categories, sortSkillsByHighlight]);
 
-  const getSkillLevel = (skill: string): string => {
-    return skillLevels[skill] || '';
-  };
+  const getCategoryIcon = (categoryKey: string): React.ReactNode => {
+    const iconProps = { size: 20, className: 'inline-block' };
 
-  const getCategoryIcon = (categoryKey: string): string => {
-    const icons: Record<string, string> = {
-      conceptual: '🧠',
-      backend: '⚙️',
-      frontend: '🎨',
-      tooling: '🔧',
+    const icons: Record<string, React.ReactNode> = {
+      conceptual: <BookOpen {...iconProps} />,
+      technical: <Terminal {...iconProps} />,
     };
-    return icons[categoryKey] || '📋';
+    return icons[categoryKey] || null;
   };
 
   const getCategoryColor = (categoryKey: string): string => {
     const colors: Record<string, string> = {
       conceptual: 'text-keyword-purple',
-      backend: 'text-gopher-blue',
-      frontend: 'text-ts-blue',
-      tooling: 'text-terminal-green',
+      technical: 'text-gopher-blue',
     };
     return colors[categoryKey] || 'text-secondary';
   };
@@ -132,13 +123,8 @@ export default function Skills() {
                       </span>
                     </div>
                     <div className="text-secondary text-sm">
-                      <div className="flex flex-wrap gap-4">
-                        <div>
-                          {t('labels.specialization')}: {t('labels.backend_development')}
-                        </div>
-                        <div>
-                          {t('labels.main_languages')}: {highlightedLanguages.join(', ')}
-                        </div>
+                      <div>
+                        {t('labels.specialization')}: {t('labels.backend_development')}
                       </div>
                     </div>
                   </div>
@@ -165,56 +151,18 @@ export default function Skills() {
                             <div
                               key={idx}
                               className={cn(
-                                'cursor-default rounded border px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
+                                'cursor-default rounded px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
                                 isHighlighted(skill)
-                                  ? 'bg-gopher-blue/10 border-gopher-blue text-gopher-blue font-semibold'
-                                  : 'text-secondary border-gray-700 bg-gray-800 hover:bg-gray-700'
+                                  ? 'bg-gradient-to-r from-gopher-blue/15 to-gopher-blue/5 border-l-4 border-gopher-blue font-semibold hover:from-gopher-blue/25'
+                                  : 'bg-gray-800 border border-gray-700 font-normal hover:bg-gray-700'
                               )}
                             >
-                              <span className="flex items-center gap-2">
-                                {isHighlighted(skill) && <span className="text-warning-yellow text-xs">★</span>}
-                                {skill}
-                              </span>
+                              {skill}
                             </div>
                           ))}
                         </div>
                       </div>
                     ))}
-                  </div>
-
-                  {/* Highlighted Languages Section */}
-                  <div className="border-t border-gray-800 pt-6">
-                    <div className="mb-4">
-                      <h4 className="text-secondary mb-3 text-sm font-semibold tracking-wide uppercase">
-                        {t('labels.highlighted_section')}
-                      </h4>
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                      {highlightedLanguages.map((lang: string, idx: number) => {
-                        const skillKey = lang === 'Go' ? 'Go (Golang)' : lang;
-                        const level = getSkillLevel(skillKey);
-                        const isIntermediate = level.toLowerCase().includes('intermediate');
-
-                        return (
-                          <div
-                            key={idx}
-                            className="bg-gopher-blue/5 border-gopher-blue flex items-center gap-3 rounded-lg border p-3"
-                          >
-                            <span className={cn('text-lg text-warning-yellow')}>
-                              {isIntermediate ? '◐' : '★'}
-                            </span>
-                            <div>
-                              <div className="text-gopher-blue text-sm font-semibold">{lang}</div>
-                              <div className="text-secondary text-xs">
-                                {isIntermediate
-                                  ? t('labels.intermediate_experience')
-                                  : t('labels.advanced_experience')}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
                   </div>
 
                   <TerminalFooter path="~/skills" />

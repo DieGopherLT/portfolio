@@ -107,7 +107,7 @@
       }
     },
     "skills": {
-      "terminal_command": "diegopher@portfolio:~$ ./my-skills.sh --list --verbose",
+      "terminal_command": "diegopher@portfolio:~$ cat ./skills_inventory.json | jq .",
       "title": "Habilidades",
       "categories": {
         "conceptual": {
@@ -116,33 +116,33 @@
             "Principios Código Limpio",
             "Patrones de Diseño",
             "SOLID",
+            "Programación Funcional",
             "Arquitectura MVC",
             "Diseño basado en Dominios (DDD)",
             "Diseño de API RESTful",
             "Programación Orientada a Objetos",
-            "Inyección de Dependencias"
+            "Inyección de Dependencias",
+            "Ingeniería de Prompts"
           ]
         },
-        "backend": {
-          "name": "Backend & Databases",
+        "technical": {
+          "name": "Habilidades Técnicas",
           "skills": [
             "Go (Golang)",
-            "Node.js",
-            "Express.js",
+            "TypeScript",
+            "Linux",
+            "Docker",
+            "Git & GitHub",
+            "AI Agents",
             "Nest.js",
+            "React",
+            "REST APIs",
+            "UI/UX",
+            "Node.js",
             "SQL Databases",
             "MongoDB",
-            "GraphQL",
-            "REST APIs"
+            "Tailwind CSS"
           ]
-        },
-        "frontend": {
-          "name": "Frontend & UI",
-          "skills": ["TypeScript", "React", "Vue.js", "Tailwind CSS", "Diseño Responsivo", "UI/UX"]
-        },
-        "tooling": {
-          "name": "Herramientas & DevOps",
-          "skills": ["Git & GitHub", "Docker", "Linux", "Terminal/CLI", "CI/CD", "Manejadores de Paquetes"]
         }
       },
       "highlighted_languages": ["Go", "TypeScript"],
@@ -150,28 +150,19 @@
         "Principios Código Limpio",
         "Patrones de Diseño",
         "SOLID",
+        "Diseño basado en Dominios (DDD)",
         "Go (Golang)",
-        "Nest.js",
         "TypeScript",
         "Linux",
+        "Docker",
         "Git & GitHub",
-        "REST APIs",
-        "React",
-        "UI/UX",
-        "Terminal/CLI"
+        "AI Agents"
       ],
       "expertise_level": "3+ años de experiencia profesional",
-      "skill_levels": {
-        "Go (Golang)": "Intermedio",
-        "TypeScript": "Avanzado"
-      },
       "labels": {
         "overview": "RESUMEN DE HABILIDADES",
         "specialization": "Especialidad",
         "main_languages": "Lenguajes principales",
-        "highlighted_section": "LENGUAJES DESTACADOS",
-        "advanced_experience": "Experiencia avanzada",
-        "intermediate_experience": "Experiencia intermedia",
         "backend_development": "Desarrollo backend"
       }
     },
