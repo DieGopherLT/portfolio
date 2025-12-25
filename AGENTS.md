@@ -364,6 +364,23 @@ const { ref, isVisible, shouldRender } = useAOSVisibility();
 // Prevents off-screen animation processing
 ```
 
+## Recently Resolved
+
+These antipatterns have been addressed and improvements are complete:
+
+### ✅ Hardcoded Hex Color in TerminalPrompt (RESOLVED)
+
+**What was done**: Replaced hardcoded `#58c5a4` color with `text-terminal-green` class in TerminalPrompt component (all 3 instances).
+
+**Date Resolved**: 2025-12-25
+
+**Related Improvements**:
+- Added STAGGER_DELAY constant to animations
+- Defined color semantics in new docs/color_semantics.md
+- All sections now follow consistent color usage patterns
+
+---
+
 ## Antipatterns to Address
 
 This section documents code quality issues and technical debt identified in the codebase. These are opportunities for gradual improvement.
@@ -405,16 +422,6 @@ This section documents code quality issues and technical debt identified in the 
 **Recommended Action**: Apply the same ref pattern documented in About.tsx (lines 65-67).
 
 **Priority**: Medium - Prevents future bugs from dependency cycles
-
-### Hardcoded Hex Color in TerminalPrompt
-
-**Issue**: Uses inline hex `#58c5a4` instead of Tailwind theme constant.
-
-**Location**: `src/components/ui/TerminalPrompt.tsx:30,41,60`
-
-**Recommended Action**: Replace with theme-consistent color class (`text-terminal-green`).
-
-**Priority**: Low - Design system consistency
 
 ### Inline Animation/Transition Duplicates
 

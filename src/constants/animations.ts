@@ -15,6 +15,8 @@ export const ANIMATION_DELAYS = {
   CONTENT_REVEAL: 1500,
   /** Delay for displaying command output (2000ms) */
   CONTENT_DISPLAY: 2000,
+  /** Stagger delay for sequential item animations (150ms between items) */
+  STAGGER_DELAY: 150,
 } as const;
 
 /**

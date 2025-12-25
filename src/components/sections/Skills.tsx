@@ -1,11 +1,12 @@
 'use client';
 
+import Badge from '@/components/ui/Badge';
+import SectionTitle from '@/components/ui/SectionTitle';
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalWindow from '@/components/TerminalWindow';
 import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
 import { cn } from '@/lib/utils';
-
 import { BookOpen, Terminal } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 
@@ -88,15 +89,7 @@ export default function Skills() {
   return (
     <section ref={ref} id="skills" className="min-h-screen px-4 py-10" aria-labelledby="skills-heading">
       <div className="mx-auto max-w-4xl">
-        <h2
-          id="skills-heading"
-          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
-          data-aos="fade-up"
-          data-aos-duration="300"
-          data-aos-once="true"
-        >
-          {t('title')}
-        </h2>
+        <SectionTitle>{t('title')}</SectionTitle>
 
         {/* Terminal Window with conditional rendering */}
         {shouldRender && (
@@ -115,7 +108,7 @@ export default function Skills() {
                   data-aos-once="true"
                 >
                   {/* Header Info */}
-                  <div className="border-b border-gray-800 pb-4">
+                  <div className="pb-4">
                     <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                       <span className="text-gopher-blue font-semibold">{t('labels.overview')}</span>
                       <span className="text-secondary rounded bg-gray-800 px-2 py-1 text-xs">
@@ -128,6 +121,7 @@ export default function Skills() {
                       </div>
                     </div>
                   </div>
+                  <div className="h-px bg-white/10"></div>
 
                   {/* Skills Categories */}
                   <div className="space-y-6">
@@ -137,28 +131,24 @@ export default function Skills() {
                         className="border-gopher-blue border-l-2 pl-4 md:pl-6"
                         data-aos="fade-right"
                         data-aos-duration="500"
-                        data-aos-delay={index * 150}
+                        data-aos-delay={index * ANIMATION_DELAYS.STAGGER_DELAY}
                         data-aos-once="true"
                       >
                         <div className="mb-4">
-                          <h3 className={cn('text-lg font-bold md:text-xl mb-2', getCategoryColor(categoryKey))}>
+                          <h3 className={cn('text-lg font-semibold md:text-xl mb-2', getCategoryColor(categoryKey))}>
                             {getCategoryIcon(categoryKey)} {category.name}
                           </h3>
                         </div>
 
                         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                           {category.skills.map((skill: string, idx: number) => (
-                            <div
+                            <Badge
                               key={idx}
-                              className={cn(
-                                'cursor-default rounded px-3 py-2 text-xs transition-all duration-200 hover:scale-105 md:text-sm',
-                                isHighlighted(skill)
-                                  ? 'bg-gradient-to-r from-gopher-blue/15 to-gopher-blue/5 border-l-4 border-gopher-blue font-semibold hover:from-gopher-blue/25'
-                                  : 'bg-gray-800 border border-gray-700 font-normal hover:bg-gray-700'
-                              )}
+                              variant={isHighlighted(skill) ? 'highlight' : 'tech'}
+                              className="cursor-default transition-all duration-200 hover:scale-105"
                             >
                               {skill}
-                            </div>
+                            </Badge>
                           ))}
                         </div>
                       </div>

@@ -35,7 +35,7 @@ export default function SocialMedia() {
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              transition={{ duration: 0.3, delay: index * 0.15 }}
               className="flex items-center gap-2 text-gopher-blue transition-colors hover:text-gopher-blue-hover"
             >
               {Icon && <Icon className="h-5 w-5" />}

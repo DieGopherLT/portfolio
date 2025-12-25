@@ -19,6 +19,7 @@
       "cta": "Explore my work and experience"
     },
     "about": {
+      "terminal_command": "diegopher@portfolio:~$ cat about.txt",
       "title": "About Me",
       "badges": ["Backend", "Go", "TypeScript", "Linux"],
       "intro": "Software engineer from Universidad de Guadalajara with 3 years of professional experience building web applications. I focus on fullstack development, and I shine when it comes to identifying problems, finding which principle or pattern solves them, and applying them.",

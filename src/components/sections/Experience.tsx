@@ -1,12 +1,12 @@
 'use client';
 
+import Badge from '@/components/ui/Badge';
+import SectionTitle from '@/components/ui/SectionTitle';
 import TerminalFooter from '@/components/TerminalFooter';
 import TerminalWindow from '@/components/TerminalWindow';
 import { ANIMATION_DELAYS } from '@/constants/animations';
 import { useAOSVisibility } from '@/hooks/useAOSVisibility';
-
 import { useCallback, useState } from 'react';
-
 import { useTranslations } from 'next-intl';
 
 interface Job {
@@ -39,15 +39,7 @@ export default function Experience() {
       aria-labelledby="experience-heading"
     >
       <div className="mx-auto max-w-4xl">
-        <h2
-          id="experience-heading"
-          className="mb-8 text-center text-4xl font-light text-white md:text-5xl"
-          data-aos="fade-up"
-          data-aos-duration="300"
-          data-aos-once="true"
-        >
-          {t('title')}
-        </h2>
+        <SectionTitle>{t('title')}</SectionTitle>
 
         {/* Terminal Window con renderizado condicional */}
         {shouldRender && (
@@ -71,13 +63,13 @@ export default function Experience() {
                       className="border-gopher-blue border-l-2 pb-6 pl-4 last:pb-0 md:pl-6"
                       data-aos="fade-right"
                       data-aos-duration="500"
-                      data-aos-delay={index * 200}
+                      data-aos-delay={index * ANIMATION_DELAYS.STAGGER_DELAY}
                       data-aos-once="true"
                     >
                       {/* Job Header */}
                       <div className="mb-4">
                         <div className="mb-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-                          <h3 className="text-lg font-bold text-white md:text-xl">{job.position}</h3>
+                          <h3 className="text-lg font-semibold text-white md:text-xl">{job.position}</h3>
                           <span className="text-secondary self-start rounded bg-gray-800 px-2 py-1 text-xs md:text-sm lg:self-center">
                             {job.type}
                           </span>
@@ -136,12 +128,9 @@ export default function Experience() {
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {job.technologies.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="text-gopher-blue cursor-default rounded border border-gray-700 bg-gray-800 px-2 py-1 font-mono text-xs transition-colors hover:bg-gray-700"
-                            >
+                            <Badge key={idx} variant="tech">
                               {tech}
-                            </span>
+                            </Badge>
                           ))}
                         </div>
                       </div>

@@ -24,6 +24,7 @@
       "cta": "Explora mi trabajo y experiencia"
     },
     "about": {
+      "terminal_command": "diegopher@portfolio:~$ cat sobre_mi.txt",
       "title": "Sobre mí",
       "badges": ["Backend", "Go", "TypeScript", "Linux"],
       "intro": "Ingeniero de software egresado de la Universidad de Guadalajara, con 3 años de experiencia profesional construyendo aplicaciones web. Me enfoco en desarrollo fullstack, brillo cuando se trata de identificar problemas, qué principio o patrón lo resuelve y aplicarlo.",

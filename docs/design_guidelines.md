@@ -49,6 +49,10 @@
 --color-comment-gray: #5c6370;
 ```
 
+### Color Semantics
+
+See [Color Semantics Guide](./color_semantics.md) for detailed usage guidelines on when and how to apply gopher-blue vs terminal-green colors in different contexts.
+
 ## Typography
 
 ### Font Stack
@@ -143,6 +147,13 @@ macOS terminal window with:
 - Cursor: blinking Unix cursor (1.06s cycle)
 - States: 'typing' and 'blinking' modes
 - Implementation: Character-by-character rendering with variable speed
+- See `src/constants/animations.ts` for all timing values
+
+**Staggered Item Animations**:
+
+- Stagger delay: 150ms between sequential items (ANIMATION_DELAYS.STAGGER_DELAY)
+- Used for: badges, skills, social links, job experience items
+- Provides rhythm to multi-item reveals while keeping interactions snappy
 
 **Animation States** (implemented in sections):
 
@@ -235,6 +246,18 @@ r/unixporn aesthetic values
 - Terminal windows must include authentic macOS-style title bars
 - Contact section requires split terminal design (form + social links)
 - Form elements should use TUI styling while maintaining standard UX
+
+### Reusable Components
+
+**SectionTitle** (`src/components/ui/SectionTitle.tsx`)
+- Consistent h2 styling across all main sections (About, Experience, Skills, Contact)
+- Handles AOS fade-up animation automatically
+- Use instead of hardcoded h2 elements for consistency
+
+**Badge** (`src/components/ui/Badge.tsx`)
+- Three variants: `gopher` (category labels), `tech` (technology stack), `highlight` (featured items)
+- Single source of truth for pill/badge styling across sections
+- Prefer over inline span styling for consistent UI appearance
 
 ### Development Accessibility Requirements
 
