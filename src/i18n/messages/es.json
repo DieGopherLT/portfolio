@@ -213,7 +213,7 @@
       }
     },
     "contact": {
-      "terminal_command": "diegopher@portfolio:~$ connect --help",
+      "terminal_command": "diegopher@portfolio:~$ ping @DieGopherLT",
       "title": "Contacto",
       "header": {
         "title": "Contáctame",

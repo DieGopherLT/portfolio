@@ -208,7 +208,7 @@
       }
     },
     "contact": {
-      "terminal_command": "diegopher@portfolio:~$ connect --help",
+      "terminal_command": "diegopher@portfolio:~$ ping @DieGopherLT",
       "title": "Contact",
       "header": {
         "title": "Get in Touch",
